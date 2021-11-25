@@ -6,7 +6,7 @@ namespace GameOfLife.Application
     {
         public World InitialiseWorld(World world, int worldRows, int worldColumns);
 
-        public World NextGeneration(World world);
+        public World PopulateWorldWithNextGen(World world);
 
         public void CheckForLivingNeighbours(World world);
         

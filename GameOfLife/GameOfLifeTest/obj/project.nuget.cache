@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "W+RhJaP3r4BD9GpcdUKGPXTcOcQW1X2T2NPaFl7q4tzZc+6p8Uh9R1xltR5T+AewcWGrl+zU/hwlPUXz5jODDg==",
+  "dgSpecHash": "jGqf9cBbTd5LVpjWHBL/kVRFvzdh6NtoLJOkoNRFxLx0P4pDoIKV0F9tD+Jd5jqBmVcgehntKCFZvXnO5CJivQ==",
   "success": true,
-  "projectFilePath": "/Users/Timothy.Dalzotto/RiderProjects/MontyHallKata/GameOfLife/GameOfLifeTest/GameOfLifeTest.csproj",
+  "projectFilePath": "/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest/GameOfLifeTest.csproj",
   "expectedPackageFiles": [
     "/Users/Timothy.Dalzotto/.nuget/packages/coverlet.collector/3.0.2/coverlet.collector.3.0.2.nupkg.sha512",
     "/Users/Timothy.Dalzotto/.nuget/packages/microsoft.codecoverage/16.9.4/microsoft.codecoverage.16.9.4.nupkg.sha512",

@@ -5938,11 +5938,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/Timothy.Dalzotto/RiderProjects/MontyHallKata/GameOfLife/GameOfLifeTest/GameOfLifeTest.csproj",
+      "projectUniqueName": "/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest/GameOfLifeTest.csproj",
       "projectName": "GameOfLifeTest",
-      "projectPath": "/Users/Timothy.Dalzotto/RiderProjects/MontyHallKata/GameOfLife/GameOfLifeTest/GameOfLifeTest.csproj",
+      "projectPath": "/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest/GameOfLifeTest.csproj",
       "packagesPath": "/Users/Timothy.Dalzotto/.nuget/packages/",
-      "outputPath": "/Users/Timothy.Dalzotto/RiderProjects/MontyHallKata/GameOfLife/GameOfLifeTest/obj/",
+      "outputPath": "/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/Timothy.Dalzotto/.nuget/NuGet/NuGet.Config"
@@ -5957,8 +5957,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "/Users/Timothy.Dalzotto/RiderProjects/MontyHallKata/GameOfLife/GameOfLife/GameOfLife.csproj": {
-              "projectPath": "/Users/Timothy.Dalzotto/RiderProjects/MontyHallKata/GameOfLife/GameOfLife/GameOfLife.csproj"
+            "/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLife/GameOfLife.csproj": {
+              "projectPath": "/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLife/GameOfLife.csproj"
             }
           }
         }

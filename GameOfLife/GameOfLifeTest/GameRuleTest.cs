@@ -7,17 +7,21 @@ using Xunit.Sdk;
 
 namespace GameOfLifeTest
 {
-    public class GameOfLifeTest
+    public class GameRuleTest
     {
         [Fact]
         public void GivenNewWorld_WhenNextGenerationRun_ThenReturnUpdatedWorld()
         {
             var world = new World();
             var gameRule = new GameRules();
-
+            //create origianl generation and populate world
             var originalGeneration = gameRule.InitialiseWorld(world, 5,5);
-
-            var nextGeneration= gameRule.NextGeneration(world);
+            //finding Neighbours
+            gameRule.CheckForLivingNeighbours(originalGeneration);
+            //determine if cells survives the next gen
+            gameRule.DoesCellSurviveNextGen();
+            //populate world with next gen
+            var nextGeneration= gameRule.PopulateWorldWithNextGen(world);
             
             Assert.NotEqual(originalGeneration, nextGeneration);
             
@@ -86,6 +90,21 @@ namespace GameOfLifeTest
             var actual = originalGeneration.WorldPopulation[1, 1].Neighbours.Count(x => x.IsAlive);
 
             Assert.Equal(8,actual);
+        }
+        
+        [Fact]
+        public void GivenNumberOfNeighbours_WhenDoesCellSurviveIsCalled_ThenReturnifTheCellLivesOrDies()
+        {
+            var world = new World();
+            var mockGameRules = new GameRuleAllLiveCells();
+            var gameRules = new GameRules();
+            
+            var originalGeneration = mockGameRules.InitialiseWorld(world, 8, 8);
+            gameRules.CheckForLivingNeighbours(originalGeneration);
+
+            gameRules.DoesCellSurviveNextGen(originalGeneration.WorldPopulation[5,5]);
+
+            Assert.False(originalGeneration.WorldPopulation[5,5].SurvivesNextGen);
         }
     }
 }

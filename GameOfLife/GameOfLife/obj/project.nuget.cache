@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zzUAGgHhIX/2zx0jwAiZOFaXpoKO0RfTUm1va90px57k1yxSkMlwYbbs0mfvTUusgMqHDf5L9ZO+Idc2Ny5Qag==",
+  "dgSpecHash": "uo67k8/FfeD3SEGQP5SSUYeSUotW+DImLgWuhBpvtbAZV3lfltK/wscLA2WiB1Vwq4aSeguzGmfdZZ3L1IUehg==",
   "success": true,
-  "projectFilePath": "/Users/Timothy.Dalzotto/RiderProjects/MontyHallKata/GameOfLife/GameOfLife/GameOfLife.csproj",
+  "projectFilePath": "/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLife/GameOfLife.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -22,7 +22,7 @@ namespace GameOfLifeTest
             return world;
         }
 
-        public World NextGeneration(World world)
+        public World PopulateWorldWithNextGen(World world)
         {
             throw new System.NotImplementedException();
         }

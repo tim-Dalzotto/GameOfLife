@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/Timothy.Dalzotto/RiderProjects/MontyHallKata/GameOfLife/GameOfLife/GameOfLife.csproj",
+      "projectUniqueName": "/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLife/GameOfLife.csproj",
       "projectName": "GameOfLife",
-      "projectPath": "/Users/Timothy.Dalzotto/RiderProjects/MontyHallKata/GameOfLife/GameOfLife/GameOfLife.csproj",
+      "projectPath": "/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLife/GameOfLife.csproj",
       "packagesPath": "/Users/Timothy.Dalzotto/.nuget/packages/",
-      "outputPath": "/Users/Timothy.Dalzotto/RiderProjects/MontyHallKata/GameOfLife/GameOfLife/obj/",
+      "outputPath": "/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLife/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/Timothy.Dalzotto/.nuget/NuGet/NuGet.Config"

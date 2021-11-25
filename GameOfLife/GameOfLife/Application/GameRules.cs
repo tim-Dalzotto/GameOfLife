@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
 using GameOfLife.Domain;
 
 namespace GameOfLife.Application
@@ -25,9 +27,28 @@ namespace GameOfLife.Application
             return world;
         }
 
-        public World NextGeneration(World world)
+        public World PopulateWorldWithNextGen(World world)
         {
-            throw new System.NotImplementedException();
+            var nextGen = new World();
+            var originalGen = world;
+           
+            var column = world.WorldPopulation.GetLength(1);
+            var row = world.WorldPopulation.GetLength(0);;
+            for (int x = 0; x < column; x++)
+            {
+                for (int y = 0; y < row; y++)
+                {
+                    if (originalGen.WorldPopulation[x, y].SurvivesNextGen)
+                    {
+                        originalGen.WorldPopulation[x, y].IsAlive = true;
+                        originalGen.WorldPopulation[x, y].SurvivesNextGen = false;
+                    }
+                    else originalGen.WorldPopulation[x, y].IsAlive = false;
+                    
+                }
+            }
+
+            return originalGen;
         }
         
 
@@ -58,6 +79,22 @@ namespace GameOfLife.Application
                     world.WorldPopulation[x,y].Neighbours.Add(world.WorldPopulation[x,bottomNeighbouringCell]);
                     world.WorldPopulation[x,y].Neighbours.Add(world.WorldPopulation[rightNeighbouringCell,bottomNeighbouringCell]);
                 }
+            }
+        }
+        
+        
+        public void DoesCellSurviveNextGen(Cell cell)
+        {
+            var liveNeighbours = cell.Neighbours.Count(x => x.IsAlive);
+
+            if (cell.IsAlive)
+            {
+                if (liveNeighbours is 2 or 3) cell.SurvivesNextGen = true;
+            }
+
+            else
+            {
+                if (liveNeighbours > 3) cell.SurvivesNextGen = true;
             }
         }
     }

@@ -6,7 +6,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="ConsoleOut" />
       <Folder Include="Infrastructure" />
     </ItemGroup>
 
