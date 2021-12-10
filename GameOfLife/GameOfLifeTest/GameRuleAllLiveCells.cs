@@ -5,21 +5,21 @@ namespace GameOfLifeTest
 {
     public class GameRuleAllLiveCells : IGameRules
     {
-        public World InitialiseWorld(World world, int worldRows, int worldColumns)
+        public World InitialiseWorld(World world)
         {
             var cell = new Cell();
             var createWorld = world;
-            createWorld.WorldPopulation = new Cell[worldRows,worldColumns];
+            createWorld.WorldPopulation = new Cell[world.Size,world.Size];
             
-            for(var i = 0; i < worldRows; i++)
+            for(var i = 0; i < world.Size; i++)
             {
-                for (var j = 0; j < worldColumns; j++)
+                for (var j = 0; j < world.Size; j++)
                 {
                     cell.IsAlive = true;
                     createWorld.WorldPopulation[i, j] = cell;
                 }
             }
-            return world;
+            return createWorld;
         }
 
         public World PopulateWorldWithNextGen(World world)
@@ -29,7 +29,12 @@ namespace GameOfLifeTest
 
         public void CheckForLivingNeighbours(World world)
         {
-            world = InitialiseWorld(world,5, 5);
+            world = InitialiseWorld(world);
+        }
+
+        public void DoCellsSurviveNextGen(World world)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

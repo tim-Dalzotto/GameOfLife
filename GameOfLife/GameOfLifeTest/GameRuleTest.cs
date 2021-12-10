@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using GameOfLife.Application;
 using GameOfLife.Domain;
 using Xunit;
+using Newtonsoft.Json;
 using Xunit.Sdk;
 
 namespace GameOfLifeTest
@@ -12,18 +14,22 @@ namespace GameOfLifeTest
         [Fact]
         public void GivenNewWorld_WhenNextGenerationRun_ThenReturnUpdatedWorld()
         {
-            var world = new World();
+            var world = new World
+            {
+                Size = 5
+            };
             var gameRule = new GameRules();
-            //create origianl generation and populate world
-            var originalGeneration = gameRule.InitialiseWorld(world, 5,5);
+            var mockGameRule = new GameRuleAllLiveCells();
+            //create original generation and populate world
+            var originalGeneration = mockGameRule.InitialiseWorld(world);
             //finding Neighbours
             gameRule.CheckForLivingNeighbours(originalGeneration);
             //determine if cells survives the next gen
-            gameRule.DoesCellSurviveNextGen();
+            //gameRule.DoCellsSurviveNextGen(originalGeneration);
             //populate world with next gen
-            var nextGeneration= gameRule.PopulateWorldWithNextGen(world);
+            var nextGeneration= gameRule.PopulateWorldWithNextGen(originalGeneration);
             
-            Assert.NotEqual(originalGeneration, nextGeneration);
+            Assert.Equal(PreDefinedWorlds.EveryCellIsDead(world), nextGeneration);
             
         } 
         
@@ -34,8 +40,9 @@ namespace GameOfLifeTest
         {
             var world = new World();
             var gameRule = new GameRules();
+            world.Size = 5;
 
-            var test = gameRule.InitialiseWorld(world, 5, 5);
+            var test = gameRule.InitialiseWorld(world);
             
             Assert.NotEmpty(test.WorldPopulation);
         }
@@ -45,8 +52,9 @@ namespace GameOfLifeTest
         {
             var world = new World();
             var gameRule = new GameRules();
+            world.Size = 5;
 
-            var test = gameRule.InitialiseWorld(world, 5, 5);
+            var test = gameRule.InitialiseWorld(world);
             
             Assert.NotEmpty(test.WorldPopulation);
         }
@@ -55,6 +63,7 @@ namespace GameOfLifeTest
         public void GivenWorld_WhenCellIsSelected_ThenReturnAllLivingNeighbours()
         {
             var world = new World();
+            world.Size = 8;
             var originalGeneration = world;
             var gameRules = new GameRules();
             var MockgameRules = new GameRuleAllLiveCells();
@@ -64,7 +73,7 @@ namespace GameOfLifeTest
             var deadCell = cell;
             deadCell.IsAlive = false;
             
-            originalGeneration = MockgameRules.InitialiseWorld(world, 8, 8);
+            originalGeneration = MockgameRules.InitialiseWorld(world);
             gameRules.CheckForLivingNeighbours(originalGeneration);
             var actual = originalGeneration.WorldPopulation[1, 1].Neighbours.Count(x => x.IsAlive);
 
@@ -75,6 +84,7 @@ namespace GameOfLifeTest
         public void GivenWorld_WhenCellIsSelectedAndCellIsOnAnEdge_ThenReturnAllLivingNeighboursWhileLoopingToTheOtherSideOfTheGrid()
         {
             var world = new World();
+            world.Size = 8;
             var originalGeneration = world;
             var mockGameRules = new GameRuleAllLiveCells();
             var gameRules = new GameRules();
@@ -84,27 +94,123 @@ namespace GameOfLifeTest
             var deadCell = cell;
             deadCell.IsAlive = false;
 
-            originalGeneration = mockGameRules.InitialiseWorld(world, 8, 8);
+            originalGeneration = mockGameRules.InitialiseWorld(world);
             gameRules.CheckForLivingNeighbours(originalGeneration);
 
             var actual = originalGeneration.WorldPopulation[1, 1].Neighbours.Count(x => x.IsAlive);
 
             Assert.Equal(8,actual);
         }
-        
+
         [Fact]
-        public void GivenNumberOfNeighbours_WhenDoesCellSurviveIsCalled_ThenReturnifTheCellLivesOrDies()
+        public void GivenWorld_WhenKillAllIsCalled_ThenKillAllLivingCells()
         {
             var world = new World();
+            world.Size = 5;
+            var gameRules = new GameRules();
+            var mockGameRule = new GameRuleAllLiveCells();
+            
+
+            var currentGeneration = mockGameRule.InitialiseWorld(world);
+            
+
+            gameRules.KillAllCells(currentGeneration);
+            
+            var testWorld = PreDefinedWorlds.EveryCellIsDead(new World());
+            
+            var serializedActualWorldStr = JsonConvert.SerializeObject(currentGeneration);
+            var serializedExpectedWorldStr = JsonConvert.SerializeObject(testWorld);
+            Assert.Equal(serializedExpectedWorldStr, serializedActualWorldStr );
+
+
+
+        }
+        
+        [Fact]
+        public void GivenNumberOfNeighbours_WhenDoesCellSurviveIsCalled_ThenReturnIfTheCellLivesOrDies()
+        {
+            var world = new World();
+            world.Size = 8;
             var mockGameRules = new GameRuleAllLiveCells();
             var gameRules = new GameRules();
             
-            var originalGeneration = mockGameRules.InitialiseWorld(world, 8, 8);
+            var originalGeneration = mockGameRules.InitialiseWorld(world);
             gameRules.CheckForLivingNeighbours(originalGeneration);
 
-            gameRules.DoesCellSurviveNextGen(originalGeneration.WorldPopulation[5,5]);
+            //gameRules.DoCellsSurviveNextGen(originalGeneration);
 
             Assert.False(originalGeneration.WorldPopulation[5,5].SurvivesNextGen);
         }
+
+        [Fact]
+        public void GivenGeneratePreDeterminedWorld_WhenGivenAListOfCoOrd_ThenReturnAWorldWithAllGivenCoOrdsAlive()
+        {
+            var world = new World();
+            world.Size = 5;
+            var gameRules = new GameRules();
+            var livingCellCoOrds = new List<string>()
+            {
+                "0,0","0,1","0,2","0,3","0,4"
+            };
+
+            var boardSetup = gameRules.splitCoOrds(livingCellCoOrds);
+
+            var currentGeneration = gameRules.InitialiseWorld(world);
+            
+            gameRules.LoadListIntoWorld(livingCellCoOrds, currentGeneration);
+
+            var testWorld = PreDefinedWorlds.EveryCellOnFirstRowIsAlive(new World());
+            
+            var serializedActualWorldStr = JsonConvert.SerializeObject(currentGeneration);
+            var serializedExpectedWorldStr = JsonConvert.SerializeObject(testWorld);
+            //Assert.Equal(serializedExpectedWorldStr, serializedActualWorldStr );
+        }
+
+        [Fact]
+        public void GivenSplitCoOrds_WhenListOfStringsIsEntered_ThenReturnAListOfTuplesWithInts()
+        {
+            var gameRules = new GameRules();
+            
+            var livingCellCoOrds = new List<string>()
+            {
+                "5,5","1,1"
+            };
+
+            var currentList = gameRules.splitCoOrds(livingCellCoOrds);
+            
+            Assert.Equal(5, currentList.ElementAt(0).Item1);
+        }
+        
+        [Fact]
+        public void GivenLoadWorldFromPattern_WhenGivenAPattern_ThenReturnAWorldWith()
+        {
+            var world = new World();
+            world.Size = 50;
+            var gameRules = new GameRules();
+            string pattern1 =
+                "-------------------------X----------\n" +
+                "----------------------XXXX----X-----\n" +
+                "-------------X-------XXXX-----X-----\n" +
+                "------------X-X------X--X---------XX\n" +
+                "-----------X---XX----XXXX---------XX\n" +
+                "XX---------X---XX-----XXXX----------\n" +
+                "XX---------X---XX--------X----------\n" +
+                "------------X-X---------------------\n" +
+                "-------------X----------------------";
+            
+
+            var boardSetup = gameRules.splitPattern(pattern1);
+
+            var currentGeneration = gameRules.InitialiseWorld(world);
+            
+            gameRules.LoadPatternIntoWorld(boardSetup, currentGeneration);
+
+            var testWorld = PreDefinedWorlds.EveryCellOnFirstRowIsAlive(new World());
+            
+            var serializedActualWorldStr = JsonConvert.SerializeObject(currentGeneration);
+            var serializedExpectedWorldStr = JsonConvert.SerializeObject(testWorld);
+            Assert.Equal(serializedExpectedWorldStr, serializedActualWorldStr );
+        }
+        
     }
 }
