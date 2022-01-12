@@ -5,7 +5,7 @@ namespace GameOfLifeTest
 {
     public class GameRuleAllLiveCells : IGameRules
     {
-        public World InitialiseWorld(World world)
+        public World InitialiseWorld(World world, int size)
         {
             var cell = new Cell();
             var createWorld = world;
@@ -27,9 +27,10 @@ namespace GameOfLifeTest
             throw new System.NotImplementedException();
         }
 
-        public void CheckForLivingNeighbours(World world)
+        public World CheckForLivingNeighboursAndPopulateNextGeneration(World world)
         {
-            world = InitialiseWorld(world);
+            world = InitialiseWorld(world, world.Size);
+            return world;
         }
 
         public void DoCellsSurviveNextGen(World world)

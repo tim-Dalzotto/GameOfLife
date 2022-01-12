@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading;
 using GameOfLife.Application;
@@ -15,7 +16,7 @@ namespace GameOfLife
             var world = new World();
             var gameRules = new GameRules();
             var game = new Game();
-            world.Size = 40;
+            var size = 40;
             var livingCellCoOrds = new List<string>()
             {
                 "5,5","5,1","3,2","2,3","5,4","6,0","8,1","7,2","8,3","8,4","4,3","4,4","5,3","5,4"
@@ -41,7 +42,7 @@ namespace GameOfLife
             var boardListSetup = gameRules.splitCoOrds(livingCellCoOrds);
             var boardPatternSetup = gameRules.splitPattern(pattern1);
 
-            var currentGeneration = gameRules.InitialiseWorld(world);
+            var currentGeneration = gameRules.InitialiseWorld(world, size);
             gameRules.KillAllCells(currentGeneration);
             //gameRules.LoadListIntoWorld(livingCellCoOrds, currentGeneration);
             gameRules.LoadPatternIntoWorld(boardPatternSetup, currentGeneration);
@@ -49,7 +50,7 @@ namespace GameOfLife
             ConsoleOutput.DisplayWorld(currentGeneration);
 
             var count = 0;
-            while (count < 500)
+            while (count < 300)
             {
                 
                 currentGeneration = game.RunNextGeneration(currentGeneration);

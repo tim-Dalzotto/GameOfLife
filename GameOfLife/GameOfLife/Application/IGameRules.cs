@@ -4,11 +4,12 @@ namespace GameOfLife.Application
 {
     public interface IGameRules
     {
-        public World InitialiseWorld(World world);
+        public World InitialiseWorld(World world, int size);
 
         public World PopulateWorldWithNextGen(World world);
 
-        public void CheckForLivingNeighbours(World world);
+        public World CheckForLivingNeighboursAndPopulateNextGeneration(World world);
+        
 
         //public void DoCellsSurviveNextGen(World world);
 
