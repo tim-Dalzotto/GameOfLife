@@ -8,10 +8,9 @@ namespace GameOfLife.Application
         public World RunNextGeneration(World world)
         {
             var currentGeneration = world; 
-            GameRules gameRule = new GameRules();
+            var gameRule = new GameRules();
             
             gameRule.CheckForLivingNeighbours(currentGeneration);
-            //gameRule.DoCellsSurviveNextGen(currentGeneration);
             
             var nextGeneration= gameRule.PopulateWorldWithNextGen(currentGeneration);
             

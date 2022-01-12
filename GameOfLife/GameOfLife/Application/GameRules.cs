@@ -51,93 +51,94 @@ namespace GameOfLife.Application
 
             return originalGen;
         }
-        
+
+
+
 
         public void CheckForLivingNeighbours(World world)
         {
             var rowCount = world.WorldPopulation.GetLength(0);
             var columnCount = world.WorldPopulation.GetLength(1);
-            
-            var column = columnCount;
-            var row = rowCount;
-            for (int x = 0; x < column; x++)
-            {
-                for (int y = 0; y < row; y++)
-                {
-                    int leftNeighbouringCell = (x > 0) ? x - 1 : column - 1;
-                    int rightNeighbouringCell = (x < column - 1) ? x + 1 : 0;
 
-                    int topNeighbouringCell = (y > 0) ? y - 1 : row - 1;
-                    int bottomNeighbouringCell = (y <row - 1) ? y +1 : 0;
-
-                    world.WorldPopulation[x, y].Neighbours = new List<Cell>
-                    {
-                        world.WorldPopulation[leftNeighbouringCell, topNeighbouringCell],
-                        world.WorldPopulation[x, topNeighbouringCell],
-                        world.WorldPopulation[rightNeighbouringCell,topNeighbouringCell],
-                        world.WorldPopulation[leftNeighbouringCell,y],
-                        world.WorldPopulation[rightNeighbouringCell,y],
-                        world.WorldPopulation[leftNeighbouringCell,bottomNeighbouringCell],
-                        world.WorldPopulation[x,bottomNeighbouringCell],
-                        world.WorldPopulation[rightNeighbouringCell,bottomNeighbouringCell]
-                    };
-                }
-            }
-        }
-
-        public void CheckForLivingN(World world)
-        {
-            var rowCount = world.WorldPopulation.GetLength(0);
-            var columnCount = world.WorldPopulation.GetLength(1);
-            
             var column = columnCount;
             var row = rowCount;
 
-            
+
             for (int x = 0; x < column; x++)
             {
                 for (int y = 0; y < row; y++)
                 {
                     var currentCell = world.WorldPopulation[x, y];
                     var liveNeighbours = 0;
-                    
+
                     int leftNeighbouringCell = (x > 0) ? x - 1 : column - 1;
                     int rightNeighbouringCell = (x < column - 1) ? x + 1 : 0;
 
                     int topNeighbouringCell = (y > 0) ? y - 1 : row - 1;
-                    int bottomNeighbouringCell = (y <row - 1) ? y +1 : 0;
-                    
-                    liveNeighbours+= world.WorldPopulation[leftNeighbouringCell, y].IsAlive ? 1:0;
-                    liveNeighbours+= world.WorldPopulation[leftNeighbouringCell, topNeighbouringCell].IsAlive ? 1:0;
-                    liveNeighbours+= world.WorldPopulation[x, topNeighbouringCell].IsAlive ? 1:0;
-                    liveNeighbours+= world.WorldPopulation[rightNeighbouringCell,topNeighbouringCell].IsAlive ? 1:0;
-                    liveNeighbours+= world.WorldPopulation[rightNeighbouringCell,y].IsAlive ? 1:0;
-                    liveNeighbours+= world.WorldPopulation[leftNeighbouringCell,bottomNeighbouringCell].IsAlive ? 1:0;
-                    liveNeighbours+= world.WorldPopulation[x,bottomNeighbouringCell].IsAlive ? 1:0;
-                    liveNeighbours+= world.WorldPopulation[rightNeighbouringCell,bottomNeighbouringCell].IsAlive ? 1:0;
+                    int bottomNeighbouringCell = (y < row - 1) ? y + 1 : 0;
+
+                    liveNeighbours += world.WorldPopulation[leftNeighbouringCell, y].IsAlive ? 1 : 0;
+                    liveNeighbours += world.WorldPopulation[leftNeighbouringCell, topNeighbouringCell].IsAlive ? 1 : 0;
+                    liveNeighbours += world.WorldPopulation[x, topNeighbouringCell].IsAlive ? 1 : 0;
+                    liveNeighbours += world.WorldPopulation[rightNeighbouringCell, topNeighbouringCell].IsAlive ? 1 : 0;
+                    liveNeighbours += world.WorldPopulation[rightNeighbouringCell, y].IsAlive ? 1 : 0;
+                    liveNeighbours += world.WorldPopulation[leftNeighbouringCell, bottomNeighbouringCell].IsAlive
+                        ? 1
+                        : 0;
+                    liveNeighbours += world.WorldPopulation[x, bottomNeighbouringCell].IsAlive ? 1 : 0;
+                    liveNeighbours += world.WorldPopulation[rightNeighbouringCell, bottomNeighbouringCell].IsAlive
+                        ? 1
+                        : 0;
 
                     if (currentCell.IsAlive && liveNeighbours is 2 or 3)
-                    {
                         currentCell.SurvivesNextGen = true;
-                    }
-                    else if(currentCell.IsAlive && liveNeighbours > 3)
-                    {
+
+                    else if (currentCell.IsAlive && liveNeighbours > 3)
                         currentCell.SurvivesNextGen = false;
-                    }
-                    else if(currentCell.IsAlive && liveNeighbours < 2)
-                    {
+
+                    else if (currentCell.IsAlive && liveNeighbours < 2)
                         currentCell.SurvivesNextGen = false;
-                    }
+
                     else if (!currentCell.IsAlive && liveNeighbours == 3)
-                    {
                         currentCell.SurvivesNextGen = true;
-                    }
 
                     world.WorldPopulation[x, y] = currentCell;
 
                 }
             }
         }
+        
+        // public void CheckForLivingNeighbours(World world)
+        // {
+        //     var rowCount = world.WorldPopulation.GetLength(0);
+        //     var columnCount = world.WorldPopulation.GetLength(1);
+        //     
+        //     var column = columnCount;
+        //     var row = rowCount;
+        //     for (int x = 0; x < column; x++)
+        //     {
+        //         for (int y = 0; y < row; y++)
+        //         {
+        //             int leftNeighbouringCell = (x > 0) ? x - 1 : column - 1;
+        //             int rightNeighbouringCell = (x < column - 1) ? x + 1 : 0;
+        //
+        //             int topNeighbouringCell = (y > 0) ? y - 1 : row - 1;
+        //             int bottomNeighbouringCell = (y <row - 1) ? y +1 : 0;
+        //
+        //             world.WorldPopulation[x, y].Neighbours = new List<Cell>
+        //             {
+        //                 world.WorldPopulation[leftNeighbouringCell, topNeighbouringCell],
+        //                 world.WorldPopulation[x, topNeighbouringCell],
+        //                 world.WorldPopulation[rightNeighbouringCell,topNeighbouringCell],
+        //                 world.WorldPopulation[leftNeighbouringCell,y],
+        //                 world.WorldPopulation[rightNeighbouringCell,y],
+        //                 world.WorldPopulation[leftNeighbouringCell,bottomNeighbouringCell],
+        //                 world.WorldPopulation[x,bottomNeighbouringCell],
+        //                 world.WorldPopulation[rightNeighbouringCell,bottomNeighbouringCell]
+        //             };
+        //         }
+        //     }
+        // }
 
         #region I Dont Care
         
@@ -199,8 +200,6 @@ namespace GameOfLife.Application
                 cell.IsAlive = false;
             }
         }
-        
-
         #endregion
         
         

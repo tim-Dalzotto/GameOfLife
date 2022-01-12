@@ -49,12 +49,12 @@ namespace GameOfLife
             ConsoleOutput.DisplayWorld(currentGeneration);
 
             var count = 0;
-            while (count < 100)
+            while (count < 500)
             {
                 
                 currentGeneration = game.RunNextGeneration(currentGeneration);
                 ConsoleOutput.DisplayWorld(currentGeneration);
-                Thread.Sleep(500);
+                Thread.Sleep(100);
                 Console.WriteLine();
                 Console.WriteLine();
                 count++;
