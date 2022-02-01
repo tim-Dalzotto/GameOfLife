@@ -23,7 +23,7 @@ namespace GameOfLifeTest
             //create original generation and populate world
             var originalGeneration = mockGameRule.InitialiseWorld(world, world.Size);
             //finding Neighbours
-            gameRule.CheckForLivingNeighboursAndPopulateNextGeneration(originalGeneration);
+            gameRule.RunNextGeneration(originalGeneration);
             //determine if cells survives the next gen
             //gameRule.DoCellsSurviveNextGen(originalGeneration);
             //populate world with next gen
@@ -74,7 +74,7 @@ namespace GameOfLifeTest
             deadCell.IsAlive = false;
             
             originalGeneration = MockgameRules.InitialiseWorld(world, world.Size);
-            gameRules.CheckForLivingNeighboursAndPopulateNextGeneration(originalGeneration);
+            gameRules.RunNextGeneration(originalGeneration);
             var actual = originalGeneration.WorldPopulation[1, 1].Neighbours.Count(x => x.IsAlive);
 
             Assert.Equal(8,actual);
@@ -95,7 +95,7 @@ namespace GameOfLifeTest
             deadCell.IsAlive = false;
 
             originalGeneration = mockGameRules.InitialiseWorld(world, world.Size);
-            gameRules.CheckForLivingNeighboursAndPopulateNextGeneration(originalGeneration);
+            gameRules.RunNextGeneration(originalGeneration);
 
             var actual = originalGeneration.WorldPopulation[1, 1].Neighbours.Count(x => x.IsAlive);
 
@@ -135,7 +135,7 @@ namespace GameOfLifeTest
             var gameRules = new GameRules();
             
             var originalGeneration = mockGameRules.InitialiseWorld(world, world.Size);
-            gameRules.CheckForLivingNeighboursAndPopulateNextGeneration(originalGeneration);
+            gameRules.RunNextGeneration(originalGeneration);
 
             //gameRules.DoCellsSurviveNextGen(originalGeneration);
 
@@ -182,10 +182,10 @@ namespace GameOfLifeTest
         }
         
         [Fact]
-        public void GivenLoadWorldFromPattern_WhenGivenAPattern_ThenReturnAWorldWith()
+        public void GivenLoadWorldFromPattern_WhenGivenAPattern_ThenReturnWorldWithPattern()
         {
             var world = new World();
-            world.Size = 50;
+            world.Size = 5;
             var gameRules = new GameRules();
             string pattern1 =
                 "-------------------------X----------\n" +
@@ -197,17 +197,24 @@ namespace GameOfLifeTest
                 "XX---------X---XX--------X----------\n" +
                 "------------X-X---------------------\n" +
                 "-------------X----------------------";
+
+            string patternTest = 
+                "OOOOO\n" +
+                "-----\n" +
+                "-----\n" +
+                "-----\n" +
+                "-----\n";
             
 
-            var boardSetup = gameRules.splitPattern(pattern1);
+            var boardSetup = gameRules.splitPattern(patternTest);
 
             var currentGeneration = gameRules.InitialiseWorld(world, world.Size);
             
-            gameRules.LoadPatternIntoWorld(boardSetup, currentGeneration);
+            var testGeneration = gameRules.LoadPatternIntoWorld(boardSetup, currentGeneration);
 
             var testWorld = PreDefinedWorlds.EveryCellOnFirstRowIsAlive(new World());
             
-            var serializedActualWorldStr = JsonConvert.SerializeObject(currentGeneration);
+            var serializedActualWorldStr = JsonConvert.SerializeObject(testGeneration);
             var serializedExpectedWorldStr = JsonConvert.SerializeObject(testWorld);
             Assert.Equal(serializedExpectedWorldStr, serializedActualWorldStr );
         }

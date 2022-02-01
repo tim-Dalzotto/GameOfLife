@@ -27,7 +27,7 @@ namespace GameOfLifeTest
             throw new System.NotImplementedException();
         }
 
-        public World CheckForLivingNeighboursAndPopulateNextGeneration(World world)
+        public World RunNextGeneration(World world)
         {
             world = InitialiseWorld(world, world.Size);
             return world;

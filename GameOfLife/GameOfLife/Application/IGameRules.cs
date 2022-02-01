@@ -8,7 +8,7 @@ namespace GameOfLife.Application
 
         public World PopulateWorldWithNextGen(World world);
 
-        public World CheckForLivingNeighboursAndPopulateNextGeneration(World world);
+        public World RunNextGeneration(World world);
         
 
         //public void DoCellsSurviveNextGen(World world);

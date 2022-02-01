@@ -10,11 +10,11 @@ namespace GameOfLife.Application
             var currentGeneration = world; 
             var gameRule = new GameRules();
             
-            var nextGeneration = gameRule.CheckForLivingNeighboursAndPopulateNextGeneration(currentGeneration);
-            
-            //var nextGeneration= gameRule.PopulateWorldWithNextGen(currentGeneration);
+            var nextGeneration = gameRule.RunNextGeneration(currentGeneration);
             
             return nextGeneration;
         }
+        
+        
     }
 }

@@ -16,13 +16,18 @@ namespace GameOfLife
             var world = new World();
             var gameRules = new GameRules();
             var game = new Game();
+            var pattern = new pattern();
+
             var size = 40;
-            var livingCellCoOrds = new List<string>()
-            {
-                "5,5","5,1","3,2","2,3","5,4","6,0","8,1","7,2","8,3","8,4","4,3","4,4","5,3","5,4"
-            };
+
+            #region patterns and shit
             
-            string pattern1 =
+            // var livingCellCoOrds = new List<string>()
+            // {
+            //     "5,5","5,1","3,2","2,3","5,4","6,0","8,1","7,2","8,3","8,4","4,3","4,4","5,3","5,4"
+            // };
+            
+            var pattern1 =
                 "-------------------------O----------\n" +
                 "----------------------OOOO----O-----\n" +
                 "-------------O-------OOOO-----O-----\n" +
@@ -32,34 +37,59 @@ namespace GameOfLife
                 "OO---------O---OO--------O----------\n" +
                 "------------O-O---------------------\n" +
                 "-------------O----------------------";
-            string pattern2 =
+            var pattern2 =
                 "------\n" +
                 "------\n" +
                 "--OOO-\n" +
                 "-OOO--\n" +
                 "------\n" +
                 "------";
-            var boardListSetup = gameRules.splitCoOrds(livingCellCoOrds);
-            var boardPatternSetup = gameRules.splitPattern(pattern1);
+            
+            #endregion
 
+
+            ConsoleOutput.DisplayPatternSelection();
+            var userSelection = Convert.ToInt32(Console.ReadLine());
+
+            var gameWorld = gameRules.CreateInitialWorld(userSelection, pattern);
+            //initialiseWorld
             var currentGeneration = gameRules.InitialiseWorld(world, size);
-            gameRules.KillAllCells(currentGeneration);
+            //gameRules.KillAllCells(currentGeneration);
+            
+            
+            //format a pattern
+            var boardPatternSetup = gameRules.splitPattern(pattern.patternShip());
+
+            //load Pattern this should
             //gameRules.LoadListIntoWorld(livingCellCoOrds, currentGeneration);
             gameRules.LoadPatternIntoWorld(boardPatternSetup, currentGeneration);
             
+            //display world
             ConsoleOutput.DisplayWorld(currentGeneration);
-
+            //run Game of life.
+            
             var count = 0;
-            while (count < 300)
+            while (count < 100)
             {
-                
-                currentGeneration = game.RunNextGeneration(currentGeneration);
-                ConsoleOutput.DisplayWorld(currentGeneration);
+                gameWorld = game.RunNextGeneration(gameWorld);
+                ConsoleOutput.DisplayWorld(gameWorld);
+                Console.WriteLine();
+                Console.WriteLine();
                 Thread.Sleep(100);
-                Console.WriteLine();
-                Console.WriteLine();
+
                 count++;
             }
+            // var count = 0;
+            // while (count < 300)
+            // {
+            //     currentGeneration = game.RunNextGeneration(currentGeneration);
+            //     ConsoleOutput.DisplayWorld(currentGeneration);
+            //     Console.WriteLine();
+            //     Console.WriteLine();
+            //     Thread.Sleep(100);
+            //
+            //     count++;
+            // }
 
         }
     }

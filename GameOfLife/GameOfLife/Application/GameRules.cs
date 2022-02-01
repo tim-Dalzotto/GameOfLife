@@ -9,27 +9,75 @@ namespace GameOfLife.Application
 {
     public class GameRules : IGameRules
     {
-        
+
+        public World CreateInitialWorld(int userInput, pattern pattern)
+        {
+            //Get selected Pattern
+            var loadedPattern = GetSelectedPattern(userInput, pattern);
+            //Format pattern
+            var formattedPattern = splitPattern(loadedPattern);
+            //get size of pattern
+            var patternSize = 0;
+            patternSize = formattedPattern[0].Length > formattedPattern.Length ? (formattedPattern[0].Length + 5): (formattedPattern.Length + 5);
+            //initialise world
+            var currentWorld = InitialiseWorld(new World(), patternSize);
+            //load format pattern
+            var currentWorldWithPattern = LoadPatternIntoWorld(formattedPattern, currentWorld);
+            //return formatted World 
+            return currentWorldWithPattern;
+        }
+
+        private static string GetSelectedPattern(int userInput, pattern pattern)
+        {
+            var loadedPattern = userInput switch
+            {
+                //find which pattern to use
+                1 => pattern.patternGlider(),
+                2 => pattern.patternShip(),
+                _ => ""
+            };
+            return loadedPattern;
+        }
+
         public World InitialiseWorld(World world, int size)
         {
             var createWorld = world;
             createWorld.Size = size;
             createWorld.WorldPopulation = new Cell[world.Size,world.Size];
 
-            var rnd = new Random();
             for(var i = 0; i < world.Size; i++)
             {
                 for (var j = 0; j < world.Size; j++)
                 {
-                    createWorld.WorldPopulation[i, j] = new Cell
-                    {
-                        //IsAlive = rnd.Next(10) >= 5
-                    };
+                    createWorld.WorldPopulation[i, j] = new Cell { };
                 }
             }
             return world;
         }
+        
+        public string[] splitPattern(string pattern)
+        {
+            var patternSplitIntoLines = pattern.Split('\n');
+            return patternSplitIntoLines;
+        }
 
+        public World LoadPatternIntoWorld(string[] patternSplitIntoLines, World currentGeneration)
+        {
+            int yOffSet = (currentGeneration.Size - patternSplitIntoLines.Length) / 2;
+            int xOffSet = (currentGeneration.Size - patternSplitIntoLines[0].Length) / 2;
+
+            for (int y = 0; y < patternSplitIntoLines.Length; y++)
+            {
+                for (int x = 0; x < patternSplitIntoLines[y].Length; x++)
+                {
+                    if (patternSplitIntoLines[y].Substring(x, 1) == "O")
+                        currentGeneration.WorldPopulation[y + yOffSet, x + xOffSet].IsAlive = true;
+                }
+            }
+            return currentGeneration;
+        }
+
+        #region Might not need this anymore
         
         //Don't need this anymore
         public World PopulateWorldWithNextGen(World world)
@@ -48,17 +96,14 @@ namespace GameOfLife.Application
                         originalGen.WorldPopulation[x, y].SurvivesNextGen = false;
                     }
                     else originalGen.WorldPopulation[x, y].IsAlive = false;
-                    
                 }
             }
-        
             return originalGen;
         }
-
-
-
-
-        public World CheckForLivingNeighboursAndPopulateNextGeneration(World world)
+        
+        #endregion
+        
+        public World RunNextGeneration(World world)
         {
             var currentWorld = world;
             var rowCount = currentWorld.WorldPopulation.GetLength(0);
@@ -73,31 +118,37 @@ namespace GameOfLife.Application
                 for (var y = 0; y < row; y++)
                 {
                     var currentCell = currentWorld.WorldPopulation[x, y];
-                    var liveNeighbours = 0;
-
-                    var leftNeighbouringCell = (x > 0) ? x - 1 : column - 1;
-                    var rightNeighbouringCell = (x < column - 1) ? x + 1 : 0;
-
-                    var topNeighbouringCell = (y > 0) ? y - 1 : row - 1;
-                    var bottomNeighbouringCell = (y < row - 1) ? y + 1 : 0;
-
-                    liveNeighbours += currentWorld.WorldPopulation[leftNeighbouringCell, y].IsAlive ? 1 : 0;
-                    liveNeighbours += currentWorld.WorldPopulation[leftNeighbouringCell, topNeighbouringCell].IsAlive ? 1 : 0;
-                    liveNeighbours += currentWorld.WorldPopulation[x, topNeighbouringCell].IsAlive ? 1 : 0;
-                    liveNeighbours += currentWorld.WorldPopulation[rightNeighbouringCell, topNeighbouringCell].IsAlive ? 1 : 0;
-                    liveNeighbours += currentWorld.WorldPopulation[rightNeighbouringCell, y].IsAlive ? 1 : 0;
-                    liveNeighbours += currentWorld.WorldPopulation[leftNeighbouringCell, bottomNeighbouringCell].IsAlive ? 1 : 0;
-                    liveNeighbours += currentWorld.WorldPopulation[x, bottomNeighbouringCell].IsAlive ? 1 : 0;
-                    liveNeighbours += currentWorld.WorldPopulation[rightNeighbouringCell, bottomNeighbouringCell].IsAlive ? 1 : 0;
+                    
+                    var liveNeighbours = FindLiveNeighbours(x, column, y, row, currentWorld);
 
                     PopulateNextGeneration(currentCell, liveNeighbours, newWorld, x, y);
                     
                     currentWorld.WorldPopulation[x, y] = currentCell;
-
                 }
             }
 
             return newWorld;
+        }
+
+        private static int FindLiveNeighbours(int x, int column, int y, int row, World currentWorld)
+        {
+            var liveNeighbours = 0;
+
+            var leftNeighbouringCell = (x > 0) ? x - 1 : column - 1;
+            var rightNeighbouringCell = (x < column - 1) ? x + 1 : 0;
+
+            var topNeighbouringCell = (y > 0) ? y - 1 : row - 1;
+            var bottomNeighbouringCell = (y < row - 1) ? y + 1 : 0;
+
+            liveNeighbours += currentWorld.WorldPopulation[leftNeighbouringCell, y].IsAlive ? 1 : 0;
+            liveNeighbours += currentWorld.WorldPopulation[leftNeighbouringCell, topNeighbouringCell].IsAlive ? 1 : 0;
+            liveNeighbours += currentWorld.WorldPopulation[x, topNeighbouringCell].IsAlive ? 1 : 0;
+            liveNeighbours += currentWorld.WorldPopulation[rightNeighbouringCell, topNeighbouringCell].IsAlive ? 1 : 0;
+            liveNeighbours += currentWorld.WorldPopulation[rightNeighbouringCell, y].IsAlive ? 1 : 0;
+            liveNeighbours += currentWorld.WorldPopulation[leftNeighbouringCell, bottomNeighbouringCell].IsAlive ? 1 : 0;
+            liveNeighbours += currentWorld.WorldPopulation[x, bottomNeighbouringCell].IsAlive ? 1 : 0;
+            liveNeighbours += currentWorld.WorldPopulation[rightNeighbouringCell, bottomNeighbouringCell].IsAlive ? 1 : 0;
+            return liveNeighbours;
         }
 
         private static void PopulateNextGeneration(Cell currentCell, int liveNeighbours, World newWorld, int x, int y)
@@ -115,41 +166,9 @@ namespace GameOfLife.Application
                 newWorld.WorldPopulation[x, y].IsAlive = true;
         }
 
-        // public void CheckForLivingNeighbours(World world)
-        // {
-        //     var rowCount = world.WorldPopulation.GetLength(0);
-        //     var columnCount = world.WorldPopulation.GetLength(1);
-        //     
-        //     var column = columnCount;
-        //     var row = rowCount;
-        //     for (int x = 0; x < column; x++)
-        //     {
-        //         for (int y = 0; y < row; y++)
-        //         {
-        //             int leftNeighbouringCell = (x > 0) ? x - 1 : column - 1;
-        //             int rightNeighbouringCell = (x < column - 1) ? x + 1 : 0;
-        //
-        //             int topNeighbouringCell = (y > 0) ? y - 1 : row - 1;
-        //             int bottomNeighbouringCell = (y <row - 1) ? y +1 : 0;
-        //
-        //             world.WorldPopulation[x, y].Neighbours = new List<Cell>
-        //             {
-        //                 world.WorldPopulation[leftNeighbouringCell, topNeighbouringCell],
-        //                 world.WorldPopulation[x, topNeighbouringCell],
-        //                 world.WorldPopulation[rightNeighbouringCell,topNeighbouringCell],
-        //                 world.WorldPopulation[leftNeighbouringCell,y],
-        //                 world.WorldPopulation[rightNeighbouringCell,y],
-        //                 world.WorldPopulation[leftNeighbouringCell,bottomNeighbouringCell],
-        //                 world.WorldPopulation[x,bottomNeighbouringCell],
-        //                 world.WorldPopulation[rightNeighbouringCell,bottomNeighbouringCell]
-        //             };
-        //         }
-        //     }
-        // }
-
         #region I Dont Care
         
-
+        #region load List 
         //This needs to take in the list of Tuple not the list of string, the split needs to happen outside the method-----------------
         public World LoadListIntoWorld(List<string> livingCellCoOrds, World world)
         {
@@ -178,17 +197,17 @@ namespace GameOfLife.Application
             return listOfXAndYCoOrds;
         }
 
-        public string[] splitPattern(string pattern)
-        {
-            var patternSplitIntoLines = pattern.Split('\n');
-            return patternSplitIntoLines;
-        }
-
-        public World LoadPatternIntoWorld(string[] patternSplitIntoLines, World currentGeneration)
+        #endregion
+        
+        
+        
+        //creating and loading the world when a pattern is implamented so the size can be adaptive and doesn't have to be predefined.
+        public World LoadPatternIntoWorldTest(string[] patternSplitIntoLines, World currentGeneration)
         {
             int yOffSet = (currentGeneration.Size - patternSplitIntoLines.Length) / 2;
             int xOffSet = (currentGeneration.Size - patternSplitIntoLines[0].Length) / 2;
 
+            var testWolrd = InitialiseWorld(new World(), patternSplitIntoLines.Length);
             for (int y = 0; y < patternSplitIntoLines.Length; y++)
             {
                 for (int x = 0; x < patternSplitIntoLines[y].Length; x++)
