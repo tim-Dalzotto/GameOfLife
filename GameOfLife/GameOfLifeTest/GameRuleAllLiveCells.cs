@@ -5,6 +5,10 @@ namespace GameOfLifeTest
 {
     public class GameRuleAllLiveCells : IGameRules
     {
+        public World CreateInitialWorld(string[] formattedPattern, int patternSize)
+        {
+            return new World();
+        }
         public World InitialiseWorld(World world, int size)
         {
             var cell = new Cell();

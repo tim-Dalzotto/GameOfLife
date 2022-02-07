@@ -206,7 +206,7 @@ namespace GameOfLifeTest
                 "-----\n";
             
 
-            var boardSetup = gameRules.splitPattern(patternTest);
+            var boardSetup = GameRules.splitPattern(patternTest);
 
             var currentGeneration = gameRules.InitialiseWorld(world, world.Size);
             
@@ -218,6 +218,30 @@ namespace GameOfLifeTest
             var serializedExpectedWorldStr = JsonConvert.SerializeObject(testWorld);
             Assert.Equal(serializedExpectedWorldStr, serializedActualWorldStr );
         }
-        
+
+        [Fact]
+        public void GivenCreateInitialWorld_WhenGivenUserInput_ReturnWorld()
+        {
+            var world = new World();
+            var gameRules = new GameRules();
+            var pattern = new pattern();
+
+            var formattedPattern = new[] {
+                "OOOOO\n",
+                "-----\n",
+                "-----\n",
+                "-----\n",
+                "-----\n",
+                "-----"
+            };
+
+            var actual = gameRules.CreateInitialWorld(formattedPattern, 5);
+            var serializedActual = JsonConvert.SerializeObject(actual);
+            var serializedExpectedWorld =
+                JsonConvert.SerializeObject(PreDefinedWorlds.EveryCellOnFirstRowIsAlive(new World()));
+            Assert.Equal(serializedExpectedWorld,serializedActual);
+
+        }
+
     }
 }

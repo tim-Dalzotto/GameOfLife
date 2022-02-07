@@ -10,15 +10,15 @@ namespace GameOfLife.Application
     public class GameRules : IGameRules
     {
 
-        public World CreateInitialWorld(int userInput, pattern pattern)
+        public World CreateInitialWorld(string[] formattedPattern, int patternSize)
         {
             //Get selected Pattern
-            var loadedPattern = GetSelectedPattern(userInput, pattern);
+            //var loadedPattern = GetSelectedPattern(userInput, pattern);
             //Format pattern
-            var formattedPattern = splitPattern(loadedPattern);
+            //var formattedPattern = splitPattern(loadedPattern);
             //get size of pattern
-            var patternSize = 0;
-            patternSize = formattedPattern[0].Length > formattedPattern.Length ? (formattedPattern[0].Length + 5): (formattedPattern.Length + 5);
+            //var patternSize = 0;
+            //patternSize = formattedPattern[0].Length > formattedPattern.Length ? (formattedPattern[0].Length + 5): (formattedPattern.Length + 5);
             //initialise world
             var currentWorld = InitialiseWorld(new World(), patternSize);
             //load format pattern
@@ -27,7 +27,7 @@ namespace GameOfLife.Application
             return currentWorldWithPattern;
         }
 
-        private static string GetSelectedPattern(int userInput, pattern pattern)
+        public static string GetSelectedPattern(int userInput, pattern pattern)
         {
             var loadedPattern = userInput switch
             {
@@ -39,6 +39,21 @@ namespace GameOfLife.Application
             return loadedPattern;
         }
 
+        public World InitialiseWorldRectangle(World world, int height, int length)
+        {
+            var createWorld = world;
+            //createWorld.Size = size;
+            createWorld.WorldPopulation = new Cell[height,length];
+
+            for(var i = 0; i < height; i++)
+            {
+                for (var j = 0; j < world.Size; j++)
+                {
+                    createWorld.WorldPopulation[i, j] = new Cell { };
+                }
+            }
+            return world;
+        }
         public World InitialiseWorld(World world, int size)
         {
             var createWorld = world;
@@ -55,7 +70,7 @@ namespace GameOfLife.Application
             return world;
         }
         
-        public string[] splitPattern(string pattern)
+        public static string[] splitPattern(string pattern)
         {
             var patternSplitIntoLines = pattern.Split('\n');
             return patternSplitIntoLines;

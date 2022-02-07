@@ -13,14 +13,11 @@ namespace GameOfLife
     {
         static void Main(string[] args)
         {
-            var world = new World();
             var gameRules = new GameRules();
             var game = new Game();
             var pattern = new pattern();
 
-            var size = 40;
-
-            #region patterns and shit
+            #region patterns and stuff
             
             // var livingCellCoOrds = new List<string>()
             // {
@@ -46,51 +43,25 @@ namespace GameOfLife
                 "------";
             
             #endregion
-
-
+            
             ConsoleOutput.DisplayPatternSelection();
             var userSelection = Convert.ToInt32(Console.ReadLine());
 
-            var gameWorld = gameRules.CreateInitialWorld(userSelection, pattern);
-            //initialiseWorld
-            var currentGeneration = gameRules.InitialiseWorld(world, size);
-            //gameRules.KillAllCells(currentGeneration);
-            
-            
-            //format a pattern
-            var boardPatternSetup = gameRules.splitPattern(pattern.patternShip());
+            var patternTest = GameRules.GetSelectedPattern(userSelection, pattern);
+            var formattedPattern = GameRules.splitPattern(patternTest);
+            var patternSize = formattedPattern[0].Length > formattedPattern.Length ? (formattedPattern[0].Length + 5): (formattedPattern.Length + 5);
 
-            //load Pattern this should
-            //gameRules.LoadListIntoWorld(livingCellCoOrds, currentGeneration);
-            gameRules.LoadPatternIntoWorld(boardPatternSetup, currentGeneration);
             
-            //display world
-            ConsoleOutput.DisplayWorld(currentGeneration);
-            //run Game of life.
+            var gameWorld = gameRules.CreateInitialWorld(formattedPattern, patternSize);
             
             var count = 0;
             while (count < 100)
             {
-                gameWorld = game.RunNextGeneration(gameWorld);
                 ConsoleOutput.DisplayWorld(gameWorld);
-                Console.WriteLine();
-                Console.WriteLine();
+                gameWorld = game.RunNextGeneration(gameWorld);
                 Thread.Sleep(100);
-
                 count++;
             }
-            // var count = 0;
-            // while (count < 300)
-            // {
-            //     currentGeneration = game.RunNextGeneration(currentGeneration);
-            //     ConsoleOutput.DisplayWorld(currentGeneration);
-            //     Console.WriteLine();
-            //     Console.WriteLine();
-            //     Thread.Sleep(100);
-            //
-            //     count++;
-            // }
-
         }
     }
 }
