@@ -206,7 +206,7 @@ namespace GameOfLifeTest
                 "-----\n";
             
 
-            var boardSetup = GameRules.splitPattern(patternTest);
+            var boardSetup = GameRules.SplitPattern(patternTest);
 
             var currentGeneration = gameRules.InitialiseWorld(world, world.Size);
             
@@ -235,7 +235,7 @@ namespace GameOfLifeTest
                 "-----"
             };
 
-            var actual = gameRules.CreateInitialWorld(formattedPattern, 5);
+            var actual = gameRules.CreateInitialWorld(formattedPattern, world);
             var serializedActual = JsonConvert.SerializeObject(actual);
             var serializedExpectedWorld =
                 JsonConvert.SerializeObject(PreDefinedWorlds.EveryCellOnFirstRowIsAlive(new World()));

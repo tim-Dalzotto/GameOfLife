@@ -25,7 +25,7 @@ namespace GameOfLife.ConsoleOut
             Console.WriteLine("Please select a pattern to load");
             Console.WriteLine("1.Glider");
             Console.WriteLine("2.Box");
-            Console.WriteLine("3.Basic");
+            Console.WriteLine("3.Duck");
 
         }
     }

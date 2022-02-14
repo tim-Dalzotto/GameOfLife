@@ -13,6 +13,18 @@ namespace GameOfLife.Domain
                 "------";
             return shipPattern;
         }
+        
+        public string patternDuck()
+        {
+            var shipPattern =
+                "--------\n" +
+                "-OOOOOO-\n" +
+                "O-----O-\n" +
+                "------O-\n" +
+                "0----O--\n" +
+                "--OO----";
+            return shipPattern;
+        }
 
         public string patternGlider()
         {

@@ -9,6 +9,12 @@ namespace GameOfLifeTest
         {
             return new World();
         }
+
+        public World CreateInitialWorld(string[] formattedPattern, World world)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public World InitialiseWorld(World world, int size)
         {
             var cell = new Cell();

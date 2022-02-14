@@ -48,11 +48,14 @@ namespace GameOfLife
             var userSelection = Convert.ToInt32(Console.ReadLine());
 
             var patternTest = GameRules.GetSelectedPattern(userSelection, pattern);
-            var formattedPattern = GameRules.splitPattern(patternTest);
+            var formattedPattern = GameRules.SplitPattern(patternTest);
             var patternSize = formattedPattern[0].Length > formattedPattern.Length ? (formattedPattern[0].Length + 5): (formattedPattern.Length + 5);
+            var world = new World();
+            world.Height = 30;
+            world.Length = 30;
 
             
-            var gameWorld = gameRules.CreateInitialWorld(formattedPattern, patternSize);
+            var gameWorld = gameRules.CreateInitialWorld(formattedPattern, world);
             
             var count = 0;
             while (count < 100)
