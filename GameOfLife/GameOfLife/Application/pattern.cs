@@ -5,12 +5,10 @@ namespace GameOfLife.Domain
         public string patternShip()
         {
             var shipPattern =
-                "------\n" +
-                "------\n" +
+
                 "--OOO-\n" +
-                "-OOO--\n" +
-                "------\n" +
-                "------";
+                "-OOO--\n";
+               
             return shipPattern;
         }
         
@@ -21,7 +19,7 @@ namespace GameOfLife.Domain
                 "-OOOOOO-\n" +
                 "O-----O-\n" +
                 "------O-\n" +
-                "0 }----O--\n" +
+                "0----O--\n" +
                 "--OO----";
             return shipPattern;
         }

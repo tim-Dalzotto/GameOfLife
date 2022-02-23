@@ -29,6 +29,8 @@ namespace GameOfLife.Domain
             return createWorld;
         }
 
+        
+        //This is might not be business logic 
         private static World LoadPatternIntoWorld(string[] patternSplitIntoLines, World currentGeneration)
         {
             int yOffSet = (currentGeneration.Height - patternSplitIntoLines.Length) / 2;
@@ -48,8 +50,6 @@ namespace GameOfLife.Domain
         public static World RunNextGeneration(World world)
         {
             var currentWorld = world;
-            var rowCount = currentWorld.Height;
-            var columnCount = currentWorld.Length;
             var height = currentWorld.Height;
             var length = currentWorld.Length;
 
