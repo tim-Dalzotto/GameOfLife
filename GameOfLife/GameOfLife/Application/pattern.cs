@@ -21,7 +21,7 @@ namespace GameOfLife.Domain
                 "-OOOOOO-\n" +
                 "O-----O-\n" +
                 "------O-\n" +
-                "0----O--\n" +
+                "0 }----O--\n" +
                 "--OO----";
             return shipPattern;
         }

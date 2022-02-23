@@ -10,5 +10,11 @@ namespace GameOfLife.Domain
         
         public int Height { get; set; }
         public Cell[,] WorldPopulation { get; set; }
+        
+        //initialise world
+        
+        //loadWorld
+        
+        
     }
 }

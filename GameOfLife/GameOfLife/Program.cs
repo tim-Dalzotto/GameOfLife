@@ -13,7 +13,7 @@ namespace GameOfLife
     {
         static void Main(string[] args)
         {
-            var gameRules = new GameRules();
+            var gameRules = new PatternLogic();
             var game = new Game();
             var pattern = new pattern();
 
@@ -45,17 +45,26 @@ namespace GameOfLife
             #endregion
             
             ConsoleOutput.DisplayPatternSelection();
-            var userSelection = Convert.ToInt32(Console.ReadLine());
+            var userSelectionPatternchoice = Convert.ToInt32(Console.ReadLine());
 
-            var patternTest = GameRules.GetSelectedPattern(userSelection, pattern);
-            var formattedPattern = GameRules.SplitPattern(patternTest);
+            var patternTest = PatternLogic.GetSelectedPattern(userSelectionPatternchoice, pattern);
+            var formattedPattern = PatternLogic.SplitPattern(patternTest);
             var patternSize = formattedPattern[0].Length > formattedPattern.Length ? (formattedPattern[0].Length + 5): (formattedPattern.Length + 5);
+            //use this to set a min requirements for custom world size
+            var patternWorldRestrictions = (formattedPattern[0].Length, formattedPattern.Length);
+
+            Console.WriteLine($"Select the size of the game board you would like to use, min requirements for selected pattern is {patternWorldRestrictions.Item2.ToString()}X{patternWorldRestrictions.Item1.ToString()}");
+            Console.WriteLine("How many rows would you like?");
+            var userSelectionHeight = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("How many columns would you like?");
+            var userSelectionLength = Convert.ToInt32(Console.ReadLine());
+            
             var world = new World();
-            world.Height = 30;
-            world.Length = 30;
+            world.Height = userSelectionHeight;
+            world.Length = userSelectionLength;
 
             
-            var gameWorld = gameRules.CreateInitialWorld(formattedPattern, world);
+            var gameWorld = GameRules.CreateInitialWorld(formattedPattern, world);
             
             var count = 0;
             while (count < 100)

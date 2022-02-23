@@ -8,9 +8,9 @@ namespace GameOfLife.Application
         public World RunNextGeneration(World world)
         {
             var currentGeneration = world; 
-            var gameRule = new GameRules();
-            
-            var nextGeneration = gameRule.RunNextGeneration(currentGeneration);
+            var gameRule = new PatternLogic();
+
+            var nextGeneration = GameRules.RunNextGeneration(currentGeneration);
             
             return nextGeneration;
         }
