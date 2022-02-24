@@ -18,7 +18,7 @@ namespace GameOfLifeTest
             {
                 Size = 5
             };
-            var gameRule = new PatternLogic();
+            var gameRule = new PatternManager();
             var mockGameRule = new GameRuleAllLiveCells();
             //create original generation and populate world
             var originalGeneration = mockGameRule.InitialiseWorld(world, world.Size);
@@ -39,7 +39,7 @@ namespace GameOfLifeTest
         public void GivenEmptyWorld_WhenInitialiseWorldCalled_ThenReturnNewWorld()
         {
             var world = new World();
-            var gameRule = new PatternLogic();
+            var gameRule = new PatternManager();
             world.Size = 5;
 
             var test = GameRules.InitialiseWorld(world, world.Size);
@@ -51,7 +51,7 @@ namespace GameOfLifeTest
         public void GivenEmptyWorld_WhenInitialiseWorldCalled_ThenWorldWillHaveSomeLivingCells()
         {
             var world = new World();
-            var gameRule = new PatternLogic();
+            var gameRule = new PatternManager();
             world.Size = 5;
 
             var test = GameRules.InitialiseWorld(world, world.Size);
@@ -65,7 +65,7 @@ namespace GameOfLifeTest
             var world = new World();
             world.Size = 8;
             var originalGeneration = world;
-            var gameRules = new PatternLogic();
+            var gameRules = new PatternManager();
             var MockgameRules = new GameRuleAllLiveCells();
             var cell = new Cell();
             var liveCell = cell;
@@ -87,7 +87,7 @@ namespace GameOfLifeTest
             world.Size = 8;
             var originalGeneration = world;
             var mockGameRules = new GameRuleAllLiveCells();
-            var gameRules = new PatternLogic();
+            var gameRules = new PatternManager();
             var cell = new Cell();
             var liveCell = cell;
             liveCell.IsAlive = true;
@@ -107,7 +107,7 @@ namespace GameOfLifeTest
         {
             var world = new World();
             world.Size = 5;
-            var gameRules = new PatternLogic();
+            var gameRules = new PatternManager();
             var mockGameRule = new GameRuleAllLiveCells();
             
 
@@ -132,7 +132,7 @@ namespace GameOfLifeTest
             var world = new World();
             world.Size = 8;
             var mockGameRules = new GameRuleAllLiveCells();
-            var gameRules = new PatternLogic();
+            var gameRules = new PatternManager();
             
             var originalGeneration = mockGameRules.InitialiseWorld(world, world.Size);
             GameRules.RunNextGeneration(originalGeneration);
@@ -147,7 +147,7 @@ namespace GameOfLifeTest
         {
             var world = new World();
             world.Size = 5;
-            var gameRules = new PatternLogic();
+            var gameRules = new PatternManager();
             var livingCellCoOrds = new List<string>()
             {
                 "0,0","0,1","0,2","0,3","0,4"
@@ -169,7 +169,7 @@ namespace GameOfLifeTest
         [Fact]
         public void GivenSplitCoOrds_WhenListOfStringsIsEntered_ThenReturnAListOfTuplesWithInts()
         {
-            var gameRules = new PatternLogic();
+            var gameRules = new PatternManager();
             
             var livingCellCoOrds = new List<string>()
             {
@@ -186,7 +186,7 @@ namespace GameOfLifeTest
         {
             var world = new World();
             world.Size = 5;
-            var gameRules = new PatternLogic();
+            var gameRules = new PatternManager();
             string pattern1 =
                 "-------------------------X----------\n" +
                 "----------------------XXXX----X-----\n" +
@@ -206,7 +206,7 @@ namespace GameOfLifeTest
                 "-----\n";
             
 
-            var boardSetup = PatternLogic.SplitPattern(patternTest);
+            var boardSetup = PatternManager.SplitPattern(patternTest);
 
             var currentGeneration = GameRules.InitialiseWorld(world, world.Size);
             
@@ -223,7 +223,7 @@ namespace GameOfLifeTest
         public void GivenCreateInitialWorld_WhenGivenUserInput_ReturnWorld()
         {
             var world = new World();
-            var gameRules = new PatternLogic();
+            var gameRules = new PatternManager();
             var pattern = new pattern();
 
             var formattedPattern = new[] {

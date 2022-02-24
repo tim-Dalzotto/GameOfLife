@@ -9,5 +9,6 @@ namespace GameOfLife.Domain
         public List<Cell> Neighbours { get; set; }
         
         public bool SurvivesNextGen { get; set; }
+        
     }
 }

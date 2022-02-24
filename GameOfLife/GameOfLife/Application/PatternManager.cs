@@ -7,7 +7,7 @@ using GameOfLife.Domain;
 
 namespace GameOfLife.Application
 {
-    public class PatternLogic : IGameRules
+    public class PatternManager : IGameRules
     {
         public static string GetSelectedPattern(int userInput, pattern pattern)
         {
