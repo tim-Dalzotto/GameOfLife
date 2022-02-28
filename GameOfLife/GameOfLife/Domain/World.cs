@@ -12,38 +12,36 @@ namespace GameOfLife.Domain
         public Cell[,] WorldPopulation { get; set; }
         
         //initialise world
-        private static World InitialiseWorldRectangle(World world, int height, int length)
+        public void InitialiseWorldRectangle( int height, int length)
         {
-            var createWorld = world;
-            createWorld.Height = height;
-            createWorld.Length = length;
-            createWorld.WorldPopulation = new Cell[height,length];
+            Height = height;
+            Length = length;
+            WorldPopulation = new Cell[height,length];
 
-            for(var i = 0; i < world.Height; i++)
+            for(var i = 0; i < Height; i++)
             {
-                for (var j = 0; j < world.Length; j++)
+                for (var j = 0; j < Length; j++)
                 {
-                    createWorld.WorldPopulation[i, j] = new Cell { };
+                    WorldPopulation[i, j] = new Cell { };
                 }
             }
-            return createWorld;
         }
         
         //loadWorld
-        private static World LoadPatternIntoWorld(string[] patternSplitIntoLines, World currentGeneration)
+        public void LoadPatternIntoWorld(string[] patternSplitIntoLines)
         {
-            int yOffSet = (currentGeneration.Height - patternSplitIntoLines.Length) / 2;
-            int xOffSet = (currentGeneration.Length - patternSplitIntoLines[0].Length) / 2;
+            int yOffSet = (Height - patternSplitIntoLines.Length) / 2;
+            int xOffSet = (Length - patternSplitIntoLines[0].Length) / 2;
 
             for (int y = 0; y < patternSplitIntoLines.Length; y++)
             {
                 for (int x = 0; x < patternSplitIntoLines[y].Length; x++)
                 {
                     if (patternSplitIntoLines[y].Substring(x, 1) == "O")
-                        currentGeneration.WorldPopulation[y + yOffSet, x + xOffSet].IsAlive = true;
+                        WorldPopulation[y + yOffSet, x + xOffSet].IsAlive = true;
                 }
             }
-            return currentGeneration;
+            
         }
         
     }

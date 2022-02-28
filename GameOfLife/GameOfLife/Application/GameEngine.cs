@@ -56,7 +56,6 @@ namespace GameOfLife.Application
             var world = new World();
             world.Height = userSelectionHeight;
             world.Length = userSelectionLength;
-
             
             var gameWorld = GameRules.CreateInitialWorld(formattedPattern, world);
             
