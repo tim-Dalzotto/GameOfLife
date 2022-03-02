@@ -16,18 +16,19 @@ namespace GameOfLifeTest
         {
             var world = new World
             {
-                Size = 5
+                Height = 5,
+                Length = 5 
             };
             var gameRule = new PatternManager();
-            var mockGameRule = new GameRuleAllLiveCells();
+            var mockGameRule = new PatternManagerAllLiveCells();
             //create original generation and populate world
             var originalGeneration = mockGameRule.InitialiseWorld(world, world.Size);
             //finding Neighbours
-            GameRules.RunNextGeneration(originalGeneration);
+            GameRules.UpdateWorldWithNextGen(originalGeneration);
             //determine if cells survives the next gen
             //gameRule.DoCellsSurviveNextGen(originalGeneration);
             //populate world with next gen
-            var nextGeneration= GameRules.RunNextGeneration(originalGeneration);
+            var nextGeneration= GameRules.UpdateWorldWithNextGen(originalGeneration);
             
             Assert.Equal(PreDefinedWorlds.EveryCellIsDead(world), nextGeneration);
             
@@ -66,7 +67,7 @@ namespace GameOfLifeTest
             world.Size = 8;
             var originalGeneration = world;
             var gameRules = new PatternManager();
-            var MockgameRules = new GameRuleAllLiveCells();
+            var MockgameRules = new PatternManagerAllLiveCells();
             var cell = new Cell();
             var liveCell = cell;
             liveCell.IsAlive = true;
@@ -74,7 +75,7 @@ namespace GameOfLifeTest
             deadCell.IsAlive = false;
             
             originalGeneration = MockgameRules.InitialiseWorld(world, world.Size);
-            GameRules.RunNextGeneration(originalGeneration);
+            GameRules.UpdateWorldWithNextGen(originalGeneration);
             var actual = originalGeneration.WorldPopulation[1, 1].Neighbours.Count(x => x.IsAlive);
 
             Assert.Equal(8,actual);
@@ -86,7 +87,7 @@ namespace GameOfLifeTest
             var world = new World();
             world.Size = 8;
             var originalGeneration = world;
-            var mockGameRules = new GameRuleAllLiveCells();
+            var mockGameRules = new PatternManagerAllLiveCells();
             var gameRules = new PatternManager();
             var cell = new Cell();
             var liveCell = cell;
@@ -95,7 +96,7 @@ namespace GameOfLifeTest
             deadCell.IsAlive = false;
 
             originalGeneration = mockGameRules.InitialiseWorld(world, world.Size);
-            GameRules.RunNextGeneration(originalGeneration);
+            GameRules.UpdateWorldWithNextGen(originalGeneration);
 
             var actual = originalGeneration.WorldPopulation[1, 1].Neighbours.Count(x => x.IsAlive);
 
@@ -108,7 +109,7 @@ namespace GameOfLifeTest
             var world = new World();
             world.Size = 5;
             var gameRules = new PatternManager();
-            var mockGameRule = new GameRuleAllLiveCells();
+            var mockGameRule = new PatternManagerAllLiveCells();
             
 
             var currentGeneration = mockGameRule.InitialiseWorld(world, world.Size);
@@ -131,11 +132,11 @@ namespace GameOfLifeTest
         {
             var world = new World();
             world.Size = 8;
-            var mockGameRules = new GameRuleAllLiveCells();
+            var mockGameRules = new PatternManagerAllLiveCells();
             var gameRules = new PatternManager();
             
             var originalGeneration = mockGameRules.InitialiseWorld(world, world.Size);
-            GameRules.RunNextGeneration(originalGeneration);
+            GameRules.UpdateWorldWithNextGen(originalGeneration);
 
             //gameRules.DoCellsSurviveNextGen(originalGeneration);
 
@@ -210,7 +211,7 @@ namespace GameOfLifeTest
 
             var currentGeneration = GameRules.InitialiseWorld(world, world.Size);
             
-            var testGeneration = gameRules.LoadPatternIntoWorld(boardSetup, currentGeneration);
+            var testGeneration = PatternManager.LoadPatternIntoWorld(boardSetup, currentGeneration);
 
             var testWorld = PreDefinedWorlds.EveryCellOnFirstRowIsAlive(new World());
             

@@ -1,6 +1,6 @@
 namespace GameOfLife.Domain
 {
-    public class GameRules
+    public static class GameRules
     {
         public static World CreateInitialWorld(string[] formattedPattern, World world)
         {
@@ -14,42 +14,7 @@ namespace GameOfLife.Domain
             return loadedWorld;
         }
 
-        // private static World InitialiseWorldRectangle(World world, int height, int length)
-        // {
-        //     var createWorld = world;
-        //     createWorld.Height = height;
-        //     createWorld.Length = length;
-        //     createWorld.WorldPopulation = new Cell[height,length];
-        //
-        //     for(var i = 0; i < world.Height; i++)
-        //     {
-        //         for (var j = 0; j < world.Length; j++)
-        //         {
-        //             createWorld.WorldPopulation[i, j] = new Cell { };
-        //         }
-        //     }
-        //     return createWorld;
-        // }
-        //
-        //
-        // //This is might not be business logic 
-        // private static World LoadPatternIntoWorld(string[] patternSplitIntoLines, World currentGeneration)
-        // {
-        //     int yOffSet = (currentGeneration.Height - patternSplitIntoLines.Length) / 2;
-        //     int xOffSet = (currentGeneration.Length - patternSplitIntoLines[0].Length) / 2;
-        //
-        //     for (int y = 0; y < patternSplitIntoLines.Length; y++)
-        //     {
-        //         for (int x = 0; x < patternSplitIntoLines[y].Length; x++)
-        //         {
-        //             if (patternSplitIntoLines[y].Substring(x, 1) == "O")
-        //                 currentGeneration.WorldPopulation[y + yOffSet, x + xOffSet].IsAlive = true;
-        //         }
-        //     }
-        //     return currentGeneration;
-        // }
-        
-        public static World RunNextGeneration(World world)
+        public static World UpdateWorldWithNextGen(World world)
         {
             var currentWorld = world;
             var height = currentWorld.Height;

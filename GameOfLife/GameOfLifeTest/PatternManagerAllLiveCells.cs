@@ -3,7 +3,7 @@ using GameOfLife.Domain;
 
 namespace GameOfLifeTest
 {
-    public class GameRuleAllLiveCells : IGameRules
+    public class PatternManagerAllLiveCells : IPatternManager
     {
         public World CreateInitialWorld(string[] formattedPattern, int patternSize)
         {

@@ -28,3 +28,5 @@
 /Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLife/obj/Debug/net5.0/ref/GameOfLife.dll
 /Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLife/obj/Debug/net5.0/GameOfLife.pdb
 /Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLife/obj/Debug/net5.0/GameOfLife.genruntimeconfig.cache
+/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLife/bin/Debug/net5.0/Newtonsoft.Json.dll
+/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLife/obj/Debug/net5.0/GameOfLife.csproj.CopyComplete

@@ -85,7 +85,8 @@ namespace GameOfLifeTest
         public static World EveryCellOnFirstRowIsAlive(World world)
         {
             var createWorld = world;
-            createWorld.Size = 5;
+            createWorld.Height = 5;
+            createWorld.Length = 5;
             createWorld.WorldPopulation = new Cell[5,5];
             
             createWorld.WorldPopulation[0, 0] = new Cell {IsAlive = true};

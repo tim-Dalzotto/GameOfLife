@@ -7,16 +7,16 @@ using GameOfLife.Domain;
 
 namespace GameOfLife.Application
 {
-    public class PatternManager : IGameRules
+    public class PatternManager : IPatternManager
     {
         public static string GetSelectedPattern(int userInput, pattern pattern)
         {
             var loadedPattern = userInput switch
             {
                 //select Pattern
-                1 => pattern.patternGlider(),
-                2 => pattern.patternShip(),
-                3 => pattern.patternDuck(),
+                1 => pattern.PatternGlider(),
+                2 => pattern.PatternBox(),
+                3 => pattern.PatternDuck(),
                 _ => ""
             };
             return loadedPattern;
@@ -28,10 +28,10 @@ namespace GameOfLife.Application
             return patternSplitIntoLines.SkipLast(1).ToArray();
        }
         
-        public World LoadPatternIntoWorld(string[] patternSplitIntoLines, World currentGeneration)
+        public static World LoadPatternIntoWorld(string[] patternSplitIntoLines, World currentGeneration)
         {
-            int yOffSet = (currentGeneration.Height - patternSplitIntoLines[0].Length) / 2;
-            int xOffSet = (currentGeneration.Length - patternSplitIntoLines.Length) / 2;
+            var yOffSet = (currentGeneration.Height - patternSplitIntoLines[0].Length) / 2;
+            var xOffSet = (currentGeneration.Length - patternSplitIntoLines.Length) / 2;
         
             for (int y = 0; y < patternSplitIntoLines.Length; y++)
             {
@@ -48,6 +48,7 @@ namespace GameOfLife.Application
         
         #region load List 
         //This needs to take in the list of Tuple not the list of string, the split needs to happen outside the method-----------------
+        
         public World LoadListIntoWorld(List<string> livingCellCoOrds, World world)
         {
             var boardCoOrds = splitCoOrds(livingCellCoOrds);

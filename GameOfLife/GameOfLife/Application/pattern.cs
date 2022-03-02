@@ -2,7 +2,7 @@ namespace GameOfLife.Domain
 {
     public class pattern
     {
-        public string patternShip()
+        public string PatternBox()
         {
             var shipPattern =
 
@@ -12,7 +12,7 @@ namespace GameOfLife.Domain
             return shipPattern;
         }
         
-        public string patternDuck()
+        public string PatternDuck()
         {
             var shipPattern =
                 "--------\n" +
@@ -24,7 +24,7 @@ namespace GameOfLife.Domain
             return shipPattern;
         }
 
-        public string patternGlider()
+        public string PatternGlider()
         {
             var gliderPattern =
                 "-------------------------O----------\n" +
@@ -38,14 +38,5 @@ namespace GameOfLife.Domain
                 "-------------O----------------------";
             return gliderPattern;
         }
-        
-        string _pattern2 = 
-            "------\n" +
-            "------\n" +
-            "--OOO-\n" +
-            "-OOO--\n" +
-            "------\n" +
-            "------";
-        
     }
 }

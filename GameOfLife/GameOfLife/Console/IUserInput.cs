@@ -2,6 +2,8 @@ namespace GameOfLife.ConsoleOut
 {
     public interface IUserInput
     {
-        public string GetUserInput();
+        public int GetUserInputPatternSelection();
+
+        public int GetUserInputSize();
     }
 }
