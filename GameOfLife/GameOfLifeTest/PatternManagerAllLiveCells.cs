@@ -3,11 +3,11 @@ using GameOfLife.Domain;
 
 namespace GameOfLifeTest
 {
-    public class PatternManagerAllLiveCells : IPatternManager
+    public class PatternManagerAllLiveCells
     {
         public World CreateInitialWorld(string[] formattedPattern, int patternSize)
         {
-            return new World();
+            return new World(10,10);
         }
 
         public World CreateInitialWorld(string[] formattedPattern, World world)

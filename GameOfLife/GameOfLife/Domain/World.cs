@@ -12,7 +12,7 @@ namespace GameOfLife.Domain
         public Cell[,] WorldPopulation { get; set; }
         
         //initialise world
-        public void InitialiseWorldRectangle( int height, int length)
+        public World ( int height, int length)
         {
             Height = height;
             Length = length;

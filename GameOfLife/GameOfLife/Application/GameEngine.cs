@@ -10,7 +10,7 @@ namespace GameOfLife.Application
 {
     public class GameEngine
     {
-        private readonly pattern _pattern;
+        //private readonly Pattern _pattern;
         private readonly IOutput _output;
         private readonly IUserInput _input;
 
@@ -18,12 +18,11 @@ namespace GameOfLife.Application
         {
             _output = output;
             _input = input;
-            _pattern = new pattern();
+            //_pattern = new Pattern();
         }
         public World RunNextGeneration(World world)
         {
             var currentGeneration = world; 
-            var gameRule = new PatternManager();
 
             var nextGeneration = GameRules.UpdateWorldWithNextGen(currentGeneration);
             
@@ -39,27 +38,27 @@ namespace GameOfLife.Application
 
            
             _output.DisplayPatternSelection();
-            var userSelectionPatternChoice = Convert.ToInt32(_input.GetUserInputPatternSelection());
+            var userSelectionPatternChoice = _input.GetUserInputPatternSelection();
 
-            var patternTest = PatternManager.GetSelectedPattern(userSelectionPatternChoice, _pattern);
-            var formattedPattern = PatternManager.SplitPattern(patternTest);
+            var selectedPattern = Pattern.GetSelectedPattern(userSelectionPatternChoice);
             
             
-            var worldMinRowRequiredBasedOnSelectedPattern = formattedPattern.Length;
-            var worldMinColumnsRequiredBasedOnSelectedPattern = formattedPattern[0].Length;
+            
+            var worldMinRowRequiredBasedOnSelectedPattern = selectedPattern.Length;
+            var worldMinColumnsRequiredBasedOnSelectedPattern = selectedPattern[0].Length;
             _output.DisplayGameBoardSizeSelectionMessage( worldMinRowRequiredBasedOnSelectedPattern,worldMinColumnsRequiredBasedOnSelectedPattern);
             
             
             _output.DisplayChoiceForRowsMessage();
-            var userSelectionHeight = Convert.ToInt32(_input.GetUserInputSize());
+            var userSelectedHeight = _input.GetUserInputSize();
             _output.DisplayChoiceForColumnsMessage();
-            var userSelectionLength = Convert.ToInt32(_input.GetUserInputPatternSelection());
+            var userSelectedLength = _input.GetUserInputSize();
             
-            var world = new World();
-            world.Height = userSelectionHeight;
-            world.Length = userSelectionLength;
+            // var world = new World();
+            // world.Height = userSelectedHeight;
+            // world.Length = userSelectedLength;
             
-            var gameWorld = GameRules.CreateInitialWorld(formattedPattern, world);
+            var gameWorld = GameRules.CreateInitialWorld(selectedPattern, userSelectedHeight, userSelectedLength);
             
             RunSimulation(gameWorld);
             
