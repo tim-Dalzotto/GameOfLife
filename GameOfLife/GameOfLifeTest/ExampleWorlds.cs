@@ -4,50 +4,12 @@ namespace GameOfLifeTest
 {
     public static class TestPatterns
     {
-        public static string[] EveryCellAlive()
-        {
-            var EverythingAlive = new string[]
-            {
-                "OOOOO", 
-                "OOOOO",
-                "OOOOO",
-                "OOOOO",
-                "OOOOO"
-            };
-            return EverythingAlive;
-        }
-        
-        public static string[] EveryCellDead()
-        {
-            var EverythingAlive = new string[]
-            {
-                "-----", 
-                "-----",
-                "-----",
-                "-----",
-                "-----"
-            };
-            return EverythingAlive;
-        }
-        
-        public static string[] TopRowAlive()
-        {
-            var EverythingAlive = new string[]
-            {
-                "OOOOO", 
-                "-----",
-                "-----",
-                "-----",
-                "-----"
-            };
-            return EverythingAlive;
-        }
         public static World ThisIsATest()
         {
             
             return new World(5, 5);
         }
-        public static World EveryCellIsAlive()
+        public static World WorldEveryCellIsAlive()
         {
             var createWorld = new World(5,5);
             //createWorld.WorldPopulation = new Cell[5,5];
@@ -85,7 +47,7 @@ namespace GameOfLifeTest
             return createWorld;
         }
         
-        public static World EveryCellIsDead()
+        public static World WorldEveryCellIsDead()
         {
             var createWorld = new World(5,5);
             //createWorld.Size = 5;
@@ -124,7 +86,7 @@ namespace GameOfLifeTest
             return createWorld;
         }
         
-        public static World EveryCellOnFirstRowIsAlive()
+        public static World WorldEveryCellOnFirstRowIsAlive()
         {
             var createWorld = new World(5,5);
 
@@ -161,7 +123,7 @@ namespace GameOfLifeTest
             return createWorld;
         }
         
-        public static World CellsWontSurviveNextGen()
+        public static World CellsWontSurviveNextGenWorld()
         {
             var createWorld = new World(5,5);
 

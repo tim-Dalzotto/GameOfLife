@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using GameOfLife.Application;
+using GameOfLife.ConsoleOut;
 using GameOfLife.Domain;
 using Xunit;
 using Newtonsoft.Json;
@@ -11,6 +12,21 @@ namespace GameOfLifeTest
 {
     public class GameRuleTest
     {
+        [Fact]
+        public void GivenGameEngine_WhenPlayWorld_ThenReturnWord()
+        {
+            var input = new ConsoleUserInput();
+            var output = new ConsoleOutput();
+
+            var MockInput = new WorldGenerationsInfo(5, 5,TestPatterns.EveryCellAlive());
+            
+            var GameEngine = new GameEngine(input,output);
+            
+            //GameEngine.PlayGame(MockInput);
+            
+            
+        }
+        
         [Fact]
         public void GivenNewWorld_WhenNextGenerationRun_ThenReturnUpdatedWorld()
         {
