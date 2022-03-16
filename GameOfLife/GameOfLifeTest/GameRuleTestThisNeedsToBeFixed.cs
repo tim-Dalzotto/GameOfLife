@@ -10,7 +10,7 @@ using Xunit.Sdk;
 
 namespace GameOfLifeTest
 {
-    public class GameRuleTest
+    public class GameRuleTestThisNeedsToBeFixed
     {
         [Fact]
         public void GivenGameEngine_WhenPlayWorld_ThenReturnWord()
@@ -18,7 +18,7 @@ namespace GameOfLifeTest
             var input = new ConsoleUserInput();
             var output = new ConsoleOutput();
 
-            var MockInput = new WorldGenerationsInfo(5, 5,TestPatterns.EveryCellAlive());
+            var MockInput = new WorldGenerationsInfo(5, 5,ExamplePatterns.EveryCellAlive);
             
             var GameEngine = new GameEngine(input,output);
             
@@ -41,7 +41,7 @@ namespace GameOfLifeTest
             //populate world with next gen
             var nextGeneration= GameRules.UpdateWorldWithNextGen(originalGeneration);
             
-            Assert.Equal(TestPatterns.EveryCellIsDead(), nextGeneration);
+            Assert.Equal(ExampleWorlds.WorldEveryCellIsDead(), nextGeneration);
             
         } 
         
@@ -193,7 +193,7 @@ namespace GameOfLifeTest
             };
             world.LoadPatternIntoWorld(patternTest);
 
-            var testWorld = TestPatterns.EveryCellOnFirstRowIsAlive();
+            var testWorld = ExampleWorlds.WorldEveryCellOnFirstRowIsAlive();
             
             var serializedActualWorldStr = JsonConvert.SerializeObject(world);
             var serializedExpectedWorldStr = JsonConvert.SerializeObject(testWorld);

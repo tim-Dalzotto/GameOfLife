@@ -29,16 +29,10 @@ namespace GameOfLife.Application
             return nextGeneration;
         }
 
-        public void PlayGame()
+        public WorldGenerationsInfo GameSetup()
         {
-            //var gameRules = new PatternLogic();
-            //var game = new Game();
-            // var pattern = new pattern();
-            // var output = new IOutput();
-
-           
             _output.DisplayPatternSelection();
-            var userSelectionPatternChoice = _input.GetUserInputPatternSelection();
+            var userSelectionPatternChoice = _input.GetUserInput();
 
             var selectedPattern = Pattern.GetSelectedPattern(userSelectionPatternChoice);
             
@@ -50,15 +44,19 @@ namespace GameOfLife.Application
             
             
             _output.DisplayChoiceForRowsMessage();
-            var userSelectedHeight = _input.GetUserInputSize();
+            var userSelectedHeight = _input.GetUserInput();
             _output.DisplayChoiceForColumnsMessage();
-            var userSelectedLength = _input.GetUserInputSize();
+            var userSelectedLength = _input.GetUserInput();
+
+            return new WorldGenerationsInfo(userSelectedHeight, userSelectedLength, selectedPattern);
+        }
+
+        public void PlayGame(string[] pattern, int height, int length)
+        {
             
-            // var world = new World();
-            // world.Height = userSelectedHeight;
-            // world.Length = userSelectedLength;
-            
-            var gameWorld = GameRules.CreateInitialWorld(selectedPattern, userSelectedHeight, userSelectedLength);
+            //var gameWorld = GameRules.CreateInitialWorld(selectedPattern, userSelectedHeight, userSelectedLength);
+            var gameWorld = GameRules.CreateInitialWorld(pattern,height,length);
+
             
             RunSimulation(gameWorld);
             
@@ -67,17 +65,10 @@ namespace GameOfLife.Application
         private void RunSimulation(World gameWorld)
         {
             var count = 0;
-            var gameRunOut = 0;
-            var listOfPreviousWorlds = new List<string>();
             while ( count < 100 )
             {
                 _output.DisplayWorld(gameWorld);
                 gameWorld = RunNextGeneration(gameWorld);
-                if (SimEndCriteria.SimulationRepeated(listOfPreviousWorlds,gameWorld))
-                    gameRunOut++;
-                if(gameRunOut >10)
-                    break;
-                listOfPreviousWorlds.Add(JsonConvert.SerializeObject(gameWorld));
                 Thread.Sleep(100);
                 
                 count++;

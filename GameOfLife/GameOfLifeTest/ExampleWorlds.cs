@@ -2,13 +2,8 @@ using GameOfLife.Domain;
 
 namespace GameOfLifeTest
 {
-    public static class TestPatterns
+    public static class ExampleWorlds
     {
-        public static World ThisIsATest()
-        {
-            
-            return new World(5, 5);
-        }
         public static World WorldEveryCellIsAlive()
         {
             var createWorld = new World(5,5);

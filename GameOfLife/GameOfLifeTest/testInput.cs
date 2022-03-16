@@ -5,13 +5,10 @@ namespace GameOfLifeTest
     public class TestInput : IUserInput
 
     {
-        public int GetUserInputPatternSelection()
+        public int GetUserInput()
         {
             return 3;
         }
-        public int GetUserInputSize()
-        {
-            return 10;
-        }
+        
     }
 }

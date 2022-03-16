@@ -1,7 +1,17 @@
-namespace GameOfLife.Domain
+using System.Collections.Generic;
+using System.Linq;
+
+namespace GameOfLife.Application
 {
     public static class Pattern
     {
+        public static readonly List<string[]> PatternList = new List<string[]>
+        {
+            PatternGlider(),
+            PatternBox(),
+            PatternDuck()
+        };
+       
         private static string[] PatternBox()
         {
             var shipPattern = new string[]
@@ -47,23 +57,7 @@ namespace GameOfLife.Domain
         
         public static string[] GetSelectedPattern(int userInput)
         {
-            string[] loadedPattern;
-            switch (userInput)
-            {
-                case 1:
-                    loadedPattern = PatternGlider();
-                    break;
-                case 2:
-                    loadedPattern = PatternBox();
-                    break;
-                case 3:
-                    loadedPattern = PatternDuck();
-                    break;
-                default:
-                    loadedPattern = new[] {""};
-                    break;
-            }
-
+            var loadedPattern = PatternList.ElementAt(userInput -1);
             return loadedPattern;
         }
     }

@@ -8,8 +8,7 @@ namespace GameOfLife.Domain
             
             var emptyWorld = new World(height,length);
             //load format pattern
-            emptyWorld.LoadPatternIntoWorld(formattedPattern);
-            var loadedWorld = emptyWorld;
+            var loadedWorld =  emptyWorld.LoadPatternIntoWorld(formattedPattern);
             //return formatted World 
             return loadedWorld;
         }

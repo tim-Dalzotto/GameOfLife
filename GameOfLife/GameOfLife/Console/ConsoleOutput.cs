@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using GameOfLife.Application;
 using GameOfLife.Domain;
 
 namespace GameOfLife.ConsoleOut
