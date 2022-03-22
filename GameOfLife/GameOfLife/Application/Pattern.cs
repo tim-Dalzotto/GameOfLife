@@ -11,6 +11,13 @@ namespace GameOfLife.Application
             PatternBox(),
             PatternDuck()
         };
+        
+        public enum PatternEnum
+        {
+            PatternGlider = 1,
+            PatternBox,
+            PatternDuck
+        }
        
         private static string[] PatternBox()
         {

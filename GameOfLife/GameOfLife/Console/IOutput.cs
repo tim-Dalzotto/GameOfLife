@@ -10,5 +10,6 @@ namespace GameOfLife.ConsoleOut
         public void DisplayGameBoardSizeSelectionMessage(int minRowSize, int minColumnSize);
         public void DisplayChoiceForRowsMessage();
         public void DisplayChoiceForColumnsMessage();
+        public void DisplayMessage(string message);
     }
 }

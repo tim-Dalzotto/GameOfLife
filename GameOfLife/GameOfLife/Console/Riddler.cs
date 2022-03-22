@@ -1,5 +1,6 @@
 using System;
 using GameOfLife.Application;
+using GameOfLife.Constants;
 using GameOfLife.Domain;
 
 namespace GameOfLife.ConsoleOut
@@ -8,25 +9,38 @@ namespace GameOfLife.ConsoleOut
     {
         
         public static string[] GetUserPatternSelection(IUserInput input, IOutput output)
-        {     
-            output.DisplayPatternSelection();
-            var userSelectionPatternChoice = input.GetUserInput();
+        {
+            var validator = false;
+            var userSelectionPatternChoice = NumberConst.EmptyChoice;
+            while (validator == false)
+            {
+                output.DisplayPatternSelection();
+                var userInputTemp = input.GetUserInput();
+                if (Validator.IsNumeric(userInputTemp))
+                    userSelectionPatternChoice = Int32.Parse(userInputTemp);
+                else
+                    break;
+                validator = Validator.ValidatePatternSelection(userSelectionPatternChoice, Pattern.PatternList);
+            }
             
             //var testInput = 
             return Pattern.GetSelectedPattern(userSelectionPatternChoice);
                         
         }
 
-        public static int GetUserHeightSelection(IUserInput input, IOutput output)
+        public static string GetUserWorldHeightSelection(IUserInput input, IOutput output)
         {
+            
             output.DisplayChoiceForRowsMessage();
-            return input.GetUserInput();
+            var userInput = input.GetUserInput();
+            return userInput;
         }
 
-        public static int GetUserLengthSelection(IUserInput input, IOutput output)
+        public static string GetUserLengthSelection(IUserInput input, IOutput output)
         {
             output.DisplayChoiceForColumnsMessage();
-            return input.GetUserInput();
+            var userWorldSizeSelection = input.GetUserInput();
+            return userWorldSizeSelection;
         }
         
     }

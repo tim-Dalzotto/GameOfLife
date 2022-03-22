@@ -47,5 +47,10 @@ namespace GameOfLife.ConsoleOut
         Console.WriteLine("How many columns would you like?");
     }
 
+    public void DisplayMessage(string message)
+    {
+        Console.WriteLine($"{message}");
+    }
+
     }
 }

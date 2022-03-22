@@ -6,7 +6,7 @@ namespace GameOfLifeTest
     public class PatternTest
     {
         [Fact]
-        public void GivenGetSelectedPattern_WhenUserInput_ReturnCorrectPatter()
+        public void GivenGetSelectedPattern_WhenUserInput_ThenReturnCorrectPatter()
         {
             var UserInput = 2;
 

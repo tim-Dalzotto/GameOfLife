@@ -5,10 +5,9 @@ namespace GameOfLife.ConsoleOut
 {
     public class ConsoleUserInput : IUserInput
     {
-        public int GetUserInput()
+        public string GetUserInput()
         {
-            var patternSelection = Console.ReadLine();
-            return Convert.ToInt32(patternSelection);
+            return Console.ReadLine();
         }
 
         

@@ -12,13 +12,6 @@ namespace GameOfLife.Application
         {
             return pastWorlds.Contains(JsonConvert.SerializeObject(currentWorld));
         }
-
-        public static bool IsEverythingDead()
-        {
-            
-            return false;
-        }
-        
     }
     
     

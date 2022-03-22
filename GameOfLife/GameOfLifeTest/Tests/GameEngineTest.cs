@@ -3,7 +3,7 @@ using GameOfLife.ConsoleOut;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace GameOfLifeTest
+namespace GameOfLifeTest.Tests
 {
     public class GameEngineTest
     {

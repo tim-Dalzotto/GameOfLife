@@ -5,9 +5,9 @@ namespace GameOfLifeTest
     public class TestInput : IUserInput
 
     {
-        public int GetUserInput()
+        public string GetUserInput()
         {
-            return 3;
+            return "3";
         }
         
     }

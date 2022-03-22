@@ -2,14 +2,15 @@ using GameOfLife.Domain;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace GameOfLifeTest
+namespace GameOfLifeTest.Tests
 {
     public class GameRulesTest
     {
         [Fact]
         public void GivenCreateInitialWorld_WhenPatternAndSizeAreGiven_ThenReturnAWorldToThoseSpecifications()
         {
-            var actual = GameRules.CreateInitialWorld(ExamplePatterns.EveryCellAlive, 5, 5);
+            var actual = new World( 5, 5);
+            actual.LoadPatternIntoWorld(ExamplePatterns.EveryCellAlive);
             
             var serializedActualWorldStr = JsonConvert.SerializeObject(actual);
             var serializedExpectedWorldStr = JsonConvert.SerializeObject(ExampleWorlds.WorldEveryCellIsAlive());

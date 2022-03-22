@@ -10,7 +10,6 @@ namespace GameOfLife.Application
 {
     public class GameEngine
     {
-        //private readonly Pattern _pattern;
         private readonly IOutput _output;
         private readonly IUserInput _input;
 
@@ -18,7 +17,6 @@ namespace GameOfLife.Application
         {
             _output = output;
             _input = input;
-            //_pattern = new Pattern();
         }
         public World RunNextGeneration(World world)
         {
@@ -28,36 +26,10 @@ namespace GameOfLife.Application
             
             return nextGeneration;
         }
-
-        public WorldGenerationsInfo GameSetup()
-        {
-            _output.DisplayPatternSelection();
-            var userSelectionPatternChoice = _input.GetUserInput();
-
-            var selectedPattern = Pattern.GetSelectedPattern(userSelectionPatternChoice);
-            
-            
-            
-            var worldMinRowRequiredBasedOnSelectedPattern = selectedPattern.Length;
-            var worldMinColumnsRequiredBasedOnSelectedPattern = selectedPattern[0].Length;
-            _output.DisplayGameBoardSizeSelectionMessage( worldMinRowRequiredBasedOnSelectedPattern,worldMinColumnsRequiredBasedOnSelectedPattern);
-            
-            
-            _output.DisplayChoiceForRowsMessage();
-            var userSelectedHeight = _input.GetUserInput();
-            _output.DisplayChoiceForColumnsMessage();
-            var userSelectedLength = _input.GetUserInput();
-
-            return new WorldGenerationsInfo(userSelectedHeight, userSelectedLength, selectedPattern);
-        }
-
+        
         public void PlayGame(string[] pattern, int height, int length)
         {
-            
-            //var gameWorld = GameRules.CreateInitialWorld(selectedPattern, userSelectedHeight, userSelectedLength);
             var gameWorld = GameRules.CreateInitialWorld(pattern,height,length);
-
-            
             RunSimulation(gameWorld);
             
         }
@@ -74,6 +46,32 @@ namespace GameOfLife.Application
                 count++;
             }   
         }
+        
+        
+        
+        
+        //------------------------------------------- Don't use anymore---------------
+        // public WorldGenerationsInfo GameSetup()
+        // {
+        //     _output.DisplayPatternSelection();
+        //     var userSelectionPatternChoice = _input.GetUserInput();
+        //
+        //     var selectedPattern = Pattern.GetSelectedPattern(userSelectionPatternChoice);
+        //     
+        //     
+        //     
+        //     var worldMinRowRequiredBasedOnSelectedPattern = selectedPattern.Length;
+        //     var worldMinColumnsRequiredBasedOnSelectedPattern = selectedPattern[0].Length;
+        //     _output.DisplayGameBoardSizeSelectionMessage( worldMinRowRequiredBasedOnSelectedPattern,worldMinColumnsRequiredBasedOnSelectedPattern);
+        //     
+        //     
+        //     _output.DisplayChoiceForRowsMessage();
+        //     var userSelectedHeight = _input.GetUserInput();
+        //     _output.DisplayChoiceForColumnsMessage();
+        //     var userSelectedLength = _input.GetUserInput();
+        //
+        //     return new WorldGenerationsInfo(userSelectedHeight, userSelectedLength, selectedPattern);
+        // }
         
         
     }

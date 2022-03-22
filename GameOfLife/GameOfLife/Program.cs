@@ -17,10 +17,6 @@ namespace GameOfLife
             var output = new ConsoleOutput();
             var game = new GameEngine(input, output);
 
-            //get userinput
-            
-            //displayPattern
-            //get pattern choice
             var patternInput = Riddler.GetUserPatternSelection(input, output);
             
             var worldMinRowRequiredBasedOnSelectedPattern = patternInput.Length;
@@ -28,26 +24,26 @@ namespace GameOfLife
             output.DisplayGameBoardSizeSelectionMessage( worldMinRowRequiredBasedOnSelectedPattern,worldMinColumnsRequiredBasedOnSelectedPattern);
 
 
-            var heightInput = Riddler.GetUserHeightSelection(input, output);
-            var lengthInput = Riddler.GetUserLengthSelection (input, output);
-
-
-            // var worldMinRowRequiredBasedOnSelectedPattern = patternInput.Length;
-            // var worldMinColumnsRequiredBasedOnSelectedPattern = patternInput[0].Length;
-            // output.DisplayGameBoardSizeSelectionMessage( worldMinRowRequiredBasedOnSelectedPattern,worldMinColumnsRequiredBasedOnSelectedPattern);
-            //
+            var validInput = false;
+            string heightInput = null;
+            while (!validInput)
+            { 
+                heightInput = Riddler.GetUserWorldHeightSelection(input, output);
+                validInput = Validator.WorldSizeValidator(output, heightInput, worldMinColumnsRequiredBasedOnSelectedPattern);
+            }
+            //var heightInput = Riddler.GetUserWorldSizeSelection(input, output, worldMinColumnsRequiredBasedOnSelectedPattern);
             
-            // output.DisplayChoiceForRowsMessage();
-            // var userSelectedHeight = input.GetUserInput();
-            // output.DisplayChoiceForColumnsMessage();
-            // var userSelectedLength = input.GetUserInput();
-            //
-            //create loaded world
-            //var world = (heightInput, lengthInput);
-            //run sim
-            game.PlayGame(patternInput,heightInput,lengthInput);
-            //var WorldGenInfo = game.getWorldGenInfo();
-            //game.PlayGame(game.GameSetup());
+            string lengthInput = null;
+            validInput = false;
+            while (!validInput)
+            { 
+                lengthInput = Riddler.GetUserLengthSelection(input, output);
+                validInput = Validator.WorldSizeValidator(output, lengthInput, worldMinColumnsRequiredBasedOnSelectedPattern);
+            }
+
+            
+            game.PlayGame(patternInput,int.Parse(heightInput),int.Parse(lengthInput));
+            
         }
     }
 }
