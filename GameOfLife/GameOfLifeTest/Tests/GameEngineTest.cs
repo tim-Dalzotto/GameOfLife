@@ -11,8 +11,8 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void RunNextGenerationTest_WhenAllCellsAlive_ThenReturnNextGenerationAllCellsAreDead()
         {
-            var input = new ConsoleUserInput();
-            var output = new ConsoleOutput();
+            var input = new ConsoleUserInput(new ConsoleIO());
+            var output = new ConsoleOutput(new ConsoleIO());
             //Arrange 
             var gameEngine = new GameEngine(input, output);
             
@@ -28,8 +28,8 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void RunNextGenerationTest_WhenAllCellsDead_ThenReturnNextGenerationAllCellsAreDead()
         {
-            var input = new ConsoleUserInput();
-            var output = new ConsoleOutput();
+            var input = new ConsoleUserInput(new ConsoleIO());
+            var output = new ConsoleOutput(new ConsoleIO());
             //Arrange 
             var gameEngine = new GameEngine(input, output);
             

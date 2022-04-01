@@ -39,10 +39,6 @@ namespace GameOfLife.Domain
                     currentWorld.WorldPopulation[x, y] = currentCell;
                 }
             }
-            
-            //This should not be here
-            //if no living cells make AnyLivingCells = to true
-
             return newWorld;
         }
         
@@ -66,8 +62,8 @@ namespace GameOfLife.Domain
             liveNeighbours += currentWorld.WorldPopulation[rightNeighbouringCell, bottomNeighbouringCell].IsAlive ? 1 : 0;
             return liveNeighbours;
         }
-        
-        public static void PopulateNextGeneration(Cell currentCell, int liveNeighbours, World newWorld, int x, int y)
+
+        private static void PopulateNextGeneration(Cell currentCell, int liveNeighbours, World newWorld, int x, int y)
         {
             if (currentCell.IsAlive && liveNeighbours is 2 or 3)
                 newWorld.WorldPopulation[x, y].IsAlive = true;

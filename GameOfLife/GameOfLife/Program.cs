@@ -13,8 +13,8 @@ namespace GameOfLife
     {
         static void Main(string[] args)
         {
-            var input = new ConsoleUserInput();
-            var output = new ConsoleOutput();
+            var input = new ConsoleUserInput(new ConsoleIO());
+            var output = new ConsoleOutput(new ConsoleIO());
             var game = new GameEngine(input, output);
 
             var patternInput = Riddler.GetUserPatternSelection(input, output);
@@ -29,7 +29,7 @@ namespace GameOfLife
             while (!validInput)
             { 
                 heightInput = Riddler.GetUserWorldHeightSelection(input, output);
-                validInput = Validator.WorldSizeValidator(output, heightInput, worldMinColumnsRequiredBasedOnSelectedPattern);
+                validInput = Validator.WorldSizeValidator(output, heightInput, worldMinRowRequiredBasedOnSelectedPattern);
             }
             //var heightInput = Riddler.GetUserWorldSizeSelection(input, output, worldMinColumnsRequiredBasedOnSelectedPattern);
             

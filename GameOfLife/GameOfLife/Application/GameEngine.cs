@@ -46,33 +46,5 @@ namespace GameOfLife.Application
                 count++;
             }   
         }
-        
-        
-        
-        
-        //------------------------------------------- Don't use anymore---------------
-        // public WorldGenerationsInfo GameSetup()
-        // {
-        //     _output.DisplayPatternSelection();
-        //     var userSelectionPatternChoice = _input.GetUserInput();
-        //
-        //     var selectedPattern = Pattern.GetSelectedPattern(userSelectionPatternChoice);
-        //     
-        //     
-        //     
-        //     var worldMinRowRequiredBasedOnSelectedPattern = selectedPattern.Length;
-        //     var worldMinColumnsRequiredBasedOnSelectedPattern = selectedPattern[0].Length;
-        //     _output.DisplayGameBoardSizeSelectionMessage( worldMinRowRequiredBasedOnSelectedPattern,worldMinColumnsRequiredBasedOnSelectedPattern);
-        //     
-        //     
-        //     _output.DisplayChoiceForRowsMessage();
-        //     var userSelectedHeight = _input.GetUserInput();
-        //     _output.DisplayChoiceForColumnsMessage();
-        //     var userSelectedLength = _input.GetUserInput();
-        //
-        //     return new WorldGenerationsInfo(userSelectedHeight, userSelectedLength, selectedPattern);
-        // }
-        
-        
     }
 }

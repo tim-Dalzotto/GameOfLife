@@ -1,4 +1,15 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=43049e72_002Dc600_002D428a_002Dbd20_002D2937cd5ab424/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GivenLoadWorldFromPattern_WhenGivenAPattern_ThenReturnWorldWithPattern" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.WorldTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.ConsoleOutTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.GameEngineTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.GameRulesTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.PatternTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.SimEndCriteriaTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.ValidationsTest&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d3dae2d8_002D9d2c_002D431c_002D8607_002D56754fc7818b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

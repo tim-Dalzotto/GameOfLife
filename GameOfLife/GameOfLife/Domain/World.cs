@@ -11,9 +11,6 @@ namespace GameOfLife.Domain
         public int Height { get; }
         public Cell[,] WorldPopulation { get; set; }
         
-        public string[] WorldPattern { get; set; }
-        
-        //initialise world
         public World ( int height, int length)
         {
             Height = height;
@@ -29,17 +26,16 @@ namespace GameOfLife.Domain
             }
         }
         
-        //loadWorld
         public World LoadPatternIntoWorld(string[] pattern)
         {
-            int yOffSet = (Height - pattern.Length) / 2;
-            int xOffSet = (Length - pattern[0].Length) / 2;
+            var yOffSet = (Height - pattern.Length) / 2;
+            var xOffSet = (Length - pattern[0].Length) / 2;
 
-            for (int y = 0; y < pattern.Length; y++)
+            for (var y = 0; y < pattern.Length; y++)
             {
-                for (int x = 0; x < pattern[y].Length; x++)
+                for (var x = 0; x < pattern[y].Length; x++)
                 {
-                    if (pattern[y].Substring(x, 1) == "O")
+                    if (pattern[y].Substring(x, 1) == "0")
                         WorldPopulation[y + yOffSet, x + xOffSet].IsAlive = true;
                 }
             }

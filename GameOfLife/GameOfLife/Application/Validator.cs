@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Reflection;
+using GameOfLife.Application;
 using GameOfLife.ConsoleOut;
 using GameOfLife.Constants;
 
@@ -17,9 +19,9 @@ namespace GameOfLife.Domain
             return userInput >= minLength;
         }
 
-        public static bool ValidatePatternSelection(int userInput, List<string[]> patternList)
+        public static bool ValidatePatternSelection(int userInput)
         {
-            return userInput > 0 && userInput <= patternList.Count;
+            return Enum.IsDefined(typeof(Pattern.PatternEnum), userInput);
         }
 
         public static bool IsNumeric(string userInput)
@@ -30,7 +32,7 @@ namespace GameOfLife.Domain
 
         public static bool WorldSizeValidator(IOutput output, string input, int minWorldCapacity)
         {
-            var intInput = 0;
+            int intInput;
             var userInputTemp = input;
             if (IsNumeric(userInputTemp))
                 intInput = int.Parse(userInputTemp);

@@ -1,7 +1,7 @@
 using GameOfLife.Application;
 using Xunit;
 
-namespace GameOfLifeTest
+namespace GameOfLifeTest.Tests
 {
     public class PatternTest
     {

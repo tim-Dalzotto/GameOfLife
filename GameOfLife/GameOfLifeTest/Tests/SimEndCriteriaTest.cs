@@ -1,12 +1,9 @@
 using System.Collections.Generic;
 using GameOfLife.Application;
-using GameOfLife.ConsoleOut;
-using GameOfLife.Domain;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Xunit;
 
-namespace GameOfLifeTest
+namespace GameOfLifeTest.Tests
 {
     public class SimEndCriteriaTest
     {

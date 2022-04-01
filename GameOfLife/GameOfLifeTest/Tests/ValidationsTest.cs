@@ -1,10 +1,7 @@
-using System.Reflection;
-using System.Runtime.InteropServices;
-using GameOfLife.Application;
 using GameOfLife.Domain;
 using Xunit;
 
-namespace GameOfLifeTest
+namespace GameOfLifeTest.Tests
 {
     public class ValidationsTest
     {
@@ -40,7 +37,7 @@ namespace GameOfLifeTest
         [InlineData(0, false)]
         public void GivenValidatePatternSelection_WhenGivenUserInput_ThenReturnExpectedResult(int userInput, bool expected)
         {
-            var actual = Validator.ValidatePatternSelection(userInput, Pattern.PatternList);
+            var actual = Validator.ValidatePatternSelection(userInput);
             
             Assert.Equal(expected, actual);
 

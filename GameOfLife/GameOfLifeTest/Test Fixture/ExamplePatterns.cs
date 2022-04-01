@@ -4,11 +4,11 @@ namespace GameOfLifeTest
     {
         public static readonly string[] EveryCellAlive = new string[5]
         {
-            "OOOOO", 
-            "OOOOO",
-            "OOOOO",
-            "OOOOO",
-            "OOOOO"
+            "00000", 
+            "00000",
+            "00000",
+            "00000",
+            "00000"
         };
         // public static string[] EveryCellAlive()
         // {
@@ -34,7 +34,7 @@ namespace GameOfLifeTest
         
         public static string[] PatternTopRowAlive = new string[5]
         {
-            "OOOOO", 
+            "00000", 
             "-----",
             "-----",
             "-----",
@@ -43,8 +43,8 @@ namespace GameOfLifeTest
         
         public static string[] ExampleBoxPattern = new string[2]
         {
-            "--OOO-\n",
-            "-OOO--\n"
+            "--000-\n",
+            "-000--\n"
         };
     }
 }

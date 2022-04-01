@@ -208,3 +208,5 @@
 /Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest/obj/Debug/net5.0/ref/GameOfLifeTest.dll
 /Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest/obj/Debug/net5.0/GameOfLifeTest.pdb
 /Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest/obj/Debug/net5.0/GameOfLifeTest.genruntimeconfig.cache
+/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest/bin/Debug/net5.0/Castle.Core.dll
+/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest/bin/Debug/net5.0/Moq.dll

@@ -17,13 +17,12 @@ namespace GameOfLife.ConsoleOut
                 output.DisplayPatternSelection();
                 var userInputTemp = input.GetUserInput();
                 if (Validator.IsNumeric(userInputTemp))
-                    userSelectionPatternChoice = Int32.Parse(userInputTemp);
+                    userSelectionPatternChoice = int.Parse(userInputTemp);
                 else
                     break;
-                validator = Validator.ValidatePatternSelection(userSelectionPatternChoice, Pattern.PatternList);
+                validator = Validator.ValidatePatternSelection(userSelectionPatternChoice);
             }
             
-            //var testInput = 
             return Pattern.GetSelectedPattern(userSelectionPatternChoice);
                         
         }

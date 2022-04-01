@@ -5,26 +5,26 @@ namespace GameOfLife.Application
 {
     public static class Pattern
     {
-        public static readonly List<string[]> PatternList = new List<string[]>
+        private static readonly Dictionary<PatternEnum,string[]> PatternDictionary = new Dictionary<PatternEnum,string[]>
         {
-            PatternGlider(),
-            PatternBox(),
-            PatternDuck()
+            {PatternEnum.Glider, PatternGlider()},
+            {PatternEnum.Box, PatternBox()},
+            {PatternEnum.Duck, PatternDuck()}
         };
-        
+
         public enum PatternEnum
         {
-            PatternGlider = 1,
-            PatternBox,
-            PatternDuck
+            Glider = 1,
+            Box,
+            Duck 
         }
        
         private static string[] PatternBox()
         {
             var shipPattern = new string[]
             {
-                "--OOO-\n", 
-                "-OOO--\n"
+                "--000-\n", 
+                "-000--\n"
             };
             return shipPattern;
         }
@@ -34,11 +34,11 @@ namespace GameOfLife.Application
             var shipPattern = new string[]
             {
                 "--------",
-                "-OOOOOO-",
-                "O-----O-",
-                "------O-",
-                "0----O--",
-                "--OO----"
+                "-000000-",
+                "0-----0-",
+                "------0-",
+                "0----0--",
+                "--00----"
             };
                 
             return shipPattern;
@@ -48,15 +48,15 @@ namespace GameOfLife.Application
         {
             var gliderPattern = new string[]
             {
-                "-------------------------O----------", 
-                "----------------------OOOO----O-----", 
-                "-------------O-------OOOO-----O-----",
-                "------------O-O------O--O---------OO", 
-                "-----------O---OO----OOOO---------OO",
-                "OO---------O---OO-----OOOO----------", 
-                "OO---------O---OO--------O----------", 
-                "------------O-O---------------------", 
-                "-------------O----------------------"
+                "-------------------------0----------", 
+                "----------------------0000----0-----", 
+                "-------------0-------0000-----0-----",
+                "------------0-0------0--0---------00", 
+                "-----------0---00----0000---------00",
+                "00---------0---00-----0000----------", 
+                "00---------0---00--------0----------", 
+                "------------0-0---------------------", 
+                "-------------0----------------------"
             };
                 
             return gliderPattern;
@@ -64,8 +64,9 @@ namespace GameOfLife.Application
         
         public static string[] GetSelectedPattern(int userInput)
         {
-            var loadedPattern = PatternList.ElementAt(userInput -1);
-            return loadedPattern;
+            var loadedPattern = (PatternEnum)userInput;
+            var actualPattern = PatternDictionary[loadedPattern];
+            return actualPattern;
         }
     }
 }
