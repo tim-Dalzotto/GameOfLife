@@ -1,3 +1,4 @@
+using System.IO;
 using GameOfLife.Application;
 using Xunit;
 
@@ -14,5 +15,28 @@ namespace GameOfLifeTest.Tests
             
             Assert.Equal(ExamplePatterns.ExampleBoxPattern, actual);
         }
+
+        [Fact]
+        public void DisplayNamesOfPatternsInFile()
+        {
+            var actual = Pattern.GetPatternNamesFromFile();
+            
+            Assert.Equal("ThisIsATestFile.txt",Path.GetFileName(actual[0]));
+        }
+
+        [Fact]
+        public void GetPatternFromFile()
+        {
+            var actual = Pattern.GetPatternFromFile("/ThisIsATestFile.txt");
+            
+            Assert.Equal(ExamplePatterns.EveryCellAlive,actual);
+        }
+
+        [Fact]
+        public void GetSelectedPatternFromFile()
+        {
+            
+        }
+        
     }
 }

@@ -16,7 +16,7 @@ namespace GameOfLife
             var input = new ConsoleUserInput(new ConsoleIO());
             var output = new ConsoleOutput(new ConsoleIO());
             var game = new GameEngine(input, output);
-
+            
             var patternInput = Riddler.GetUserPatternSelection(input, output);
             
             var worldMinRowRequiredBasedOnSelectedPattern = patternInput.Length;

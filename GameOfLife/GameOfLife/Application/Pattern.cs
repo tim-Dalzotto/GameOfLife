@@ -1,10 +1,15 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
+using System.Reflection;
 
 namespace GameOfLife.Application
 {
     public static class Pattern
     {
+        private static readonly string RootPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "/PatternFileDirectory";
+
         private static readonly Dictionary<PatternEnum,string[]> PatternDictionary = new Dictionary<PatternEnum,string[]>
         {
             {PatternEnum.Glider, PatternGlider()},
@@ -68,5 +73,24 @@ namespace GameOfLife.Application
             var actualPattern = PatternDictionary[loadedPattern];
             return actualPattern;
         }
+
+        public static string[] GetPatternNamesFromFile()
+        {
+            var fileArray = Directory.GetFiles(RootPath, "*.txt", SearchOption.AllDirectories)
+                .Select(x => Path.GetFullPath(x)).ToArray();
+            Console.WriteLine(fileArray[0]);
+            return fileArray;
+        }
+
+        public static string[] GetPatternFromFile(string fileName)
+        {
+            var newStringList = new List<string>();
+            foreach (var line in File.ReadLines(RootPath + fileName))
+            {
+                newStringList.Add(line);
+            }
+            return newStringList.ToArray();
+        }
+
     }
 }
