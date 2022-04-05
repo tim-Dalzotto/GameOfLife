@@ -32,7 +32,7 @@ namespace GameOfLife.ConsoleOut
         {
             DisplayMessage("Please select a pattern to load");
             DisplayMessage($"1.{Pattern.PatternEnum.Glider}");
-            DisplayMessage($"1.{Enum.GetName(typeof(Pattern.PatternEnum),1)}");
+            //DisplayMessage($"1.{Enum.GetName(typeof(Pattern.PatternEnum),1)}");
             DisplayMessage($"2.{Pattern.PatternEnum.Box}");
             DisplayMessage($"3.{Pattern.PatternEnum.Duck}");
         }
