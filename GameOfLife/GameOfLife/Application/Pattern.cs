@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace GameOfLife.Application
 {
@@ -92,5 +93,16 @@ namespace GameOfLife.Application
             return newStringList.ToArray();
         }
 
+        public static string[] GetSelectedPatternFromFile(int userInput)
+        {
+            var fileName = GetPatternNamesFromFile()[userInput -1];
+            var pattern = GetPatternFromFile("/" +Path.GetFileName(fileName));
+            return pattern;
+        }
+
+        public static void SavePatternToFile(string[] pattern, string patternName)
+        {
+            File.WriteAllLinesAsync(RootPath + "/" + patternName + ".txt", pattern);
+        }
     }
 }

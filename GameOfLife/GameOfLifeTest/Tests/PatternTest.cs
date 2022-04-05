@@ -35,7 +35,10 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void GetSelectedPatternFromFile()
         {
+            var userInput = 1;
+            var actual = Pattern.GetSelectedPatternFromFile(userInput);
             
+            Assert.Equal(ExamplePatterns.EveryCellAlive,actual);
         }
         
     }
