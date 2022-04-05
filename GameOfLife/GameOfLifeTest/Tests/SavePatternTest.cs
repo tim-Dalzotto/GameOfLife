@@ -16,7 +16,8 @@ namespace GameOfLifeTest.Tests
             var actual2 = actual.Last();
             
             Assert.Equal(patternName + ".txt", Path.GetFileName(actual2));
-            File.Delete( actual2);
+            Assert.Contains(patternName, actual);
+            File.Delete(actual2);
         }
     }
 }

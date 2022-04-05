@@ -9,7 +9,7 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void Test_Readline()
         {
-            var input = "Test";
+            const string input = "Test";
             var mockConsoleIo = new Mock<IConsoleIO>();
             mockConsoleIo.Setup(t => t.ReadLine()).Returns(input);
             var consoleUserInput = new ConsoleUserInput(mockConsoleIo.Object);

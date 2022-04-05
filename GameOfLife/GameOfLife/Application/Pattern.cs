@@ -11,6 +11,7 @@ namespace GameOfLife.Application
     {
         private static readonly string RootPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "/PatternFileDirectory";
 
+        
         private static readonly Dictionary<PatternEnum,string[]> PatternDictionary = new Dictionary<PatternEnum,string[]>
         {
             {PatternEnum.Glider, PatternGlider()},

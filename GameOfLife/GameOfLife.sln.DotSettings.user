@@ -6,6 +6,8 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=541fdbd6_002De91b_002D47df_002D8f34_002D8c75616dc3d7/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GivenCustomPattern_WhenFinished_ThenSavePatter #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.SavePatternTest.GivenCustomPattern_WhenFinished_ThenSavePatter&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.ConsoleOutTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.ConsoleUserInputTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	
