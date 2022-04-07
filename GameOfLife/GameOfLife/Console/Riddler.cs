@@ -14,7 +14,7 @@ namespace GameOfLife.ConsoleOut
             var userSelectionPatternChoice = NumberConst.EmptyChoice;
             while (validator == false)
             {
-                output.DisplayPatternSelection();
+                output.DisplayPatternSelectionFromFile();
                 var userInputTemp = input.GetUserInput();
                 if (Validator.IsNumeric(userInputTemp))
                     userSelectionPatternChoice = int.Parse(userInputTemp);
@@ -23,7 +23,7 @@ namespace GameOfLife.ConsoleOut
                 validator = Validator.ValidatePatternSelection(userSelectionPatternChoice);
             }
             
-            return Pattern.GetSelectedPattern(userSelectionPatternChoice);
+            return Pattern.GetSelectedPatternFromFile(userSelectionPatternChoice);
                         
         }
 

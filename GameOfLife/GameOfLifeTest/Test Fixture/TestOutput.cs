@@ -20,6 +20,11 @@ namespace GameOfLifeTest
             throw new System.NotImplementedException();
         }
 
+        public void DisplayPatternSelectionFromFile()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void DisplayChoiceForRowsMessage()
         {
             throw new System.NotImplementedException();

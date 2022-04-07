@@ -11,7 +11,7 @@ namespace GameOfLifeTest.Mock
 
         public string ReadLine()
         {
-            throw new System.NotImplementedException();
+            return "Yes";
         }
     }
 }

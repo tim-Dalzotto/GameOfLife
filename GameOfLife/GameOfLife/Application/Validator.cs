@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using GameOfLife.Application;
 using GameOfLife.ConsoleOut;
 using GameOfLife.Constants;
 
-namespace GameOfLife.Domain
+namespace GameOfLife.Application
 {
     public static class Validator
     {
@@ -21,7 +17,7 @@ namespace GameOfLife.Domain
 
         public static bool ValidatePatternSelection(int userInput)
         {
-            return Enum.IsDefined(typeof(Pattern.PatternEnum), userInput);
+            return Pattern.GetPatternNamesFromFile().Length >= userInput && userInput > 0;
         }
 
         public static bool IsNumeric(string userInput)

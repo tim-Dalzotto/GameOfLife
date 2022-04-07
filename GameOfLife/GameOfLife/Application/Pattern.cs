@@ -80,7 +80,6 @@ namespace GameOfLife.Application
         {
             var fileArray = Directory.GetFiles(RootPath, "*.txt", SearchOption.AllDirectories)
                 .Select(x => Path.GetFullPath(x)).ToArray();
-            Console.WriteLine(fileArray[0]);
             return fileArray;
         }
 

@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using GameOfLife.Application;
 using GameOfLife.Domain;
@@ -35,6 +36,17 @@ namespace GameOfLife.ConsoleOut
             //DisplayMessage($"1.{Enum.GetName(typeof(Pattern.PatternEnum),1)}");
             DisplayMessage($"2.{Pattern.PatternEnum.Box}");
             DisplayMessage($"3.{Pattern.PatternEnum.Duck}");
+        }
+
+        public void DisplayPatternSelectionFromFile()
+        {
+            DisplayMessage("Please select a pattern to load");
+            var count = 1;
+            foreach (var pattern in Pattern.GetPatternNamesFromFile())
+            {
+                DisplayMessage($"{count.ToString()}: "+Path.GetFileName(pattern)[..^4]);
+                count++;
+            }
         }
 
         public void DisplayGameBoardSizeSelectionMessage(int minRowSize, int minColumnSize)

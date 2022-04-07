@@ -6,7 +6,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Application\PatternFileDirectory" />
       <Folder Include="Infrastructure" />
     </ItemGroup>
 

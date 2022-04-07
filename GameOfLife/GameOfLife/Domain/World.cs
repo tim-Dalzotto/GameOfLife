@@ -42,6 +42,5 @@ namespace GameOfLife.Domain
 
             return this;
         }
-        
     }
 }
