@@ -37,7 +37,7 @@ namespace GameOfLife.Application
         private void RunSimulation(World gameWorld)
         {
             var count = 0;
-            while ( count < 100 )
+            while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Q))
             {
                 _output.DisplayWorld(gameWorld);
                 gameWorld = RunNextGeneration(gameWorld);

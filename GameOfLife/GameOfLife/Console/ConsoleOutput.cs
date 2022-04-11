@@ -25,8 +25,9 @@ namespace GameOfLife.ConsoleOut
                     DisplayGameCell(world.WorldPopulation[i, j].IsAlive == true ? "0" : "-");
                     DisplayGameCell(" ");
                 }
-                Console.WriteLine();
+                DisplayGameCell("\n");
             }
+            DisplayMessage("Press 'q' at anytime to stop the simulation");
         }
 
         public void DisplayPatternSelection()
