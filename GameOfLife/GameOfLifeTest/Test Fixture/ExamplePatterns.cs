@@ -10,19 +10,7 @@ namespace GameOfLifeTest
             "00000",
             "00000"
         };
-        // public static string[] EveryCellAlive()
-        // {
-        //     var EverythingAlive = new string[]
-        //     {
-        //         "OOOOO", 
-        //         "OOOOO",
-        //         "OOOOO",
-        //         "OOOOO",
-        //         "OOOOO"
-        //     };
-        //     return EverythingAlive;
-        // }
-
+        
         public static string[] EveryCellDead = new string[5]
         {
             "-----", 

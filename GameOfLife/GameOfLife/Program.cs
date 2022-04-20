@@ -20,15 +20,15 @@ namespace GameOfLife
             string[] patternInput;
             
 
-            // if (args.Length > 0)
-            // {
-            //     patternInput = CommandLineArguments.GetPatternFromCmdLineArguments(args[0]);
-            // }
-            // else
-            // {
-            //     patternInput = Riddler.GetUserPatternSelection(input, output);
-            // }
-            patternInput = Riddler.GetUserPatternSelection(input, output);
+            if (args.Length > 0 /*&& Validator.ValidCmdLineArgumentIsValidPatternName(output, args[0])*/)
+            {
+                patternInput = CommandLineArguments.GetPatternFromCmdLineArguments(args[0]);
+            }
+            else
+            {
+                patternInput = Riddler.GetUserPatternSelection(input, output);
+            }
+            //patternInput = Riddler.GetUserPatternSelection(input, output);
 
             var worldMinRowRequiredBasedOnSelectedPattern = patternInput.Length;
             var worldMinColumnsRequiredBasedOnSelectedPattern = patternInput[0].Length;

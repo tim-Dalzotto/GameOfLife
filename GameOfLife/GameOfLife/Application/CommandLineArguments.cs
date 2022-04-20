@@ -1,10 +1,13 @@
+using System;
+
 namespace GameOfLife.Application
 {
     public static class CommandLineArguments
     {
-        public static string[] GetPatternFromCmdLineArguments(string PatternName)
+        public static string[] GetPatternFromCmdLineArguments(string patternName)
         {
-            return Pattern.GetPatternFromFile(PatternName);
+            var absolutePath = Pattern.GetRootPath("/GameOfLife/GameOfLife/GameOfLife/PatternFileDirectory/");
+            return Pattern.GetPatternFromFileArgument(absolutePath  + patternName);
         }
     }
 }

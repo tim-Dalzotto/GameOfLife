@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using GameOfLife.ConsoleOut;
 using GameOfLife.Constants;
 
@@ -45,6 +47,25 @@ namespace GameOfLife.Application
             else
                 return true;
             return false;
+        }
+
+
+        public static bool ValidCmdLineArgumentIsValidPatternName(IOutput output, string patternName)
+        {
+            var patternExistsInFile = false;
+            foreach (var patternInFile in Pattern.GetPatternNamesFromFile())
+            {
+                if (patternName == Path.GetFileName(patternInFile))
+                    patternExistsInFile = true;
+            }
+
+            if (patternExistsInFile == false)
+            {
+                Console.WriteLine(patternName);
+                output.DisplayMessage(ErrorMessageConstants.FileDoesNotExist);
+            }
+                
+            return patternExistsInFile;
         }
     }
 }

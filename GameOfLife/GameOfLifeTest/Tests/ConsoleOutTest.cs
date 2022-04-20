@@ -26,12 +26,12 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void Test_DisplayMessage()
         {
-            var MockConsoleIo = new Mock<IConsoleIO>();
-            var consoleOut = new ConsoleOutput(MockConsoleIo.Object);
+            var mockConsoleIo = new Mock<IConsoleIO>();
+            var consoleOut = new ConsoleOutput(mockConsoleIo.Object);
             
             consoleOut.DisplayMessage("This is a test");
 
-            MockConsoleIo.Verify(t => t.WriteLine("This is a test"), Times.Once());
+            mockConsoleIo.Verify(t => t.WriteLine("This is a test"), Times.Once());
             
         }
     }

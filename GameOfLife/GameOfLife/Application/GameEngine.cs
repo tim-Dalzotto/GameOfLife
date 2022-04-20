@@ -36,15 +36,38 @@ namespace GameOfLife.Application
 
         private void RunSimulation(World gameWorld)
         {
-            var count = 0;
-            while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Q))
+            var count = 1;
+            while (true)
             {
-                _output.DisplayWorld(gameWorld);
-                gameWorld = RunNextGeneration(gameWorld);
-                Thread.Sleep(100);
-                
-                count++;
+                while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.P))
+                {
+                    _output.DisplayMessage(count.ToString());
+                    _output.DisplayWorld(gameWorld);
+                    gameWorld = RunNextGeneration(gameWorld);
+                    Thread.Sleep(100);
+                    count++;
+                }
+                _output.DisplayMessage("Please select from the following options\n" +
+                                       "S: Save current world state to file\n" +
+                                       "C: Continue running simulation\n" +
+                                       "Q: Quit simulation" );
+                var userInput = char.Parse(_input.GetUserInput());
+                if (userInput == 'S')
+                {
+                    WantToSaveWorld(Pattern.ConvertCellArrayToStringArray(gameWorld));
+                }
+                if (userInput == 'Q')
+                {
+                    break;
+                }
             }   
+        }
+
+        private void WantToSaveWorld(string[] currentPattern)
+        {
+            _output.DisplayMessage("Please Enter file name");
+            var fileName = _input.GetUserInput();
+            Pattern.SavePatternToFile(currentPattern, fileName);
         }
     }
 }

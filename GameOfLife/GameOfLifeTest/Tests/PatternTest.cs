@@ -7,6 +7,12 @@ namespace GameOfLifeTest.Tests
     public class PatternTest
     {
         [Fact]
+        public void GivenGetRootPath_WhenCalled_ThenReturnCurrentRootPath()
+        {
+            var actual = Pattern.GetRootPath("/GameOfLife/GameOfLife/GameOfLifeTest/PatternFileDirectory");
+            Assert.Equal("/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest/PatternFileDirectory", actual);
+        }
+        [Fact]
         public void GivenGetSelectedPattern_WhenUserInput_ThenReturnCorrectPatter()
         {
             var UserInput = 2;

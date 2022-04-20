@@ -57,6 +57,22 @@ namespace GameOfLifeTest.Tests
             Assert.Equal(expected, actual);
 
         }
+
+        // [Fact]
+        // public void GivenCommandLineArgumentPatternName_WhenPatternNameExistInfile_ThenReturnTrue()
+        // {
+        //     var actual = Validator.ValidCmdLineArgumentIsValidPatternName("ThisIsATestFile.txt");
+        //     
+        //     Assert.True(actual);
+        // }
+        //
+        // [Fact]
+        // public void GivenCommandLineArgumentPatternName_WhenPatternNameDoesNotExistInfile_ThenReturnFalse()
+        // {
+        //     var actual = Validator.ValidCmdLineArgumentIsValidPatternName("ThisTestWillBeFalse.txt");
+        //     
+        //     Assert.False(actual);
+        // }
         
     }
 }

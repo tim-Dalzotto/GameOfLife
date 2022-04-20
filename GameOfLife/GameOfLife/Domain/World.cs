@@ -10,7 +10,7 @@ namespace GameOfLife.Domain
         
         public int Height { get; }
         public Cell[,] WorldPopulation { get; set; }
-        
+
         public World ( int height, int length)
         {
             Height = height;

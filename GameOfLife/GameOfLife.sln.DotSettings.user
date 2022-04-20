@@ -10,6 +10,12 @@
     &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.ConsoleUserInputTest&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.PatternTest.DisplayNamesOfPatternsInFile&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.PatternTest.GetSelectedPatternFromFile&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.PatternTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.CommandLineArgumentsTest.GivenCommandLineArgument_WhenPatternNameExists_ThenReturnPattern&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.ValidationsTest.GivenCommandLineArgumentPatternName_WhenPatternNameExistInfile_ThenReturnTrue&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.ValidationsTest.GivenCommandLineArgumentPatternName_WhenPatternNameDoesNotExistInfile_ThenReturnFalse&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.CommandLineArgumentsTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.SavePatternTest.GivenConvertCellArrayToString_WhenGivenArrayOfCells_ThenReturnStringArray&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	
