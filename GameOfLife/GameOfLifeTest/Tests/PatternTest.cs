@@ -12,30 +12,30 @@ namespace GameOfLifeTest.Tests
             var actual = Pattern.GetRootPath("/GameOfLife/GameOfLife/GameOfLifeTest/PatternFileDirectory");
             Assert.Equal("/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest/PatternFileDirectory", actual);
         }
-        [Fact]
-        public void GivenGetSelectedPattern_WhenUserInput_ThenReturnCorrectPatter()
-        {
-            var UserInput = 2;
-
-            var actual = Pattern.GetSelectedPattern(UserInput);
-            
-            Assert.Equal(ExamplePatterns.ExampleBoxPattern, actual);
-        }
+        // [Fact]
+        // public void GivenGetSelectedPattern_WhenUserInput_ThenReturnCorrectPatter()
+        // {
+        //     var UserInput = 2;
+        //
+        //     var actual = Pattern.GetSelectedPattern(UserInput);
+        //     
+        //     Assert.Equal(ExamplePatterns.ExampleBoxPattern, actual);
+        // }
 
         [Fact]
         public void DisplayNamesOfPatternsInFile()
         {
             var actual = Pattern.GetPatternNamesFromFile();
             
-            Assert.Equal("ThisIsATestFile.txt",Path.GetFileName(actual[0]));
+            Assert.Equal("Duck.txt",Path.GetFileName(actual[0]));
         }
 
         [Fact]
         public void GetPatternFromFile()
         {
-            var actual = Pattern.GetPatternFromFile("/ThisIsATestFile.txt");
+            var actual = Pattern.GetPatternFromFile("/Box.txt");
             
-            Assert.Equal(ExamplePatterns.EveryCellAlive,actual);
+            Assert.Equal(ExamplePatterns.ExampleBoxPattern,actual);
         }
 
         [Fact]
@@ -44,7 +44,7 @@ namespace GameOfLifeTest.Tests
             var userInput = 1;
             var actual = Pattern.GetSelectedPatternFromFile(userInput);
             
-            Assert.Equal(ExamplePatterns.EveryCellAlive,actual);
+            Assert.Equal(ExamplePatterns.ExampleDuckPattern,actual);
         }
         
     }

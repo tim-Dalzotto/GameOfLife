@@ -8,9 +8,9 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void GivenCommandLineArgument_WhenPatternNameExists_ThenReturnPattern()
         {
-            var actual = CommandLineArguments.GetPatternFromCmdLineArguments("/GameOfLife/GameOfLife/GameOfLifeTest/PatternFileDirectory/ThisIsATestFile.txt");
+            var actual = CommandLineArguments.GetPatternFromCmdLineArguments("Duck.txt");
             
-            Assert.Equal(ExamplePatterns.EveryCellAlive, actual);
+            Assert.Equal(ExamplePatterns.ExampleDuckPattern, actual);
         }
         
         

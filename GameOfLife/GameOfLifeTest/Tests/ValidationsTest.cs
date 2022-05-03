@@ -1,4 +1,5 @@
 using GameOfLife.Application;
+using GameOfLife.ConsoleOut;
 using GameOfLife.Domain;
 using Xunit;
 
@@ -58,21 +59,21 @@ namespace GameOfLifeTest.Tests
 
         }
 
-        // [Fact]
-        // public void GivenCommandLineArgumentPatternName_WhenPatternNameExistInfile_ThenReturnTrue()
-        // {
-        //     var actual = Validator.ValidCmdLineArgumentIsValidPatternName("ThisIsATestFile.txt");
-        //     
-        //     Assert.True(actual);
-        // }
-        //
-        // [Fact]
-        // public void GivenCommandLineArgumentPatternName_WhenPatternNameDoesNotExistInfile_ThenReturnFalse()
-        // {
-        //     var actual = Validator.ValidCmdLineArgumentIsValidPatternName("ThisTestWillBeFalse.txt");
-        //     
-        //     Assert.False(actual);
-        // }
+        [Fact]
+        public void GivenCommandLineArgumentPatternName_WhenPatternNameExistInfile_ThenReturnTrue()
+        {
+            var actual = Validator.ValidCmdLineArgumentIsValidPatternName(new ConsoleOutput(new ConsoleIO()), "Glider.txt");
+            
+            Assert.True(actual);
+        }
+        
+        [Fact]
+        public void GivenCommandLineArgumentPatternName_WhenPatternNameDoesNotExistInfile_ThenReturnFalse()
+        {
+            var actual = Validator.ValidCmdLineArgumentIsValidPatternName(new ConsoleOutput(new ConsoleIO()),"ThisTestWillBeFalse.txt");
+            
+            Assert.False(actual);
+        }
         
     }
 }

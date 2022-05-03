@@ -5,6 +5,8 @@ namespace GameOfLife.Domain
     public class World
     {
         public int Size { get; set; }
+
+        public string[] WorldPattern { get; set; }
         
         public int Length { get; }
         

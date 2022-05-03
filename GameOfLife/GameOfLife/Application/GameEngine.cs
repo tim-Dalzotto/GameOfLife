@@ -8,15 +8,17 @@ using Newtonsoft.Json.Converters;
 
 namespace GameOfLife.Application
 {
-    public class GameEngine
+    public class GameEngine : IGameEngine
     {
         private readonly IOutput _output;
         private readonly IUserInput _input;
+        private readonly IConsoleKeyPress _keyPress;
 
-        public GameEngine(IUserInput input, IOutput output)
+        public GameEngine(IUserInput input, IOutput output, IConsoleKeyPress keyPress)
         {
             _output = output;
             _input = input;
+            _keyPress = keyPress;
         }
         public World RunNextGeneration(World world)
         {
@@ -31,15 +33,15 @@ namespace GameOfLife.Application
         {
             var gameWorld = GameRules.CreateInitialWorld(pattern,height,length);
             RunSimulation(gameWorld);
-            
         }
 
-        private void RunSimulation(World gameWorld)
+        public void RunSimulation(World gameWorld)
         {
             var count = 1;
-            while (true)
+            var keepRunning = true;
+            while (keepRunning)
             {
-                while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.P))
+                while (!(_keyPress.CheckKeyAvailable() && _keyPress.CheckReadKey() == ConsoleKey.P))
                 {
                     _output.DisplayMessage(count.ToString());
                     _output.DisplayWorld(gameWorld);
@@ -52,18 +54,19 @@ namespace GameOfLife.Application
                                        "C: Continue running simulation\n" +
                                        "Q: Quit simulation" );
                 var userInput = char.Parse(_input.GetUserInput());
+                
                 if (userInput == 'S')
                 {
                     WantToSaveWorld(Pattern.ConvertCellArrayToStringArray(gameWorld));
                 }
                 if (userInput == 'Q')
                 {
-                    break;
+                    keepRunning = false;
                 }
             }   
         }
 
-        private void WantToSaveWorld(string[] currentPattern)
+        public void WantToSaveWorld(string[] currentPattern)
         {
             _output.DisplayMessage("Please Enter file name");
             var fileName = _input.GetUserInput();

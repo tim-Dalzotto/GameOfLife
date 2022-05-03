@@ -13,5 +13,16 @@ namespace GameOfLife.ConsoleOut
         {
             return Console.ReadLine();
         }
+
+        public ConsoleKey ReadKey(bool b)
+        {
+            return Console.ReadKey(b).Key;
+        }
+
+        public bool KeyAvailable()
+        {
+            return Console.KeyAvailable;
+        }
+        
     }
 }

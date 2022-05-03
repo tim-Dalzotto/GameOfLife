@@ -15,18 +15,22 @@ namespace GameOfLife
         {
             var input = new ConsoleUserInput(new ConsoleIO());
             var output = new ConsoleOutput(new ConsoleIO());
-            var game = new GameEngine(input, output);
+            var keyPress = new ConsoleKeyPress(new ConsoleIO());
+            var game = new GameEngine(input, output, keyPress);
+            var worldGenInfo = new WorldGenerationsInfo();
+            var riddler = new Riddler(worldGenInfo);
 
             string[] patternInput;
             
 
-            if (args.Length > 0 /*&& Validator.ValidCmdLineArgumentIsValidPatternName(output, args[0])*/)
+            if (args.Length > 0 && Validator.ValidCmdLineArgumentIsValidPatternName(output, args[0]))
             {
                 patternInput = CommandLineArguments.GetPatternFromCmdLineArguments(args[0]);
             }
             else
             {
-                patternInput = Riddler.GetUserPatternSelection(input, output);
+                riddler.GetUserPatternSelection(input, output);
+                patternInput = worldGenInfo.CellPattern;
             }
             //patternInput = Riddler.GetUserPatternSelection(input, output);
 
@@ -36,24 +40,22 @@ namespace GameOfLife
 
 
             var validInput = false;
-            string heightInput = null;
             while (!validInput)
             { 
-                heightInput = Riddler.GetUserWorldHeightSelection(input, output);
-                validInput = Validator.WorldSizeValidator(output, heightInput, worldMinRowRequiredBasedOnSelectedPattern);
+                riddler.GetUserWorldHeightSelection(input, output);
+                validInput = Validator.WorldSizeValidator(output, worldGenInfo.Height, worldMinRowRequiredBasedOnSelectedPattern);
             }
             //var heightInput = Riddler.GetUserWorldSizeSelection(input, output, worldMinColumnsRequiredBasedOnSelectedPattern);
-            
-            string lengthInput = null;
+
             validInput = false;
             while (!validInput)
             { 
-                lengthInput = Riddler.GetUserLengthSelection(input, output);
-                validInput = Validator.WorldSizeValidator(output, lengthInput, worldMinColumnsRequiredBasedOnSelectedPattern);
+                riddler.GetUserLengthSelection(input, output);
+                validInput = Validator.WorldSizeValidator(output, worldGenInfo.Length, worldMinColumnsRequiredBasedOnSelectedPattern);
             }
 
             
-            game.PlayGame(patternInput,int.Parse(heightInput),int.Parse(lengthInput));
+            game.PlayGame(patternInput,int.Parse(worldGenInfo.Height),int.Parse(worldGenInfo.Length));
             
         }
     }

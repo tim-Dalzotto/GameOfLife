@@ -27,7 +27,7 @@ namespace GameOfLife.ConsoleOut
                 }
                 DisplayGameCell("\n");
             }
-            DisplayMessage("Press 'q' at anytime to stop the simulation");
+            DisplayMessage("Press 'p' at anytime to pause the simulation");
         }
 
         public void DisplayPatternSelection()
