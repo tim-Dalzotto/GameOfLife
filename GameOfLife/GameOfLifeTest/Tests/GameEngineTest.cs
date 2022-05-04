@@ -2,6 +2,7 @@ using System;
 using System.Runtime.CompilerServices;
 using GameOfLife.Application;
 using GameOfLife.ConsoleOut;
+using GameOfLife.Domain;
 using GameOfLifeTest.Mock;
 using Moq;
 using Newtonsoft.Json;
@@ -52,26 +53,20 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void GivenRunSimulation_WhenUserInputIsMocked_ThenShouldCallSaveWorldMethodOnce()
         {
-            // var mockConsoleIo = new MockConsoleIO("S");
-            //
-            // var input = new ConsoleUserInput(mockConsoleIo);
             var mockInput = new MockChangingUserInput("S","Q");
-            
             var output = new ConsoleOutput(new ConsoleIO());
             
             var mockKeyPress = new Mock<IConsoleKeyPress>();
-            
             mockKeyPress.Setup(mock => mock.CheckKeyAvailable()).Returns(true);
             mockKeyPress.Setup(mock => mock.CheckReadKey()).Returns(ConsoleKey.P);
 
-            var gameEngine = new Mock<GameEngine>(mockInput, output, mockKeyPress.Object).As<IGameEngine>();
-            gameEngine.CallBase = true;
-            gameEngine.Setup(mock => mock.WantToSaveWorld(It.IsAny<string[]>())).Verifiable();
-
-
-            gameEngine.Object.RunSimulation(ExampleWorlds.WorldEveryCellIsAlive());
+            var gameEngine = new Mock<GameEngine>(mockInput, output, mockKeyPress.Object);
             //gameEngine.CallBase = false;
-            gameEngine.Verify(mock => mock.WantToSaveWorld(It.IsAny<string[]>()), Times.Once);
+            //gameEngine.Setup(mock => mock.RunSimulation(new World(10,10))).CallBase();
+            
+            gameEngine.Object.RunSimulation(ExampleWorlds.WorldEveryCellIsAlive());
+            //gameEngine.Object.WantToSaveWorld(ExamplePatterns.EveryCellAlive);
+            gameEngine.Verify(mock => mock.WantToSaveWorld(It.IsAny<string[]>()), Times.Exactly(1));
         }
     }
 }

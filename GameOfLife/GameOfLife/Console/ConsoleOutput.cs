@@ -66,7 +66,7 @@ namespace GameOfLife.ConsoleOut
         {
             DisplayMessage("How many columns would you like?");
         }
-
+        
         public void DisplayMessage(string message)
         {
             ConsoleIo.WriteLine(message);

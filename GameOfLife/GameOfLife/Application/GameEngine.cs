@@ -66,7 +66,7 @@ namespace GameOfLife.Application
             }   
         }
 
-        public void WantToSaveWorld(string[] currentPattern)
+        public virtual void WantToSaveWorld(string[] currentPattern)
         {
             _output.DisplayMessage("Please Enter file name");
             var fileName = _input.GetUserInput();

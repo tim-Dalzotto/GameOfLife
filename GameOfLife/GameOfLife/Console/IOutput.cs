@@ -12,5 +12,6 @@ namespace GameOfLife.ConsoleOut
         public void DisplayChoiceForRowsMessage();
         public void DisplayChoiceForColumnsMessage();
         public void DisplayMessage(string message);
+        public void DisplayGameCell(string message);
     }
 }
