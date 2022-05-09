@@ -7,17 +7,17 @@ namespace GameOfLife.ConsoleOut
 {
     public class Riddler
     {
-        private static WorldGenerationsInfo WorldCurrent { get; set; }
+        private static World WorldCurrent { get; set; }
 
-        public Riddler(WorldGenerationsInfo world)
+        public Riddler(World world)
         {
             WorldCurrent = world;
         }
         public void GetUserPatternSelection(IUserInput input, IOutput output)
         {
             var validator = false;
-            var userSelectionPatternChoice = NumberConst.EmptyChoice;
-            while (validator == false)
+            var userSelectionPatternChoice = 0;
+            while (!validator)
             {
                 output.DisplayPatternSelectionFromFile();
                 var userInputTemp = input.GetUserInput();
@@ -27,24 +27,29 @@ namespace GameOfLife.ConsoleOut
                     break;
                 validator = Validator.ValidatePatternSelection(userSelectionPatternChoice);
             }
-            
-            WorldCurrent.CellPattern = Pattern.GetSelectedPatternFromFile(userSelectionPatternChoice);
+
+            if (userSelectionPatternChoice == Pattern.GetPatternNamesFromFile().Length + 1)
+            {
+                WorldCurrent.CustomWorld = true;
+                WorldCurrent.Pattern = new[] {"-"};
+            }
+            else
+                WorldCurrent.Pattern= Pattern.GetSelectedPatternFromFile(userSelectionPatternChoice);
                         
         }
 
         public void GetUserWorldHeightSelection(IUserInput input, IOutput output)
         {
-            
             output.DisplayChoiceForRowsMessage();
-            var userInput = input.GetUserInput();
+            var userInput = int.Parse(input.GetUserInput());
             WorldCurrent.Height = userInput;
         }
 
         public void GetUserLengthSelection(IUserInput input, IOutput output)
         {
             output.DisplayChoiceForColumnsMessage();
-            var userWorldSizeSelection = input.GetUserInput();
-            WorldCurrent.Length = userWorldSizeSelection;
+            var userInput = int.Parse(input.GetUserInput());
+            WorldCurrent.Length = userInput;
         }
         
     }

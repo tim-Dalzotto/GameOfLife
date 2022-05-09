@@ -9,8 +9,11 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void GivenCreateInitialWorld_WhenPatternAndSizeAreGiven_ThenReturnAWorldToThoseSpecifications()
         {
-            var actual = new World( 5, 5);
-            actual.LoadPatternIntoWorld(ExamplePatterns.EveryCellAlive);
+            var actual = new World();
+            actual.Height = 5;
+            actual.Length = 5;
+            actual.Pattern = ExamplePatterns.EveryCellAlive;
+            actual.LoadPatternIntoWorld();
             
             var serializedActualWorldStr = JsonConvert.SerializeObject(actual);
             var serializedExpectedWorldStr = JsonConvert.SerializeObject(ExampleWorlds.WorldEveryCellIsAlive());

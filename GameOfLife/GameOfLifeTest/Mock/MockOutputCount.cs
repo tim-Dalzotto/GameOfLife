@@ -3,8 +3,9 @@ using GameOfLife.Domain;
 
 namespace GameOfLifeTest
 {
-    public class TestOutput : IOutput
+    public class MockOutputCount : IOutput
     {
+        public int Count { get; set; } = 0;
         public void DisplayWorld(World world)
         {
             throw new System.NotImplementedException();
@@ -38,6 +39,11 @@ namespace GameOfLifeTest
         public void DisplayMessage(string message)
         {
             throw new System.NotImplementedException();
+        }
+
+        public void DisplayGameCell(string message)
+        {
+            Count++;
         }
     }
 }

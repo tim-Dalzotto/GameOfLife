@@ -2,11 +2,11 @@ using System;
 
 namespace GameOfLife.ConsoleOut
 {
-    public class ConsoleKeyPress : IConsoleKeyPress
+    public class KeyPress : IKeyPress
     {
         private readonly IConsoleIO _consoleIo;
 
-        public ConsoleKeyPress(IConsoleIO consoleIo)
+        public KeyPress(IConsoleIO consoleIo)
         {
             _consoleIo = consoleIo;
         }

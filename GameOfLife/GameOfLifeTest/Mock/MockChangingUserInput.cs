@@ -1,27 +1,25 @@
+using System;
 using GameOfLife.ConsoleOut;
 
 namespace GameOfLifeTest.Mock
 {
     public class MockChangingUserInput : IUserInput
     {
-        internal int Count { get; set; } = 1;
-        private string FirstInput { get;}
-        private string SecondInput { get;}
+        private int _count;
 
-        public MockChangingUserInput(string firstInput, string secondInput)
+        private readonly string[] _arguments;
+
+        public MockChangingUserInput(params string[] firstInput)
         {
-            FirstInput = firstInput;
-            SecondInput = secondInput;
+            _arguments = firstInput;
         }
         public string GetUserInput()
         {
-            if (Count == 1)
+            if (_count >= _arguments.Length)
             {
-                Count++;
-                return FirstInput;
+                throw new SystemException("not enough arguments");
             }
-
-            return SecondInput;
+            return _arguments[_count++];
         }
     }
 }

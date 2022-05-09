@@ -2,7 +2,7 @@ using System;
 
 namespace GameOfLife.ConsoleOut
 {
-    public interface IConsoleKeyPress
+    public interface IKeyPress
     {
         bool CheckKeyAvailable();
         ConsoleKey CheckReadKey();

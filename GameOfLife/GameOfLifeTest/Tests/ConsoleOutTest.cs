@@ -22,7 +22,7 @@ namespace GameOfLifeTest.Tests
             
             Assert.Equal("Test", stringWriter.ToString());
         }
-        
+
         [Fact]
         public void Test_DisplayMessage()
         {

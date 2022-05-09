@@ -48,6 +48,7 @@ namespace GameOfLife.ConsoleOut
                 DisplayMessage($"{count.ToString()}: "+Path.GetFileName(pattern)[..^4]);
                 count++;
             }
+            DisplayMessage($"{count.ToString()}: Build a Custom Pattern");
         }
 
         public void DisplayGameBoardSizeSelectionMessage(int minRowSize, int minColumnSize)

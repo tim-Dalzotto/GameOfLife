@@ -19,7 +19,7 @@ namespace GameOfLifeTest.Tests
         {
             var input = new ConsoleUserInput(new ConsoleIO());
             var output = new ConsoleOutput(new ConsoleIO());
-            var keyPress = new ConsoleKeyPress(new ConsoleIO());
+            var keyPress = new KeyPress(new ConsoleIO());
             //Arrange 
             var gameEngine = new GameEngine(input, output, keyPress);
             
@@ -37,7 +37,7 @@ namespace GameOfLifeTest.Tests
         {
             var input = new ConsoleUserInput(new ConsoleIO());
             var output = new ConsoleOutput(new ConsoleIO());
-            var keyPress = new ConsoleKeyPress(new ConsoleIO());
+            var keyPress = new KeyPress(new ConsoleIO());
             //Arrange 
             var gameEngine = new GameEngine(input, output, keyPress);
             
@@ -56,7 +56,7 @@ namespace GameOfLifeTest.Tests
             var mockInput = new MockChangingUserInput("S","Q");
             var output = new ConsoleOutput(new ConsoleIO());
             
-            var mockKeyPress = new Mock<IConsoleKeyPress>();
+            var mockKeyPress = new Mock<IKeyPress>();
             mockKeyPress.Setup(mock => mock.CheckKeyAvailable()).Returns(true);
             mockKeyPress.Setup(mock => mock.CheckReadKey()).Returns(ConsoleKey.P);
 
@@ -65,7 +65,6 @@ namespace GameOfLifeTest.Tests
             //gameEngine.Setup(mock => mock.RunSimulation(new World(10,10))).CallBase();
             
             gameEngine.Object.RunSimulation(ExampleWorlds.WorldEveryCellIsAlive());
-            //gameEngine.Object.WantToSaveWorld(ExamplePatterns.EveryCellAlive);
             gameEngine.Verify(mock => mock.WantToSaveWorld(It.IsAny<string[]>()), Times.Exactly(1));
         }
     }

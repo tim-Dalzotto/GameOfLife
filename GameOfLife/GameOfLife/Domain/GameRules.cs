@@ -2,13 +2,13 @@ namespace GameOfLife.Domain
 {
     public static class GameRules
     {
-        public static World CreateInitialWorld(string[] formattedPattern, int height, int length)
+        public static World CreateInitialWorld(World emptyWorld)
         {
             //initialise Rectangle world Test 
             
-            var emptyWorld = new World(height,length);
+            emptyWorld.InitialiseWorld();
             //load format pattern
-            var loadedWorld =  emptyWorld.LoadPatternIntoWorld(formattedPattern);
+            var loadedWorld =  emptyWorld.LoadPatternIntoWorld();
             //return formatted World 
             return loadedWorld;
         }
@@ -20,7 +20,10 @@ namespace GameOfLife.Domain
             var length = currentWorld.Length;
 
 
-            var newWorld = new World(currentWorld.Height, currentWorld.Length);
+            var newWorld = new World();
+            newWorld.Height = height;
+            newWorld.Length = length;
+            newWorld.InitialiseWorld();
             //this should not be here, add it's own check
             var livingCellCount = 0;
             for (var x = 0; x < currentWorld.Height; x++)

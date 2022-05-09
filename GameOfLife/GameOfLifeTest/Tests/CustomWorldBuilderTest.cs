@@ -1,5 +1,7 @@
 using System;
 using GameOfLife.Application;
+using GameOfLife.ConsoleOut;
+using GameOfLifeTest.Mock;
 using Xunit;
 
 namespace GameOfLifeTest.Tests
@@ -32,16 +34,48 @@ namespace GameOfLifeTest.Tests
             Assert.Equal(expectedResult,customWorldBuilder.CursorXValue);
         }
         
-        [Theory]
-        [InlineData('p', '0')]
-        [InlineData('u', '-')]
-        public void GivenSetAliveOrDead_WhenPorUIsEntered_ThenReturnEither0OrDash(char input, char result)
+        [Fact]
+        public void GivenSetAliveOrDead_WhenPIsEnteredAndCursorIsAt00_ThenSet00ToAliveInThePattern()
         {
             var customWorldBuilder = new CustomWorldBuilder(5, 5);
+            customWorldBuilder.CursorXValue = 0;
+            customWorldBuilder.CursorYValue = 0;
 
-            var actual = customWorldBuilder.SetAliveOrDead(input);
+            customWorldBuilder.SetAliveOrDead("p");
             
-            Assert.Equal(result, actual);
+            Assert.Equal(ExamplePatterns.ExampleMultidimensionalStringArrayOnly00Alive2(), customWorldBuilder.CustomPattern);
+        }
+
+        [Fact]
+        public void GivenDisplayCustomWorld_WhenCalled_ThenDisplayGameCellShouldBeCalled30Times()
+        {
+            var customWorldBuilder = new CustomWorldBuilder(5, 5);
+            var mockOutputCount = new MockOutputCount();
+
+            customWorldBuilder.DisplayWorldBuilder(mockOutputCount);
+            
+            Assert.Equal(30, mockOutputCount.Count);
+        }
+
+        [Fact]
+        public void GivenMakePattern_WhenRunWithoutChangingState_ThenReturnEmptyWorld()
+        {
+            var customWorldBuilder = new CustomWorldBuilder(5, 5);
+            var mockInput = new MockChangingUserInput("p","q");
+            var output = new ConsoleOutput(new ConsoleIO());
+            customWorldBuilder.MakePattern(mockInput,output);
+            
+            Assert.Equal(ExamplePatterns.ExampleMultidimensionalStringArrayOnly00Alive2(), customWorldBuilder.CustomPattern);
+        }
+
+        [Fact]
+        public void GivenConvertMultiDimensionalArrayToStringArray_WhenMultiDimensionalArrayEntered_ThenConvertToStringArray()
+        {
+            var customWorldBuilder = new CustomWorldBuilder(5, 5);
+            
+            customWorldBuilder.ConvertMultiDimensionalArrayToStringArray(ExamplePatterns.ExampleMultidimensionalStringArrayOnly00Alive2());
+            
+            Assert.Equal(ExamplePatterns.Only00Alive, customWorldBuilder.ConvertedCustomPattern);
         }
     }
 }

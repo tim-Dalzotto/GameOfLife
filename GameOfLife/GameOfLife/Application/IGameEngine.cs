@@ -6,7 +6,7 @@ namespace GameOfLife.Application
     {
         public World RunNextGeneration(World world);
 
-        public void PlayGame(string[] pattern, int height, int length);
+        public void PlayGame(World world);
 
         public void RunSimulation(World gameWorld);
 

@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using GameOfLife.ConsoleOut;
 using GameOfLife.Constants;
 
@@ -19,7 +20,7 @@ namespace GameOfLife.Application
 
         public static bool ValidatePatternSelection(int userInput)
         {
-            return Pattern.GetPatternNamesFromFile().Length >= userInput && userInput > 0;
+            return Pattern.GetPatternNamesFromFile().Length + 1 >= userInput && userInput > 0;
         }
 
         public static bool IsNumeric(string userInput)
@@ -66,6 +67,12 @@ namespace GameOfLife.Application
             }
                 
             return patternExistsInFile;
+        }
+
+        public static bool ValidCharForCustomWorldBuilder(string userInput)
+        {
+            const string allowedChars = "wasdopq";
+            return userInput.All(c => allowedChars.Contains(c)) && userInput.Length == 1;
         }
     }
 }

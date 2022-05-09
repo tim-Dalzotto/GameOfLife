@@ -12,9 +12,9 @@ namespace GameOfLife.Application
     {
         private readonly IOutput _output;
         private readonly IUserInput _input;
-        private readonly IConsoleKeyPress _keyPress;
+        private readonly IKeyPress _keyPress;
 
-        public GameEngine(IUserInput input, IOutput output, IConsoleKeyPress keyPress)
+        public GameEngine(IUserInput input, IOutput output, IKeyPress keyPress)
         {
             _output = output;
             _input = input;
@@ -29,9 +29,9 @@ namespace GameOfLife.Application
             return nextGeneration;
         }
         
-        public void PlayGame(string[] pattern, int height, int length)
+        public void PlayGame(World world)
         {
-            var gameWorld = GameRules.CreateInitialWorld(pattern,height,length);
+            var gameWorld = GameRules.CreateInitialWorld(world);
             RunSimulation(gameWorld);
         }
 

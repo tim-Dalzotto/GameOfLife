@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using GameOfLife.Application;
 using GameOfLife.ConsoleOut;
 using GameOfLife.Domain;
@@ -73,6 +74,23 @@ namespace GameOfLifeTest.Tests
             var actual = Validator.ValidCmdLineArgumentIsValidPatternName(new ConsoleOutput(new ConsoleIO()),"ThisTestWillBeFalse.txt");
             
             Assert.False(actual);
+        }
+
+        [Theory]
+        [InlineData("w",true)]
+        [InlineData("a",true)]
+        [InlineData("s",true)]
+        [InlineData("d",true)]
+        [InlineData("o",true)]
+        [InlineData("p",true)]
+        [InlineData("q",true)]
+        [InlineData("b",false)]
+        [InlineData("wa",false)]
+        public void GivenValidCharForCustomWorldBuilder_WhenInputIsEitherWorAorSorDorOorP_ThenReturnTrue(string input, bool expectedResult)
+        {
+            var actual = Validator.ValidCharForCustomWorldBuilder(input);
+            
+            Assert.Equal(expectedResult, actual);
         }
         
     }
