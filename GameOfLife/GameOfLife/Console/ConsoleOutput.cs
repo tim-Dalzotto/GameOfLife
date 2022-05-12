@@ -17,7 +17,6 @@ namespace GameOfLife.ConsoleOut
         
         public void DisplayWorld(World world)
         {
-            Console.Clear();
             for (var i = 0; i < world.WorldPopulation.GetLength(0); i++)
             {
                 for (var j = 0; j < world.WorldPopulation.GetLength(1); j++)
@@ -32,18 +31,18 @@ namespace GameOfLife.ConsoleOut
 
         public void DisplayPatternSelection()
         {
-            DisplayMessage("Please select a pattern to load");
-            DisplayMessage($"1.{Pattern.PatternEnum.Glider}");
-            //DisplayMessage($"1.{Enum.GetName(typeof(Pattern.PatternEnum),1)}");
-            DisplayMessage($"2.{Pattern.PatternEnum.Box}");
-            DisplayMessage($"3.{Pattern.PatternEnum.Duck}");
+            // DisplayMessage("Please select a pattern to load");
+            // DisplayMessage($"1.{Pattern.PatternEnum.Glider}");
+            // //DisplayMessage($"1.{Enum.GetName(typeof(Pattern.PatternEnum),1)}");
+            // DisplayMessage($"2.{Pattern.PatternEnum.Box}");
+            // DisplayMessage($"3.{Pattern.PatternEnum.Duck}");
         }
 
         public void DisplayPatternSelectionFromFile()
         {
             DisplayMessage("Please select a pattern to load");
             var count = 1;
-            foreach (var pattern in Pattern.GetPatternNamesFromFile())
+            foreach (var pattern in PatternLoader.GetPatternNamesFromFile())
             {
                 DisplayMessage($"{count.ToString()}: "+Path.GetFileName(pattern)[..^4]);
                 count++;

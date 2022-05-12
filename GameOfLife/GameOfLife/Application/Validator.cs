@@ -20,7 +20,7 @@ namespace GameOfLife.Application
 
         public static bool ValidatePatternSelection(int userInput)
         {
-            return Pattern.GetPatternNamesFromFile().Length + 1 >= userInput && userInput > 0;
+            return PatternLoader.GetPatternNamesFromFile().Length + 1 >= userInput && userInput > 0;
         }
 
         public static bool IsNumeric(string userInput)
@@ -54,7 +54,7 @@ namespace GameOfLife.Application
         public static bool ValidCmdLineArgumentIsValidPatternName(IOutput output, string patternName)
         {
             var patternExistsInFile = false;
-            foreach (var patternInFile in Pattern.GetPatternNamesFromFile())
+            foreach (var patternInFile in PatternLoader.GetPatternNamesFromFile())
             {
                 if (patternName == Path.GetFileName(patternInFile))
                     patternExistsInFile = true;
@@ -62,7 +62,7 @@ namespace GameOfLife.Application
 
             if (patternExistsInFile == false)
             {
-                Console.WriteLine(patternName);
+                output.DisplayMessage(patternName);
                 output.DisplayMessage(ErrorMessageConstants.FileDoesNotExist);
             }
                 

@@ -28,14 +28,10 @@ namespace GameOfLife.ConsoleOut
                 validator = Validator.ValidatePatternSelection(userSelectionPatternChoice);
             }
 
-            if (userSelectionPatternChoice == Pattern.GetPatternNamesFromFile().Length + 1)
-            {
+            if (userSelectionPatternChoice == PatternLoader.GetPatternNamesFromFile().Length + 1)
                 WorldCurrent.CustomWorld = true;
-                WorldCurrent.Pattern = new[] {"-"};
-            }
-            else
-                WorldCurrent.Pattern= Pattern.GetSelectedPatternFromFile(userSelectionPatternChoice);
-                        
+            
+            WorldCurrent.PatternIndex= userSelectionPatternChoice;          
         }
 
         public void GetUserWorldHeightSelection(IUserInput input, IOutput output)

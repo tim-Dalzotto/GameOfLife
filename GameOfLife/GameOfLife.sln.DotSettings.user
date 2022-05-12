@@ -65,6 +65,7 @@
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.ConsoleUserInputTest.Test_Readline&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.GameEngineTest.GivenRunSimulation_WhenUserInputIsMocked_ThenShouldCallSaveWorldMethodOnce&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.GameEngineTest.RunNextGenerationTest_WhenAllCellsDead_ThenReturnNextGenerationAllCellsAreDead&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=78a20787_002D59e6_002D423c_002Db3a7_002D6281fac9f1aa/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GivenRunSimulation_WhenUserInputIsMocked_ThenShouldCallSaveWorldMethodOnce" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;

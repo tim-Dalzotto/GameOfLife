@@ -20,8 +20,9 @@ namespace GameOfLifeTest.Tests
             var input = new ConsoleUserInput(new ConsoleIO());
             var output = new ConsoleOutput(new ConsoleIO());
             var keyPress = new KeyPress(new ConsoleIO());
+            var pattern = new Pattern();
             //Arrange 
-            var gameEngine = new GameEngine(input, output, keyPress);
+            var gameEngine = new GameEngine(input, output, keyPress, pattern);
             
             //Act
             var actual = gameEngine.RunNextGeneration(ExampleWorlds.WorldEveryCellIsAlive());
@@ -38,8 +39,9 @@ namespace GameOfLifeTest.Tests
             var input = new ConsoleUserInput(new ConsoleIO());
             var output = new ConsoleOutput(new ConsoleIO());
             var keyPress = new KeyPress(new ConsoleIO());
+            var pattern = new Pattern();
             //Arrange 
-            var gameEngine = new GameEngine(input, output, keyPress);
+            var gameEngine = new GameEngine(input, output, keyPress, pattern);
             
             //Act
             var actual = gameEngine.RunNextGeneration(ExampleWorlds.WorldEveryCellIsDead());

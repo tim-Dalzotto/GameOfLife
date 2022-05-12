@@ -13,12 +13,14 @@ namespace GameOfLife.Application
         private readonly IOutput _output;
         private readonly IUserInput _input;
         private readonly IKeyPress _keyPress;
+        private readonly Pattern _pattern;
 
-        public GameEngine(IUserInput input, IOutput output, IKeyPress keyPress)
+        public GameEngine(IUserInput input, IOutput output, IKeyPress keyPress, Pattern pattern)
         {
             _output = output;
             _input = input;
             _keyPress = keyPress;
+            _pattern = pattern;
         }
         public World RunNextGeneration(World world)
         {
@@ -43,6 +45,7 @@ namespace GameOfLife.Application
             {
                 while (!(_keyPress.CheckKeyAvailable() && _keyPress.CheckReadKey() == ConsoleKey.P))
                 {
+                    Console.Clear();
                     _output.DisplayMessage(count.ToString());
                     _output.DisplayWorld(gameWorld);
                     gameWorld = RunNextGeneration(gameWorld);
@@ -57,7 +60,8 @@ namespace GameOfLife.Application
                 
                 if (userInput == 'S')
                 {
-                    WantToSaveWorld(Pattern.ConvertCellArrayToStringArray(gameWorld));
+                    _pattern.UpdatePatternFromGameWorldStringArray(gameWorld);
+                    WantToSaveWorld(_pattern.CurrentPattern);
                 }
                 if (userInput == 'Q')
                 {
@@ -70,7 +74,7 @@ namespace GameOfLife.Application
         {
             _output.DisplayMessage("Please Enter file name");
             var fileName = _input.GetUserInput();
-            Pattern.SavePatternToFile(currentPattern, fileName);
+            PatternSaver.SavePatternToFile(currentPattern, fileName);
         }
     }
 }

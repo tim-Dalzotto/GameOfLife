@@ -11,9 +11,10 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void GivenConvertCellArrayToString_WhenGivenArrayOfCells_ThenReturnStringArray()
         {
-            var actual = Pattern.ConvertCellArrayToStringArray(ExampleWorlds.WorldEveryCellIsAlive());
+            var pattern = new Pattern();
+            pattern.UpdatePatternFromGameWorldStringArray(ExampleWorlds.WorldEveryCellIsAlive());
             
-            Assert.Equal(ExamplePatterns.EveryCellAlive,actual);
+            Assert.Equal(ExamplePatterns.EveryCellAlive,pattern.CurrentPattern);
         }
         // [Fact]
         // public void GivenCustomPattern_WhenFinished_ThenSavePatter()

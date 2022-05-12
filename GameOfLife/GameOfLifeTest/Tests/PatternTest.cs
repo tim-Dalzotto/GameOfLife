@@ -1,5 +1,6 @@
 using System.IO;
 using GameOfLife.Application;
+using GameOfLife.Constants;
 using Xunit;
 
 namespace GameOfLifeTest.Tests
@@ -9,7 +10,7 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void GivenGetRootPath_WhenCalled_ThenReturnCurrentRootPath()
         {
-            var actual = Pattern.GetRootPath("/GameOfLife/GameOfLife/GameOfLifeTest/PatternFileDirectory");
+            var actual = RootPathConstant.GetRootPath("/GameOfLife/GameOfLife/GameOfLifeTest/PatternFileDirectory");
             Assert.Equal("/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest/PatternFileDirectory", actual);
         }
         // [Fact]
@@ -25,7 +26,7 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void DisplayNamesOfPatternsInFile()
         {
-            var actual = Pattern.GetPatternNamesFromFile();
+            var actual = PatternLoader.GetPatternNamesFromFile();
             
             Assert.Equal("Duck.txt",Path.GetFileName(actual[0]));
         }
@@ -33,7 +34,7 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void GetPatternFromFile()
         {
-            var actual = Pattern.GetPatternFromFile("/Box.txt");
+            var actual = PatternLoader.GetPatternFromFile("/Box.txt");
             
             Assert.Equal(ExamplePatterns.ExampleBoxPattern,actual);
         }
@@ -42,7 +43,7 @@ namespace GameOfLifeTest.Tests
         public void GetSelectedPatternFromFile()
         {
             var userInput = 1;
-            var actual = Pattern.GetSelectedPatternFromFile(userInput);
+            var actual = PatternLoader.GetSelectedPatternFromFile(userInput);
             
             Assert.Equal(ExamplePatterns.ExampleDuckPattern,actual);
         }

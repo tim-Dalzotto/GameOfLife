@@ -43,9 +43,9 @@ namespace GameOfLife.Application
                 {
                     if (CursorYValue == i && CursorXValue == j)
                     {
-                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write(CustomPattern[i, j]);
-                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.Black;
                         Console.Write(" ");
 
                     }
@@ -102,8 +102,8 @@ namespace GameOfLife.Application
         [SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
         public void MakePattern(IUserInput input, IOutput output)
         {
-            var KeepBuilding = true;
-            while (KeepBuilding)
+            var keepBuilding = true;
+            while (keepBuilding)
             {
                 DisplayWorldBuilder(output);
                 output.DisplayMessage("Press W,A,S,D to move the Cursor\n press P to Populate the cell or O to depopulate the cell \n Or press q to quit world builder");
@@ -119,7 +119,7 @@ namespace GameOfLife.Application
                     SetAliveOrDead(userInput);
                 if (userInput == "q")
                 {
-                    KeepBuilding = false;
+                    keepBuilding = false;
                     ConvertMultiDimensionalArrayToStringArray(CustomPattern);
                 }
             }

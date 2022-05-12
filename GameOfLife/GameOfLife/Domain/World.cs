@@ -17,20 +17,22 @@ namespace GameOfLife.Domain
 
         public string[] Pattern { get; set; }
 
-        public World ( /*int height, int length*/)
-        {
-            // Height = height;
-            // Length = length;
-            // WorldPopulation = new Cell[height,length];
-            //
-            // for(var i = 0; i < Height; i++)
-            // {
-            //     for (var j = 0; j < Length; j++)
-            //     {
-            //         WorldPopulation[i, j] = new Cell { };
-            //     }
-            // }
-        }
+        public int PatternIndex { get; set; }
+
+        // public World ( int height, int length)
+        // {
+        //     Height = height;
+        //     Length = length;
+        //     WorldPopulation = new Cell[height,length];
+        //     
+        //     for(var i = 0; i < Height; i++)
+        //     {
+        //         for (var j = 0; j < Length; j++)
+        //         {
+        //             WorldPopulation[i, j] = new Cell { };
+        //         }
+        //     }
+        // }
 
         public void InitialiseWorld()
         {

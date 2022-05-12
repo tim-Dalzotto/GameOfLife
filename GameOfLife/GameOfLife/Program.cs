@@ -16,7 +16,8 @@ namespace GameOfLife
             var input = new ConsoleUserInput(new ConsoleIO());
             var output = new ConsoleOutput(new ConsoleIO());
             var keyPress = new KeyPress(new ConsoleIO());
-            var game = new GameEngine(input, output, keyPress);
+            var pattern = new Pattern();
+            var game = new GameEngine(input, output, keyPress, pattern);
             var worldGenInfo = new WorldGenerationsInfo();
             var world = new World();
             var riddler = new Riddler(world);
@@ -26,17 +27,17 @@ namespace GameOfLife
 
             if (args.Length > 0 && Validator.ValidCmdLineArgumentIsValidPatternName(output, args[0]))
             {
-                patternInput = CommandLineArguments.GetPatternFromCmdLineArguments(args[0]);
+                world.Pattern = CommandLineArguments.GetPatternFromCmdLineArguments(args[0]);
             }
             else
             {
                 riddler.GetUserPatternSelection(input, output);
                 
-                patternInput = world.Pattern;
+                world.Pattern = PatternLoader.GetSelectedPatternFromFile(world.PatternIndex);
             }
 
-            var worldMinRowRequiredBasedOnSelectedPattern = patternInput.Length;
-            var worldMinColumnsRequiredBasedOnSelectedPattern = patternInput[0].Length;
+            var worldMinRowRequiredBasedOnSelectedPattern = world.Pattern.Length;
+            var worldMinColumnsRequiredBasedOnSelectedPattern = world.Pattern[0].Length;
             output.DisplayGameBoardSizeSelectionMessage( worldMinRowRequiredBasedOnSelectedPattern,worldMinColumnsRequiredBasedOnSelectedPattern);
 
 
