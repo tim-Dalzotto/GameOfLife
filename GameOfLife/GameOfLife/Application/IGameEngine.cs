@@ -4,11 +4,11 @@ namespace GameOfLife.Application
 {
     public interface IGameEngine
     {
-        public World RunNextGeneration(World world);
+        public World RunNextGeneration();
 
-        public void PlayGame(World world);
+        public void PlayGame();
 
-        public void RunSimulation(World gameWorld);
+        public void RunSimulation();
 
 
         public void WantToSaveWorld(string[] currentPattern);

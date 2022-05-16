@@ -18,9 +18,9 @@ namespace GameOfLife.Application
             return userInput >= minLength;
         }
 
-        public static bool ValidatePatternSelection(int userInput)
+        public static bool ValidateUserSelectedPatternExists(int userInput, string[] listOfAvailablePatterns)
         {
-            return PatternLoader.GetPatternNamesFromFile().Length + 1 >= userInput && userInput > 0;
+            return listOfAvailablePatterns.Length + 1 >= userInput && userInput > 0;
         }
 
         public static bool IsNumeric(string userInput)

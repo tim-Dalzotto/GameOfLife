@@ -35,12 +35,12 @@ namespace GameOfLifeTest.Tests
 
         [Theory]
         [InlineData(3, true)]
-        [InlineData(4, false)]
+        [InlineData(400, false)]
         [InlineData(2, true)]
         [InlineData(0, false)]
         public void GivenValidatePatternSelection_WhenGivenUserInput_ThenReturnExpectedResult(int userInput, bool expected)
         {
-            var actual = Validator.ValidatePatternSelection(userInput);
+            var actual = Validator.ValidateUserSelectedPatternExists(userInput, PatternLoader.GetPatternNamesFromFile());
             
             Assert.Equal(expected, actual);
 

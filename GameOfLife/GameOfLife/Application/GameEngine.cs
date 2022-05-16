@@ -14,30 +14,32 @@ namespace GameOfLife.Application
         private readonly IUserInput _input;
         private readonly IKeyPress _keyPress;
         private readonly Pattern _pattern;
+        private World _world;
 
-        public GameEngine(IUserInput input, IOutput output, IKeyPress keyPress, Pattern pattern)
+        public GameEngine(IUserInput input, IOutput output, IKeyPress keyPress, Pattern pattern, World world)
         {
             _output = output;
             _input = input;
             _keyPress = keyPress;
             _pattern = pattern;
+            _world = world;
         }
-        public World RunNextGeneration(World world)
+        public World RunNextGeneration()
         {
-            var currentGeneration = world; 
+            var currentGeneration = _world; 
 
             var nextGeneration = GameRules.UpdateWorldWithNextGen(currentGeneration);
             
             return nextGeneration;
         }
         
-        public void PlayGame(World world)
+        public void PlayGame()
         {
-            var gameWorld = GameRules.CreateInitialWorld(world);
-            RunSimulation(gameWorld);
+            GameRules.CreateInitialWorld(_world, _pattern);
+            RunSimulation();
         }
 
-        public void RunSimulation(World gameWorld)
+        public void RunSimulation()
         {
             var count = 1;
             var keepRunning = true;
@@ -47,8 +49,8 @@ namespace GameOfLife.Application
                 {
                     Console.Clear();
                     _output.DisplayMessage(count.ToString());
-                    _output.DisplayWorld(gameWorld);
-                    gameWorld = RunNextGeneration(gameWorld);
+                    _output.DisplayWorld(_world);
+                    _world = RunNextGeneration();
                     Thread.Sleep(100);
                     count++;
                 }
@@ -60,7 +62,7 @@ namespace GameOfLife.Application
                 
                 if (userInput == 'S')
                 {
-                    _pattern.UpdatePatternFromGameWorldStringArray(gameWorld);
+                    _pattern.UpdatePatternFromGameWorldStringArray(_world);
                     WantToSaveWorld(_pattern.CurrentPattern);
                 }
                 if (userInput == 'Q')

@@ -8,6 +8,7 @@ namespace GameOfLife.Application
     public static class PatternLoader
     {
         private static readonly string RootPath = GetRootPath("/GameOfLife/GameOfLife/GameOfLife/PatternFileDirectory/");
+        public static  int patternIndex { get; set; }
 
 
         private static string GetRootPath(string PathFromRootToSelectedFile)

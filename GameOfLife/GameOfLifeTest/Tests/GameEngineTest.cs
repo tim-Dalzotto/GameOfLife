@@ -22,10 +22,10 @@ namespace GameOfLifeTest.Tests
             var keyPress = new KeyPress(new ConsoleIO());
             var pattern = new Pattern();
             //Arrange 
-            var gameEngine = new GameEngine(input, output, keyPress, pattern);
+            var gameEngine = new GameEngine(input, output, keyPress, pattern, ExampleWorlds.WorldEveryCellIsAlive());
             
             //Act
-            var actual = gameEngine.RunNextGeneration(ExampleWorlds.WorldEveryCellIsAlive());
+            var actual = gameEngine.RunNextGeneration();
             
             var serializedActualWorldStr = JsonConvert.SerializeObject(actual);
             var serializedExpectedWorldStr = JsonConvert.SerializeObject(ExampleWorlds.WorldEveryCellIsDead());
@@ -40,11 +40,12 @@ namespace GameOfLifeTest.Tests
             var output = new ConsoleOutput(new ConsoleIO());
             var keyPress = new KeyPress(new ConsoleIO());
             var pattern = new Pattern();
+            var world = new World();
             //Arrange 
-            var gameEngine = new GameEngine(input, output, keyPress, pattern);
+            var gameEngine = new GameEngine(input, output, keyPress, pattern, ExampleWorlds.WorldEveryCellIsDead());
             
             //Act
-            var actual = gameEngine.RunNextGeneration(ExampleWorlds.WorldEveryCellIsDead());
+            var actual = gameEngine.RunNextGeneration();
             
             var serializedActualWorldStr = JsonConvert.SerializeObject(actual);
             var serializedExpectedWorldStr = JsonConvert.SerializeObject(ExampleWorlds.WorldEveryCellIsDead());
@@ -62,11 +63,11 @@ namespace GameOfLifeTest.Tests
             mockKeyPress.Setup(mock => mock.CheckKeyAvailable()).Returns(true);
             mockKeyPress.Setup(mock => mock.CheckReadKey()).Returns(ConsoleKey.P);
 
-            var gameEngine = new Mock<GameEngine>(mockInput, output, mockKeyPress.Object);
+            var gameEngine = new Mock<GameEngine>(mockInput, output, mockKeyPress.Object, ExampleWorlds.WorldEveryCellIsAlive());
             //gameEngine.CallBase = false;
             //gameEngine.Setup(mock => mock.RunSimulation(new World(10,10))).CallBase();
             
-            gameEngine.Object.RunSimulation(ExampleWorlds.WorldEveryCellIsAlive());
+            gameEngine.Object.RunSimulation();
             gameEngine.Verify(mock => mock.WantToSaveWorld(It.IsAny<string[]>()), Times.Exactly(1));
         }
     }

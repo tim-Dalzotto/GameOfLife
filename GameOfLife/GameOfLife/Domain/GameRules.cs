@@ -1,14 +1,16 @@
+using GameOfLife.Application;
+
 namespace GameOfLife.Domain
 {
     public static class GameRules
     {
-        public static World CreateInitialWorld(World emptyWorld)
+        public static World CreateInitialWorld(World emptyWorld, Pattern pattern)
         {
             //initialise Rectangle world Test 
             
             emptyWorld.InitialiseWorld();
             //load format pattern
-            var loadedWorld =  emptyWorld.LoadPatternIntoWorld();
+            var loadedWorld =  emptyWorld.LoadPatternIntoWorld(pattern);
             //return formatted World 
             return loadedWorld;
         }

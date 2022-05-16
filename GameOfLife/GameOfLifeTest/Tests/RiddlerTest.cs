@@ -1,3 +1,4 @@
+using GameOfLife.Application;
 using GameOfLife.ConsoleOut;
 using GameOfLife.Domain;
 using GameOfLifeTest.Mock;
@@ -15,10 +16,11 @@ namespace GameOfLifeTest.Tests
         public void GivenGetUserPatternSelection_WhenUserInputIs1_ThenReturnBoxPattern()
         {
             var mockConsoleIo = new MockConsoleIO("1");
+            var pattern = new Pattern();
             
-            _riddler.GetUserPatternSelection(new ConsoleUserInput(mockConsoleIo), new ConsoleOutput(new ConsoleIO()));
+            _riddler.GetUserPatternSelection(new ConsoleUserInput(mockConsoleIo), new ConsoleOutput(new ConsoleIO()), pattern);
             
-            Assert.Equal(ExamplePatterns.ExampleDuckPattern,WorldGen.Pattern);
+            Assert.Equal(ExamplePatterns.ExampleDuckPattern,pattern.CurrentPattern);
         }
         
         [Fact]
@@ -26,11 +28,12 @@ namespace GameOfLifeTest.Tests
         {
             
             var mockChangingUserInput = new MockChangingUserInput("30", "1");
+            var pattern = new Pattern();
             
-            _riddler.GetUserPatternSelection(mockChangingUserInput, new ConsoleOutput(new ConsoleIO()));
+            _riddler.GetUserPatternSelection(mockChangingUserInput, new ConsoleOutput(new ConsoleIO()), pattern);
 
             //Assert.Equal(2, mockChangingUserInput.Count);
-            Assert.Equal(ExamplePatterns.ExampleDuckPattern, WorldGen.Pattern);
+            Assert.Equal(ExamplePatterns.ExampleDuckPattern, pattern.CurrentPattern);
         }
         
         [Fact]

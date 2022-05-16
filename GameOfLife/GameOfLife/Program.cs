@@ -17,9 +17,9 @@ namespace GameOfLife
             var output = new ConsoleOutput(new ConsoleIO());
             var keyPress = new KeyPress(new ConsoleIO());
             var pattern = new Pattern();
-            var game = new GameEngine(input, output, keyPress, pattern);
-            var worldGenInfo = new WorldGenerationsInfo();
             var world = new World();
+            var game = new GameEngine(input, output, keyPress, pattern, world);
+            var worldGenInfo = new WorldGenerationsInfo();
             var riddler = new Riddler(world);
 
             string[] patternInput;
@@ -27,17 +27,17 @@ namespace GameOfLife
 
             if (args.Length > 0 && Validator.ValidCmdLineArgumentIsValidPatternName(output, args[0]))
             {
-                world.Pattern = CommandLineArguments.GetPatternFromCmdLineArguments(args[0]);
+                pattern.CurrentPattern = CommandLineArguments.GetPatternFromCmdLineArguments(args[0]);
             }
             else
             {
-                riddler.GetUserPatternSelection(input, output);
+                riddler.GetUserPatternSelection(input, output, pattern);
                 
-                world.Pattern = PatternLoader.GetSelectedPatternFromFile(world.PatternIndex);
+                //pattern.CurrentPattern = PatternLoader.GetSelectedPatternFromFile(world.PatternIndex);
             }
 
-            var worldMinRowRequiredBasedOnSelectedPattern = world.Pattern.Length;
-            var worldMinColumnsRequiredBasedOnSelectedPattern = world.Pattern[0].Length;
+            var worldMinRowRequiredBasedOnSelectedPattern = pattern.CurrentPattern.Length;
+            var worldMinColumnsRequiredBasedOnSelectedPattern = pattern.CurrentPattern[0].Length;
             output.DisplayGameBoardSizeSelectionMessage( worldMinRowRequiredBasedOnSelectedPattern,worldMinColumnsRequiredBasedOnSelectedPattern);
 
 
@@ -59,9 +59,9 @@ namespace GameOfLife
             {
                 var worldBuilder = new CustomWorldBuilder(world.Height, world.Length);
                 worldBuilder.MakePattern(input,output);
-                world.Pattern = worldBuilder.ConvertedCustomPattern;
+                pattern.CurrentPattern = worldBuilder.ConvertedCustomPattern;
             }
-            game.PlayGame(world);
+            game.PlayGame();
             
         }
     }

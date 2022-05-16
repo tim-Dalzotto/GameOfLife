@@ -1,4 +1,5 @@
 using System.Reflection;
+using GameOfLife.Application;
 using GameOfLife.Domain;
 using Newtonsoft.Json;
 using Xunit;
@@ -36,6 +37,7 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void GivenLoadWorldFromPattern_WhenGivenAPattern_ThenReturnWorldWithPattern()
         {
+            var pattern = new Pattern();
             var world = new World();
             world.Height = 5;
             world.Length = 5;
@@ -49,9 +51,9 @@ namespace GameOfLifeTest.Tests
                 "-----\n",
                 "-----\n"
             };
-            world.Pattern = patternTest;
+            pattern.CurrentPattern = patternTest;
 
-            world.LoadPatternIntoWorld();
+            world.LoadPatternIntoWorld(pattern);
 
             var testWorld = ExampleWorlds.WorldEveryCellOnFirstRowIsAlive();
             

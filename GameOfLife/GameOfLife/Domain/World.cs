@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GameOfLife.Application;
 
 namespace GameOfLife.Domain
 {
@@ -15,9 +16,9 @@ namespace GameOfLife.Domain
 
         public bool CustomWorld { get; set; }
 
-        public string[] Pattern { get; set; }
+        //public string[] Pattern { get; set; }
 
-        public int PatternIndex { get; set; }
+        //public int PatternIndex { get; set; }
 
         // public World ( int height, int length)
         // {
@@ -47,16 +48,17 @@ namespace GameOfLife.Domain
             }
         }
         
-        public World LoadPatternIntoWorld()
+        public World LoadPatternIntoWorld(Pattern pattern)
         {
-            var yOffSet = (Height - Pattern.Length) / 2;
-            var xOffSet = (Length - Pattern[0].Length) / 2;
+            
+            var yOffSet = (Height - pattern.CurrentPattern.Length) / 2;
+            var xOffSet = (Length - pattern.CurrentPattern[0].Length) / 2;
 
-            for (var y = 0; y < Pattern.Length; y++)
+            for (var y = 0; y < pattern.CurrentPattern.Length; y++)
             {
-                for (var x = 0; x < Pattern[y].Length; x++)
+                for (var x = 0; x < pattern.CurrentPattern[y].Length; x++)
                 {
-                    if (Pattern[y].Substring(x, 1) == "0")
+                    if (pattern.CurrentPattern[y].Substring(x, 1) == "0")
                         WorldPopulation[y + yOffSet, x + xOffSet].IsAlive = true;
                 }
             }

@@ -9,7 +9,7 @@ namespace GameOfLifeTest.Tests
     public class CustomWorldBuilderTest
     {
         [Theory]
-        [InlineData('w', 5)]
+        [InlineData('w', 4)]
         [InlineData('s', 1)]
 
         public void  GivenMoveCursor_WhenInputIsWorS_ThenMoveCursorYValue(char input, int expectedResult)
@@ -22,7 +22,7 @@ namespace GameOfLifeTest.Tests
         }
         
         [Theory]
-        [InlineData('a', 5)]
+        [InlineData('a', 4)]
         [InlineData('d', 1)]
 
         public void  GivenMoveCursor_WhenInputIsAorD_ThenMoveCursorXValue(char input, int expectedResult)
@@ -54,7 +54,7 @@ namespace GameOfLifeTest.Tests
 
             customWorldBuilder.DisplayWorldBuilder(mockOutputCount);
             
-            Assert.Equal(30, mockOutputCount.Count);
+            Assert.Equal(29, mockOutputCount.Count);
         }
 
         [Fact]

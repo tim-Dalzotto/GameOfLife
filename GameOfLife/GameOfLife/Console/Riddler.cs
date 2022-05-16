@@ -13,7 +13,7 @@ namespace GameOfLife.ConsoleOut
         {
             WorldCurrent = world;
         }
-        public void GetUserPatternSelection(IUserInput input, IOutput output)
+        public void GetUserPatternSelection(IUserInput input, IOutput output, Pattern pattern)
         {
             var validator = false;
             var userSelectionPatternChoice = 0;
@@ -25,13 +25,13 @@ namespace GameOfLife.ConsoleOut
                     userSelectionPatternChoice = int.Parse(userInputTemp);
                 else
                     break;
-                validator = Validator.ValidatePatternSelection(userSelectionPatternChoice);
+                validator = Validator.ValidateUserSelectedPatternExists(userSelectionPatternChoice, PatternLoader.GetPatternNamesFromFile());
             }
 
             if (userSelectionPatternChoice == PatternLoader.GetPatternNamesFromFile().Length + 1)
                 WorldCurrent.CustomWorld = true;
             
-            WorldCurrent.PatternIndex= userSelectionPatternChoice;          
+            pattern.CurrentPattern= PatternLoader.GetSelectedPatternFromFile(userSelectionPatternChoice);          
         }
 
         public void GetUserWorldHeightSelection(IUserInput input, IOutput output)
