@@ -4,16 +4,16 @@ namespace GameOfLife.Domain
 {
     public static class GameRules
     {
-        public static World CreateInitialWorld(World emptyWorld, Pattern pattern)
-        {
-            //initialise Rectangle world Test 
-            
-            emptyWorld.InitialiseWorld();
-            //load format pattern
-            var loadedWorld =  emptyWorld.LoadPatternIntoWorld(pattern);
-            //return formatted World 
-            return loadedWorld;
-        }
+        // public static World CreateInitialWorld(World emptyWorld, Pattern pattern)
+        // {
+        //     //initialise Rectangle world Test 
+        //     
+        //     emptyWorld.InitialiseWorld();
+        //     //load format pattern
+        //     var loadedWorld =  emptyWorld.LoadPatternIntoWorld(pattern);
+        //     //return formatted World 
+        //     return loadedWorld;
+        // }
 
         public static World UpdateWorldWithNextGen(World world)
         {
@@ -23,9 +23,7 @@ namespace GameOfLife.Domain
 
 
             var newWorld = new World();
-            newWorld.Height = height;
-            newWorld.Length = length;
-            newWorld.InitialiseWorld();
+            newWorld.InitialiseWorld(height,length);
             //this should not be here, add it's own check
             var livingCellCount = 0;
             for (var x = 0; x < currentWorld.Height; x++)
@@ -82,22 +80,5 @@ namespace GameOfLife.Domain
             else if (!currentCell.IsAlive && liveNeighbours == 3)
                 newWorld.WorldPopulation[x, y].IsAlive = true;
         }
-        
-        // public static World InitialiseWorld(World world, int size)
-        // {
-        //     var createWorld = world;
-        //     createWorld.Size = size;
-        //     createWorld.WorldPopulation = new Cell[world.Size,world.Size];
-        //
-        //     for(var i = 0; i < world.Size; i++)
-        //     {
-        //         for (var j = 0; j < world.Size; j++)
-        //         {
-        //             createWorld.WorldPopulation[i, j] = new Cell { };
-        //         }
-        //     }
-        //     return world;
-        // }
-        //
     }
 }

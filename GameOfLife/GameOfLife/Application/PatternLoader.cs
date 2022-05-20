@@ -8,20 +8,19 @@ namespace GameOfLife.Application
     public static class PatternLoader
     {
         private static readonly string RootPath = GetRootPath("/GameOfLife/GameOfLife/GameOfLife/PatternFileDirectory/");
-        public static  int patternIndex { get; set; }
 
 
-        private static string GetRootPath(string PathFromRootToSelectedFile)
+        private static string GetRootPath(string pathFromRootToSelectedFile)
         {
             var customRootPath = Directory.GetParent(Environment.CurrentDirectory)?.Parent?.Parent?.FullName;
             var subRootPath = customRootPath[..37];
-            return $"{subRootPath}{PathFromRootToSelectedFile}";
+            return $"{subRootPath}{pathFromRootToSelectedFile}";
         }
         
         public static string[] GetPatternNamesFromFile()
         {
             var fileArray = Directory.GetFiles(RootPath, "*.txt", SearchOption.AllDirectories)
-                .Select(x => Path.GetFullPath(x)).ToArray();
+                .Select(s => Path.GetFullPath(s)).ToArray();
             return fileArray;
         }
 

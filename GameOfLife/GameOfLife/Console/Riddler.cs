@@ -7,13 +7,11 @@ namespace GameOfLife.ConsoleOut
 {
     public class Riddler
     {
-        private static World WorldCurrent { get; set; }
+        public int Height { get; private set; }
+        public int Length { get; private set; }
+        public int PatternIndex { get; private set; }
 
-        public Riddler(World world)
-        {
-            WorldCurrent = world;
-        }
-        public void GetUserPatternSelection(IUserInput input, IOutput output, Pattern pattern)
+        public void GetUserPatternSelection(IUserInput input, IOutput output)
         {
             var validator = false;
             var userSelectionPatternChoice = 0;
@@ -28,24 +26,23 @@ namespace GameOfLife.ConsoleOut
                 validator = Validator.ValidateUserSelectedPatternExists(userSelectionPatternChoice, PatternLoader.GetPatternNamesFromFile());
             }
 
-            if (userSelectionPatternChoice == PatternLoader.GetPatternNamesFromFile().Length + 1)
-                WorldCurrent.CustomWorld = true;
             
-            pattern.CurrentPattern= PatternLoader.GetSelectedPatternFromFile(userSelectionPatternChoice);          
+            
+            PatternIndex = userSelectionPatternChoice;          
         }
 
         public void GetUserWorldHeightSelection(IUserInput input, IOutput output)
         {
             output.DisplayChoiceForRowsMessage();
             var userInput = int.Parse(input.GetUserInput());
-            WorldCurrent.Height = userInput;
+            Height = userInput;
         }
 
         public void GetUserLengthSelection(IUserInput input, IOutput output)
         {
             output.DisplayChoiceForColumnsMessage();
             var userInput = int.Parse(input.GetUserInput());
-            WorldCurrent.Length = userInput;
+            Length = userInput;
         }
         
     }

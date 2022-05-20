@@ -7,7 +7,7 @@ using GameOfLife.Domain;
 
 namespace GameOfLife.Application
 {
-    public class CustomWorldBuilder
+    public class CustomPatternBuilder
     {
         public int Height { get; set; }
         public int Length { get; set; }
@@ -17,7 +17,7 @@ namespace GameOfLife.Application
         public int CursorYValue { get; set; }
         public int CursorXValue { get; set; }
 
-        public CustomWorldBuilder(int height, int length)
+        public CustomPatternBuilder(int height, int length)
         {
             Height = height;
             Length = length;
@@ -127,7 +127,7 @@ namespace GameOfLife.Application
         
         public void ConvertMultiDimensionalArrayToStringArray(string[,] multidimensionalArray)
         {
-            List<string> convertedList = new List<string>();
+            var convertedList = new List<string>();
             for(var i = 0; i < multidimensionalArray.GetLength(0); i++)
             {
                 string tempString = null;
@@ -137,7 +137,6 @@ namespace GameOfLife.Application
                 }
                 convertedList.Add(tempString);
             }
-
             ConvertedCustomPattern = convertedList.ToArray();
         }
     }

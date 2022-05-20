@@ -17,6 +17,12 @@ namespace GameOfLife.Application
 
         public string[] CurrentPattern { get; set; }
 
+        public Pattern(string[] currentPattern)
+        {
+            CurrentPattern = currentPattern;
+        }
+        
+        
 
         public void UpdatePatternFromGameWorldStringArray(World currentCellArray)
         {

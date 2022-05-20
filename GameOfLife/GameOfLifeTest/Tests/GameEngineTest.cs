@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.CompilerServices;
+using FluentAssertions;
 using GameOfLife.Application;
 using GameOfLife.ConsoleOut;
 using GameOfLife.Domain;
@@ -20,17 +21,13 @@ namespace GameOfLifeTest.Tests
             var input = new ConsoleUserInput(new ConsoleIO());
             var output = new ConsoleOutput(new ConsoleIO());
             var keyPress = new KeyPress(new ConsoleIO());
-            var pattern = new Pattern();
+            var pattern = new Pattern(ExamplePatterns.EveryCellDead);
             //Arrange 
             var gameEngine = new GameEngine(input, output, keyPress, pattern, ExampleWorlds.WorldEveryCellIsAlive());
-            
             //Act
             var actual = gameEngine.RunNextGeneration();
-            
-            var serializedActualWorldStr = JsonConvert.SerializeObject(actual);
-            var serializedExpectedWorldStr = JsonConvert.SerializeObject(ExampleWorlds.WorldEveryCellIsDead());
             //Assert
-            Assert.Equal(serializedExpectedWorldStr, serializedActualWorldStr);
+            actual.Should().BeEquivalentTo(ExampleWorlds.WorldEveryCellIsDead());
         }
         
         [Fact]
@@ -39,18 +36,14 @@ namespace GameOfLifeTest.Tests
             var input = new ConsoleUserInput(new ConsoleIO());
             var output = new ConsoleOutput(new ConsoleIO());
             var keyPress = new KeyPress(new ConsoleIO());
-            var pattern = new Pattern();
+            var pattern = new Pattern(ExamplePatterns.EveryCellDead);
             var world = new World();
             //Arrange 
             var gameEngine = new GameEngine(input, output, keyPress, pattern, ExampleWorlds.WorldEveryCellIsDead());
-            
             //Act
             var actual = gameEngine.RunNextGeneration();
-            
-            var serializedActualWorldStr = JsonConvert.SerializeObject(actual);
-            var serializedExpectedWorldStr = JsonConvert.SerializeObject(ExampleWorlds.WorldEveryCellIsDead());
             //Assert
-            Assert.Equal(serializedExpectedWorldStr, serializedActualWorldStr);
+            actual.Should().BeEquivalentTo(ExampleWorlds.WorldEveryCellIsDead());
         }
 
         [Fact]
@@ -63,7 +56,9 @@ namespace GameOfLifeTest.Tests
             mockKeyPress.Setup(mock => mock.CheckKeyAvailable()).Returns(true);
             mockKeyPress.Setup(mock => mock.CheckReadKey()).Returns(ConsoleKey.P);
 
-            var gameEngine = new Mock<GameEngine>(mockInput, output, mockKeyPress.Object, ExampleWorlds.WorldEveryCellIsAlive());
+            var pattern = new Pattern(ExamplePatterns.EveryCellAlive);
+            
+            var gameEngine = new Mock<GameEngine>(mockInput, output, mockKeyPress.Object, pattern, ExampleWorlds.WorldEveryCellIsAlive());
             //gameEngine.CallBase = false;
             //gameEngine.Setup(mock => mock.RunSimulation(new World(10,10))).CallBase();
             

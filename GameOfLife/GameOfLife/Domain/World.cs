@@ -1,14 +1,11 @@
 using System.Collections.Generic;
 using GameOfLife.Application;
+using GameOfLife.ConsoleOut;
 
 namespace GameOfLife.Domain
 {
     public class World
     {
-        //public int Size { get; set; }
-
-        public string[] WorldPattern { get; set; }
-        
         public int Length { get; set; }
 
         public int Height { get; set; }
@@ -35,8 +32,10 @@ namespace GameOfLife.Domain
         //     }
         // }
 
-        public void InitialiseWorld()
+        public void InitialiseWorld(int height, int length)
         {
+            Height = height;
+            Length = length;
             WorldPopulation = new Cell[Height,Length];
 
             for(var i = 0; i < Height; i++)

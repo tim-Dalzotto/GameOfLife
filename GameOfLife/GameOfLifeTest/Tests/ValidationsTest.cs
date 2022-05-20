@@ -75,6 +75,20 @@ namespace GameOfLifeTest.Tests
             
             Assert.False(actual);
         }
+        
+        [Theory]
+        [InlineData("q",true)]
+        [InlineData("s",true)]
+        [InlineData("c",true)]
+        [InlineData("Test",false)]
+        [InlineData("l",false)]
+        [InlineData("L",false)]
+        public void GivenValidCharForSimulationInputOptions_WhenInputIsEitherSorQorC_ThenReturnTrue(string input, bool expectedResult)
+        {
+            var actual = Validator.ValidCharForSimulationInputs(input);
+            
+            Assert.Equal(expectedResult, actual);
+        }
 
         [Theory]
         [InlineData("w",true)]

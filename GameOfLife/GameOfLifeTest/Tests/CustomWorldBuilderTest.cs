@@ -14,7 +14,7 @@ namespace GameOfLifeTest.Tests
 
         public void  GivenMoveCursor_WhenInputIsWorS_ThenMoveCursorYValue(char input, int expectedResult)
         {
-            var customWorldBuilder = new CustomWorldBuilder(5,5);
+            var customWorldBuilder = new CustomPatternBuilder(5,5);
             
             customWorldBuilder.MoveCursor(input);
             
@@ -27,7 +27,7 @@ namespace GameOfLifeTest.Tests
 
         public void  GivenMoveCursor_WhenInputIsAorD_ThenMoveCursorXValue(char input, int expectedResult)
         {
-            var customWorldBuilder = new CustomWorldBuilder(5,5);
+            var customWorldBuilder = new CustomPatternBuilder(5,5);
             
             customWorldBuilder.MoveCursor(input);
             
@@ -37,7 +37,7 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void GivenSetAliveOrDead_WhenPIsEnteredAndCursorIsAt00_ThenSet00ToAliveInThePattern()
         {
-            var customWorldBuilder = new CustomWorldBuilder(5, 5);
+            var customWorldBuilder = new CustomPatternBuilder(5, 5);
             customWorldBuilder.CursorXValue = 0;
             customWorldBuilder.CursorYValue = 0;
 
@@ -49,7 +49,7 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void GivenDisplayCustomWorld_WhenCalled_ThenDisplayGameCellShouldBeCalled30Times()
         {
-            var customWorldBuilder = new CustomWorldBuilder(5, 5);
+            var customWorldBuilder = new CustomPatternBuilder(5, 5);
             var mockOutputCount = new MockOutputCount();
 
             customWorldBuilder.DisplayWorldBuilder(mockOutputCount);
@@ -60,7 +60,7 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void GivenMakePattern_WhenRunWithoutChangingState_ThenReturnEmptyWorld()
         {
-            var customWorldBuilder = new CustomWorldBuilder(5, 5);
+            var customWorldBuilder = new CustomPatternBuilder(5, 5);
             var mockInput = new MockChangingUserInput("p","q");
             var output = new ConsoleOutput(new ConsoleIO());
             customWorldBuilder.MakePattern(mockInput,output);
@@ -71,7 +71,7 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void GivenConvertMultiDimensionalArrayToStringArray_WhenMultiDimensionalArrayEntered_ThenConvertToStringArray()
         {
-            var customWorldBuilder = new CustomWorldBuilder(5, 5);
+            var customWorldBuilder = new CustomPatternBuilder(5, 5);
             
             customWorldBuilder.ConvertMultiDimensionalArrayToStringArray(ExamplePatterns.ExampleMultidimensionalStringArrayOnly00Alive2());
             

@@ -47,6 +47,12 @@ namespace GameOfLifeTest.Tests
             
             Assert.Equal(ExamplePatterns.ExampleDuckPattern,actual);
         }
+
+        [Fact]
+        public void Given()
+        {
+            
+        }
         
     }
 }

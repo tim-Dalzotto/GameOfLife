@@ -4,7 +4,7 @@
     &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.GameEngineTest.GivenRunSimulation_WhenUserInputIsMocked_ThenShouldCallSaveWorldMethodOnce&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=16d486fa_002Ddf57_002D45ec_002D80a2_002D9836672640ef/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GivenRunSimulation_WhenUserInputIsMocked_ThenShouldCallSaveWorldMethodOnce #11" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=16d486fa_002Ddf57_002D45ec_002D80a2_002D9836672640ef/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GivenRunSimulation_WhenUserInputIsMocked_ThenShouldCallSaveWorldMethodOnce #11" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.GameEngineTest.GivenRunSimulation_WhenUserInputIsMocked_ThenShouldCallSaveWorldMethodOnce&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.CustomWorldBuilderTest&lt;/TestId&gt;
@@ -12,6 +12,15 @@
     &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.ConsoleOutTest.Test_stringOutputTest&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.WorldTest&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.ValidationsTest.GivenValidatePatternSelection_WhenGivenUserInput_ThenReturnExpectedResult&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.PatternTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.GameRulesTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.CommandLineArgumentsTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.ConsoleOutTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.ConsoleUserInputTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.GameEngineTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.RiddlerTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.SavePatternTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.SimEndCriteriaTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1d2ad715_002D6f14_002D47d5_002D8dce_002D317f4be6f764/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GivenRunSimulation_WhenUserInputIsMocked_ThenShouldCallSaveWorldMethodOnce #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
@@ -22,6 +31,20 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=312f9e9c_002Daac5_002D447c_002D8e3b_002Da27b2e949b65/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GivenRunSimulation_WhenUserInputIsMocked_ThenShouldCallSaveWorldMethodOnce #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.GameEngineTest.GivenRunSimulation_WhenUserInputIsMocked_ThenShouldCallSaveWorldMethodOnce&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=37a9aa5c_002D1618_002D4ed6_002Db49f_002D55d9ae380b4f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GivenValidCharForSimulationInputOptions_WhenInputIsEitherSorQorC_ThenReturnTrue #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.ValidationsTest.GivenValidCharForSimulationInputOptions_WhenInputIsEitherSorQorC_ThenReturnTrue&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.WorldTest.GivenLoadWorldFromPattern_WhenGivenAPattern_ThenReturnWorldWithPattern&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.ValidationsTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.SavePatternTest.GivenConvertCellArrayToString_WhenGivenArrayOfCells_ThenReturnStringArray&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.RiddlerTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.PatternTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.GameRulesTest.GivenCreateInitialWorld_WhenPatternAndSizeAreGiven_ThenReturnAWorldToThoseSpecifications&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.GameEngineTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.CustomWorldBuilderTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.WorldTest.GivenCreateInitialWorld_WhenPatternAndSizeAreGiven_ThenReturnAWorldToThoseSpecifications&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3ba786f6_002Db4ec_002D4696_002D8650_002D3362be1ad7b6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GivenRunSimulation_WhenUserInputIsMocked_ThenShouldCallSaveWorldMethodOnce #6" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
@@ -88,6 +111,19 @@
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.GameEngineTest.GivenRunSimulation_WhenUserInputIsMocked_ThenShouldCallSaveWorldMethodOnce&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.RiddlerTest.GivenGetUserPatternSelection_WhenUserInputIs1_ThenReturnBoxPattern&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=afc88871_002D26d9_002D40c2_002D8b6a_002D68a51914d399/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GivenRunSimulation_WhenUserInputIsMocked_ThenShouldCallSaveWorldMethodOnce #12" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.GameEngineTest.GivenRunSimulation_WhenUserInputIsMocked_ThenShouldCallSaveWorldMethodOnce&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=dcbaf4f2_002Dce1a_002D41fe_002D87e5_002Dbce06c4d0d0f/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GivenValidCharForSimulationInputOptions_WhenInputIsEitherSorQorC_ThenReturnTrue" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.ValidationsTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.GameEngineTest.GivenRunSimulation_WhenUserInputIsMocked_ThenShouldCallSaveWorldMethodOnce&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.GameEngineTest.RunNextGenerationTest_WhenAllCellsDead_ThenReturnNextGenerationAllCellsAreDead&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.GameEngineTest.RunNextGenerationTest_WhenAllCellsAlive_ThenReturnNextGenerationAllCellsAreDead&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e60f8e8e_002Dd80b_002D4a86_002Daee5_002D2f59b7ddb9a9/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="RunNextGenerationTest_WhenAllCellsDead_ThenReturnNextGenerationAllCellsAreDead" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;

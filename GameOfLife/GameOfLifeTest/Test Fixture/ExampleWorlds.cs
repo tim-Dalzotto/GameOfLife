@@ -7,6 +7,7 @@ namespace GameOfLifeTest
         public static World WorldEveryCellIsAlive()
         {
             var createWorld = new World();
+            createWorld.InitialiseWorld(5,5);
             //createWorld.WorldPopulation = new Cell[5,5];
             
             createWorld.WorldPopulation[0, 0] = new Cell {IsAlive = true};
@@ -45,9 +46,7 @@ namespace GameOfLifeTest
         public static World WorldEveryCellIsDead()
         {
             var createWorld = new World();
-            createWorld.Height = 5;
-            createWorld.Length = 5;
-            createWorld.InitialiseWorld();
+            createWorld.InitialiseWorld(5,5);
             //createWorld.Size = 5;
             //createWorld.WorldPopulation = new Cell[5,5];
             
@@ -87,9 +86,7 @@ namespace GameOfLifeTest
         public static World WorldEveryCellOnFirstRowIsAlive()
         {
             var createWorld = new World();
-            createWorld.Height = 5;
-            createWorld.Length = 5;
-            createWorld.InitialiseWorld();
+            createWorld.InitialiseWorld(5,5);
 
             createWorld.WorldPopulation[0, 0] = new Cell {IsAlive = true};
             createWorld.WorldPopulation[0, 1] = new Cell {IsAlive = true};
@@ -127,9 +124,7 @@ namespace GameOfLifeTest
         public static World CellsWontSurviveNextGenWorld()
         {
             var createWorld = new World();
-            createWorld.Height = 5;
-            createWorld.Length = 5;
-            createWorld.InitialiseWorld();
+            createWorld.InitialiseWorld(5,5);
 
             createWorld.WorldPopulation[0, 0] = new Cell {IsAlive = false};
             createWorld.WorldPopulation[0, 1] = new Cell {IsAlive = false};

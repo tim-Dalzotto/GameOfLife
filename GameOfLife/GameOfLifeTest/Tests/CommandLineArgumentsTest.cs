@@ -10,7 +10,7 @@ namespace GameOfLifeTest.Tests
         {
             var actual = CommandLineArguments.GetPatternFromCmdLineArguments("Duck.txt");
             
-            Assert.Equal(ExamplePatterns.ExampleDuckPattern, actual);
+            Assert.Equal("/GameOfLife/GameOfLife/GameOfLife/PatternFileDirectory/Duck.txt", actual);
         }
         
         

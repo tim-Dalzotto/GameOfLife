@@ -74,5 +74,11 @@ namespace GameOfLife.Application
             const string allowedChars = "wasdopq";
             return userInput.All(c => allowedChars.Contains(c)) && userInput.Length == 1;
         }
+
+        public static bool ValidCharForSimulationInputs(string userInput)
+        {
+            const string allowedChars = "qsc";
+            return userInput.All(c => allowedChars.Contains(c)) && userInput.Length == 1;
+        }
     }
 }

@@ -35,7 +35,7 @@ namespace GameOfLife.Application
         
         public void PlayGame()
         {
-            GameRules.CreateInitialWorld(_world, _pattern);
+            //GameRules.CreateInitialWorld(_world, _pattern);
             RunSimulation();
         }
 
@@ -54,20 +54,30 @@ namespace GameOfLife.Application
                     Thread.Sleep(100);
                     count++;
                 }
-                _output.DisplayMessage("Please select from the following options\n" +
-                                       "S: Save current world state to file\n" +
-                                       "C: Continue running simulation\n" +
-                                       "Q: Quit simulation" );
-                var userInput = char.Parse(_input.GetUserInput());
-                
-                if (userInput == 'S')
+                char userInput;
+                while (true)
                 {
-                    _pattern.UpdatePatternFromGameWorldStringArray(_world);
-                    WantToSaveWorld(_pattern.CurrentPattern);
+                    _output.DisplayMessage("Please select from the following options\n" +
+                                           "S: Save current world state to file\n" +
+                                           "C: Continue running simulation\n" +
+                                           "Q: Quit simulation" );
+                    var stringUserInput = _input.GetUserInput().ToLower();
+                    if (!Validator.ValidCharForSimulationInputs(stringUserInput)) continue;
+                    userInput = char.Parse(stringUserInput);
+                    break;
                 }
-                if (userInput == 'Q')
+                
+                switch (userInput)
                 {
-                    keepRunning = false;
+                    case 's':
+                        _pattern.UpdatePatternFromGameWorldStringArray(_world);
+                        WantToSaveWorld(_pattern.CurrentPattern);
+                        break;
+                    case 'q':
+                        keepRunning = false;
+                        break;
+                    case 'c':
+                        continue;
                 }
             }   
         }

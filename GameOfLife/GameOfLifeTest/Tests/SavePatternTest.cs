@@ -11,7 +11,7 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void GivenConvertCellArrayToString_WhenGivenArrayOfCells_ThenReturnStringArray()
         {
-            var pattern = new Pattern();
+            var pattern = new Pattern(ExamplePatterns.EveryCellDead);
             pattern.UpdatePatternFromGameWorldStringArray(ExampleWorlds.WorldEveryCellIsAlive());
             
             Assert.Equal(ExamplePatterns.EveryCellAlive,pattern.CurrentPattern);
