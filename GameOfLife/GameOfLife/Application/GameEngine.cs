@@ -57,10 +57,7 @@ namespace GameOfLife.Application
                 char userInput;
                 while (true)
                 {
-                    _output.DisplayMessage("Please select from the following options\n" +
-                                           "S: Save current world state to file\n" +
-                                           "C: Continue running simulation\n" +
-                                           "Q: Quit simulation" );
+                    _output.DisplayOptionsForSaveQuitingAndPausing();
                     var stringUserInput = _input.GetUserInput().ToLower();
                     if (!Validator.ValidCharForSimulationInputs(stringUserInput)) continue;
                     userInput = char.Parse(stringUserInput);

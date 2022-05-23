@@ -45,6 +45,7 @@
     &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.GameEngineTest&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.CustomWorldBuilderTest&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.WorldTest.GivenCreateInitialWorld_WhenPatternAndSizeAreGiven_ThenReturnAWorldToThoseSpecifications&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.CommandLineArgumentsTest.GivenCommandLineArgument_WhenPatternNameExists_ThenReturnPatter_n&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3ba786f6_002Db4ec_002D4696_002D8650_002D3362be1ad7b6/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GivenRunSimulation_WhenUserInputIsMocked_ThenShouldCallSaveWorldMethodOnce #6" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;

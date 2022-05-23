@@ -16,6 +16,11 @@ namespace GameOfLifeTest.Mock
             throw new System.NotImplementedException();
         }
 
+        public void Write(string message)
+        {
+            throw new NotImplementedException();
+        }
+
         public string ReadLine()
         {
             return ReadlineOptions;

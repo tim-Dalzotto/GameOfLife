@@ -12,11 +12,7 @@ namespace GameOfLife.Domain
         public Cell[,] WorldPopulation { get; set; }
 
         public bool CustomWorld { get; set; }
-
-        //public string[] Pattern { get; set; }
-
-        //public int PatternIndex { get; set; }
-
+        
         // public World ( int height, int length)
         // {
         //     Height = height;

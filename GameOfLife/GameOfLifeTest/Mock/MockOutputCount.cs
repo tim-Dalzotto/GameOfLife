@@ -45,5 +45,15 @@ namespace GameOfLifeTest
         {
             Count++;
         }
+
+        public void DisplayOptionsForSaveQuitingAndPausing()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void DisplayOptionsForPatternBuilder()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

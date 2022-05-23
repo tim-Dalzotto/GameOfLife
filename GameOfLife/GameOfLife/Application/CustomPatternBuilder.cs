@@ -45,7 +45,7 @@ namespace GameOfLife.Application
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write(CustomPattern[i, j]);
-                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.ResetColor();
                         Console.Write(" ");
 
                     }
@@ -56,7 +56,6 @@ namespace GameOfLife.Application
             }
         }
         
-        //MoveCursor
         public void MoveCursor(char UserInput)
         {
             if (UserInput == 'w')
@@ -106,7 +105,7 @@ namespace GameOfLife.Application
             while (keepBuilding)
             {
                 DisplayWorldBuilder(output);
-                output.DisplayMessage("Press W,A,S,D to move the Cursor\n press P to Populate the cell or O to depopulate the cell \n Or press q to quit world builder");
+                output.DisplayOptionsForPatternBuilder();
                 var userInput = input.GetUserInput().ToLower();
                 if (!Validator.ValidCharForCustomWorldBuilder(userInput))
                 {

@@ -53,7 +53,13 @@ namespace GameOfLife.Application
 
         public static bool ValidCmdLineArgumentIsValidPatternName(IOutput output, string patternName)
         {
+            
             var patternExistsInFile = false;
+            if (!Directory.Exists(patternName))
+            {
+                return true;
+            }
+            
             foreach (var patternInFile in PatternLoader.GetPatternNamesFromFile())
             {
                 if (patternName == Path.GetFileName(patternInFile))

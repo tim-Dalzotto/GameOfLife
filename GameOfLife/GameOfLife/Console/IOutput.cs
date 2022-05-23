@@ -13,5 +13,7 @@ namespace GameOfLife.ConsoleOut
         public void DisplayChoiceForColumnsMessage();
         public void DisplayMessage(string message);
         public void DisplayGameCell(string message);
+        public void DisplayOptionsForSaveQuitingAndPausing();
+        public void DisplayOptionsForPatternBuilder();
     }
 }

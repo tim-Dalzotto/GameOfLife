@@ -66,6 +66,21 @@ namespace GameOfLife.ConsoleOut
         {
             DisplayMessage("How many columns would you like?");
         }
+
+        public void DisplayOptionsForSaveQuitingAndPausing()
+        {
+            DisplayMessage("Please select from the following options\n" +
+                           "S: Save current world state to file\n" +
+                           "C: Continue running simulation\n" +
+                           "Q: Quit simulation" );
+        }
+
+        public void DisplayOptionsForPatternBuilder()
+        {
+            DisplayMessage("Press W,A,S,D to move the Cursor\n " +
+                           "press P to Populate the cell or O to depopulate the cell \n " +
+                           "Or press Q to quit world builder");
+        }
         
         public void DisplayMessage(string message)
         {
@@ -74,7 +89,7 @@ namespace GameOfLife.ConsoleOut
         
         public void DisplayGameCell(string message)
         {
-            Console.Write($"{message}");
+            ConsoleIo.Write(message);
         }
 
     }
