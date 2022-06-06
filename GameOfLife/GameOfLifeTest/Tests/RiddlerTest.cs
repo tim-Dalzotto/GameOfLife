@@ -9,49 +9,53 @@ namespace GameOfLifeTest.Tests
 {
     public class RiddlerTest
     {
-        private static readonly World WorldGen = new World();
-        private readonly Riddler _riddler = new Riddler();
         
         [Fact]
         public void GivenGetUserPatternSelection_WhenUserInputIs1_ThenReturnBoxPattern()
         {
-            var mockConsoleIo = new MockConsoleIO("1");
+            var fakeConsoleIo = new FakeConsoleIO("1");
+            var riddler = new Riddler(new ConsoleUserInput(fakeConsoleIo), new ConsoleOutput(new ConsoleIO()));
             
-            _riddler.GetUserPatternSelection(new ConsoleUserInput(mockConsoleIo), new ConsoleOutput(new ConsoleIO()));
+            riddler.GetUserPatternSelection(TestPatternList.ExampleList);
             
-            Assert.Equal(1, _riddler.PatternIndex);
+            Assert.Equal(1, riddler.PatternIndex);
         }
         
         [Fact]
         public void GivenGetUserPatternSelection_WhenUserInputIsWrongThenCorrect_ThenGetUserInputWillBeCalledTwice()
         {
+            var fakeChangingUserInput = new FakeChangingUserInput("30", "1");
+
+            var riddler = new Riddler(fakeChangingUserInput, new ConsoleOutput(new ConsoleIO()));
             
-            var mockChangingUserInput = new MockChangingUserInput("30", "1");
-            
-            _riddler.GetUserPatternSelection(mockChangingUserInput, new ConsoleOutput(new ConsoleIO()));
+            riddler.GetUserPatternSelection(TestPatternList.ExampleList);
 
             //Assert.Equal(2, mockChangingUserInput.Count);
-            Assert.Equal(1, _riddler.PatternIndex);
+            Assert.Equal(1, riddler.PatternIndex);
         }
         
         [Fact]
         public void GivenGetUserLengthSelection_WhenUserInputIs1_ThenWorldGenInfoLengthShouldBe1()
         {
-            var mockConsoleIo = new MockConsoleIO("1");
+            var fakeConsoleIo = new FakeConsoleIO("1");
+
+            var riddler = new Riddler(new ConsoleUserInput(fakeConsoleIo), new ConsoleOutput(new ConsoleIO()));
             
-            _riddler.GetUserLengthSelection(new ConsoleUserInput(mockConsoleIo), new ConsoleOutput(new ConsoleIO()));
+            riddler.GetUserLengthSelection();
             
-            Assert.Equal(1,_riddler.Length);
+            Assert.Equal(1,riddler.Length);
         }
         
         [Fact]
         public void GivenGetUserWorldHeightSelection_WhenUserInputIs1_ThenWorldGenInfoHeightShouldBe1()
         {
-            var mockConsoleIo = new MockConsoleIO("1");
+            var fakeConsoleIo = new FakeConsoleIO("1");
+
+            var riddler = new Riddler(new ConsoleUserInput(fakeConsoleIo), new ConsoleOutput(new ConsoleIO()));
             
-            _riddler.GetUserWorldHeightSelection(new ConsoleUserInput(mockConsoleIo), new ConsoleOutput(new ConsoleIO()));
+            riddler.GetUserWorldHeightSelection();
             
-            Assert.Equal(1,_riddler.Height);
+            Assert.Equal(1,riddler.Height);
         }
     }
 }

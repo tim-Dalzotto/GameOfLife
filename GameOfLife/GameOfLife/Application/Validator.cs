@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using GameOfLife.ConsoleOut;
@@ -29,7 +30,7 @@ namespace GameOfLife.Application
             return isNumeric;
         }
 
-        public static bool WorldSizeValidator(IOutput output, string input, int minWorldCapacity)
+        public static bool ValidateWorldSize(IOutput output, string input, int minWorldCapacity)
         {
             int intInput;
             var userInputTemp = input;
@@ -37,30 +38,30 @@ namespace GameOfLife.Application
                 intInput = int.Parse(userInputTemp);
             else
             {
-                output.DisplayMessage(ErrorMessageConstants.ErrorNotAnInt);
+                output.DisplayMessage(ValidationConstants.ErrorNotAnInt);
                 return false;
             }
             
             var validator = ValidateUserInputBiggerThanMinRequirements(minWorldCapacity, intInput);
 
             if (validator == false)
-                output.DisplayMessage(ErrorMessageConstants.ErrorNotAValidPatternSelection);
+                output.DisplayMessage(ValidationConstants.ErrorNotAValidPatternSelection);
             else
                 return true;
             return false;
         }
 
 
-        public static bool ValidCmdLineArgumentIsValidPatternName(IOutput output, string patternName)
+        public static bool ValidateCmdLineArgument(IOutput output, string patternName, string[] listOfPatternNames)
         {
             
             var patternExistsInFile = false;
-            if (!Directory.Exists(patternName))
+            if (Directory.Exists(patternName))
             {
                 return true;
             }
             
-            foreach (var patternInFile in PatternLoader.GetPatternNamesFromFile())
+            foreach (var patternInFile in listOfPatternNames)
             {
                 if (patternName == Path.GetFileName(patternInFile))
                     patternExistsInFile = true;
@@ -69,21 +70,14 @@ namespace GameOfLife.Application
             if (patternExistsInFile == false)
             {
                 output.DisplayMessage(patternName);
-                output.DisplayMessage(ErrorMessageConstants.FileDoesNotExist);
+                output.DisplayMessage(ValidationConstants.FileDoesNotExist);
             }
                 
             return patternExistsInFile;
         }
 
-        public static bool ValidCharForCustomWorldBuilder(string userInput)
+        public static bool ValidCharFromListOfChars(string userInput, string allowedChars)
         {
-            const string allowedChars = "wasdopq";
-            return userInput.All(c => allowedChars.Contains(c)) && userInput.Length == 1;
-        }
-
-        public static bool ValidCharForSimulationInputs(string userInput)
-        {
-            const string allowedChars = "qsc";
             return userInput.All(c => allowedChars.Contains(c)) && userInput.Length == 1;
         }
     }

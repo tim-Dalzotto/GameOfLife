@@ -1,58 +1,69 @@
 using System.IO;
 using GameOfLife.Application;
 using GameOfLife.Constants;
+using Moq;
 using Xunit;
 
 namespace GameOfLifeTest.Tests
 {
     public class PatternTest
     {
-        [Fact]
-        public void GivenGetRootPath_WhenCalled_ThenReturnCurrentRootPath()
+        private readonly PatternLoader _patternLoader;
+
+        public PatternTest()
         {
-            var actual = RootPathConstant.GetRootPath("/GameOfLife/GameOfLife/GameOfLifeTest/PatternFileDirectory");
-            Assert.Equal("/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest/PatternFileDirectory", actual);
+            var rootPath = new Mock<RootPathConstant>();
+            rootPath.Setup(m => m.GetRootPath(It.IsAny<string>()))
+                .Returns(
+                    "/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest/PatternFileDirectory");
+            _patternLoader = new PatternLoader(rootPath.Object);
         }
         // [Fact]
-        // public void GivenGetSelectedPattern_WhenUserInput_ThenReturnCorrectPatter()
+        // public void GivenGetRootPath_WhenCalled_ThenReturnCurrentRootPath()
         // {
-        //     var UserInput = 2;
-        //
-        //     var actual = Pattern.GetSelectedPattern(UserInput);
-        //     
-        //     Assert.Equal(ExamplePatterns.ExampleBoxPattern, actual);
-        // }
+        //     var actual = RootPathConstant.GetRootPath("/GameOfLife/GameOfLife/GameOfLifeTest/PatternFileDirectory");
+        //     Assert.Equal("/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest/PatternFileDirectory", actual);
+        // } 
+        [Fact]
+        public void GivenGetSelectedPattern_WhenUserInput_ThenReturnCorrectPatter()
+        {
+            var UserInput = 1;
+        
+            var actual = _patternLoader.GetSelectedPatternFromFile(UserInput);
+            
+            Assert.Equal(ExamplePatterns.EveryCellAlive, actual);
+        }
 
         [Fact]
         public void DisplayNamesOfPatternsInFile()
         {
-            var actual = PatternLoader.GetPatternNamesFromFile();
+            var actual = _patternLoader.GetPatternNamesFromFile();
             
-            Assert.Equal("Duck.txt",Path.GetFileName(actual[0]));
+            Assert.Equal("ThisIsATestFile.txt",Path.GetFileName(actual[0]));
         }
 
         [Fact]
         public void GetPatternFromFile()
         {
-            var actual = PatternLoader.GetPatternFromFile("/Box.txt");
+            var actual = _patternLoader.GetPatternFromFile("/ThisIsATestFile.txt");
             
-            Assert.Equal(ExamplePatterns.ExampleBoxPattern,actual);
+            Assert.Equal(ExamplePatterns.EveryCellAlive,actual);
         }
 
         [Fact]
         public void GetSelectedPatternFromFile()
         {
             var userInput = 1;
-            var actual = PatternLoader.GetSelectedPatternFromFile(userInput);
+            var actual = _patternLoader.GetSelectedPatternFromFile(userInput);
             
-            Assert.Equal(ExamplePatterns.ExampleDuckPattern,actual);
+            Assert.Equal(ExamplePatterns.EveryCellAlive,actual);
         }
 
-        [Fact]
-        public void Given()
-        {
-            
-        }
+        // [Fact]
+        // public void Given()
+        // {
+        //     //var mockPatternLoader = new Mock<PatternLoader>();
+        // }
         
     }
 }

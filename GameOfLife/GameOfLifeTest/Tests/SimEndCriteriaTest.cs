@@ -11,8 +11,7 @@ namespace GameOfLifeTest.Tests
         public void GivenCreateInitialWorld_WhenPatternRepeats_ShouldReturnTrue()
         {
             var currentWorld = ExampleWorlds.WorldEveryCellIsAlive();
-            var listOfPreviousWorlds = new List<string>();
-            listOfPreviousWorlds.Add(JsonConvert.SerializeObject(currentWorld));
+            var listOfPreviousWorlds = JsonConvert.SerializeObject(currentWorld);
 
             var actual = SimEndCriteria.SimulationRepeated(listOfPreviousWorlds, currentWorld);
             
@@ -23,19 +22,11 @@ namespace GameOfLifeTest.Tests
         public void GivenCreateInitialWorld_WhenPatternDoesNotRepeat_ThenReturnFalse()
         {
             var currentWorld = ExampleWorlds.WorldEveryCellIsAlive();
-            var listOfPreviousWorlds = new List<string>();
-            listOfPreviousWorlds.Add(JsonConvert.SerializeObject(ExampleWorlds.WorldEveryCellIsDead()));
+            var listOfPreviousWorlds = JsonConvert.SerializeObject(ExampleWorlds.WorldEveryCellIsDead());
 
             var actual = SimEndCriteria.SimulationRepeated(listOfPreviousWorlds, currentWorld);
             
             Assert.False(actual);
-        }
-
-        public void GivenWorld_WhenEverCellIsDead_ThenReturnTrue()
-        {
-            //arrange
-            //act
-            //asset                   
         }
     }
 }

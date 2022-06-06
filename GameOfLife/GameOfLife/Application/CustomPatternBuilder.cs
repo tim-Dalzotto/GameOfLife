@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using GameOfLife.ConsoleOut;
+using GameOfLife.Constants;
 using GameOfLife.Domain;
 
 namespace GameOfLife.Application
@@ -107,7 +108,7 @@ namespace GameOfLife.Application
                 DisplayWorldBuilder(output);
                 output.DisplayOptionsForPatternBuilder();
                 var userInput = input.GetUserInput().ToLower();
-                if (!Validator.ValidCharForCustomWorldBuilder(userInput))
+                if (!Validator.ValidCharFromListOfChars(userInput, ValidationConstants.AllowedCharsForPatternBuilderOptions))
                 {
                     output.DisplayMessage("Please enter a valid input");
                     continue;

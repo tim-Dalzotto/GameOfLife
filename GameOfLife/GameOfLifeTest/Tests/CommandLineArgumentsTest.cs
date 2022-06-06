@@ -1,24 +1,38 @@
 using GameOfLife.Application;
+using GameOfLife.Constants;
+using Moq;
 using Xunit;
 
 namespace GameOfLifeTest.Tests
 {
     public class CommandLineArgumentsTest
     {
-        [Fact]
-        public void GivenCommandLineArgument_WhenPatternNameExists_ThenReturnPattern()
+        private readonly CommandLineArgument _commandLineArgument;
+
+        public CommandLineArgumentsTest()
         {
-            var actual = CommandLineArguments.GetPatternFromCmdLineArguments("Duck.txt");
+            var rootPath = new Mock<RootPathConstant>();
+            rootPath.Setup(m => m.GetRootPath(It.IsAny<string>()))
+                .Returns(
+                    "/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest/PatternFileDirectory/");
+            _commandLineArgument = new CommandLineArgument(rootPath.Object);
+        }
+        
+        
+        [Fact]
+        public void GivenCommandLineArgument_WhenPatternExistsAtGivenFilePath_ThenReturnPattern()
+        {
+            var actual = _commandLineArgument.GetPatternFromCmdLineArguments("/Users/Timothy.Dalzotto/testPatternFile.txt");
             
-            Assert.Equal("/GameOfLife/GameOfLife/GameOfLife/PatternFileDirectory/Duck.txt", actual);
+            Assert.Equal("/Users/Timothy.Dalzotto/testPatternFile.txt", actual);
         }
         
         [Fact]
-        public void GivenCommandLineArgument_WhenPatternNameExists_ThenReturnPatter_n()
+        public void GivenCommandLineArgument_WhenPatternNameExistsInDefaultFile_ThenReturnPattern()
         {
-            var actual = CommandLineArguments.GetPatternFromCmdLineArguments("/Users/Timothy.Dalzotto/testPatternFile.txt");
+            var actual = _commandLineArgument.GetPatternFromCmdLineArguments("ThisIsATestFile.txt");
             
-            Assert.Equal("/Users/Timothy.Dalzotto/testPatternFile.txt", actual);
+            Assert.Equal("/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest/PatternFileDirectory/ThisIsATestFile.txt", actual);
         }
         
         

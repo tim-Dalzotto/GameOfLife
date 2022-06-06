@@ -8,11 +8,10 @@ namespace GameOfLife.Application
 {
     public static class SimEndCriteria
     {
-        public static bool SimulationRepeated(List<string> pastWorlds, World currentWorld)
+        public static bool SimulationRepeated(string pastWorlds, World currentWorld)
         {
+            return pastWorlds.Equals(JsonConvert.SerializeObject(currentWorld));
             return pastWorlds.Contains(JsonConvert.SerializeObject(currentWorld));
         }
     }
-    
-    
 }

@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using GameOfLife.ConsoleOut;
+using GameOfLife.Constants;
 using GameOfLife.Domain;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 namespace GameOfLife.Application
 {
-    public class GameEngine : IGameEngine
+    public class GameEngine
     {
         private readonly IOutput _output;
         private readonly IUserInput _input;
@@ -32,16 +33,11 @@ namespace GameOfLife.Application
             
             return nextGeneration;
         }
-        
-        public void PlayGame()
-        {
-            //GameRules.CreateInitialWorld(_world, _pattern);
-            RunSimulation();
-        }
 
         public void RunSimulation()
         {
             var count = 1;
+            var previousWorld = "";
             var keepRunning = true;
             while (keepRunning)
             {
@@ -50,16 +46,19 @@ namespace GameOfLife.Application
                     Console.Clear();
                     _output.DisplayMessage(count.ToString());
                     _output.DisplayWorld(_world);
+                    previousWorld = JsonConvert.SerializeObject(_world);
                     _world = RunNextGeneration();
-                    Thread.Sleep(100);
+                    Thread.Sleep(1000);
                     count++;
+                    if (SimEndCriteria.SimulationRepeated(previousWorld, _world))
+                        break;
                 }
                 char userInput;
                 while (true)
                 {
                     _output.DisplayOptionsForSaveQuitingAndPausing();
                     var stringUserInput = _input.GetUserInput().ToLower();
-                    if (!Validator.ValidCharForSimulationInputs(stringUserInput)) continue;
+                    if (!Validator.ValidCharFromListOfChars(stringUserInput,ValidationConstants.AllowedCharsForSimulationMenuOptions)) continue;
                     userInput = char.Parse(stringUserInput);
                     break;
                 }
@@ -68,7 +67,7 @@ namespace GameOfLife.Application
                 {
                     case 's':
                         _pattern.UpdatePatternFromGameWorldStringArray(_world);
-                        WantToSaveWorld(_pattern.CurrentPattern);
+                        SaveWorld(_pattern.CurrentPattern);
                         break;
                     case 'q':
                         keepRunning = false;
@@ -79,11 +78,14 @@ namespace GameOfLife.Application
             }   
         }
 
-        public virtual void WantToSaveWorld(string[] currentPattern)
+        public virtual void SaveWorld(string[] currentPattern)
         {
+            var rootPath = new RootPathConstant();
+            var patternSaver = new PatternSaver(rootPath);
             _output.DisplayMessage("Please Enter file name");
             var fileName = _input.GetUserInput();
-            PatternSaver.SavePatternToFile(currentPattern, fileName);
+            patternSaver.SavePatternToFile(currentPattern, fileName);
         }
+        
     }
 }

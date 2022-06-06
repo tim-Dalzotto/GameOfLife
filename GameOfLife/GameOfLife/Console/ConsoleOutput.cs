@@ -38,11 +38,11 @@ namespace GameOfLife.ConsoleOut
             // DisplayMessage($"3.{Pattern.PatternEnum.Duck}");
         }
 
-        public void DisplayPatternSelectionFromFile()
+        public void DisplayPatternSelectionFromFile(string[] ArrayOfPatternToBeDisplayed)
         {
             DisplayMessage("Please select a pattern to load");
             var count = 1;
-            foreach (var pattern in PatternLoader.GetPatternNamesFromFile())
+            foreach (var pattern in ArrayOfPatternToBeDisplayed)
             {
                 DisplayMessage($"{count.ToString()}: "+Path.GetFileName(pattern)[..^4]);
                 count++;
@@ -86,7 +86,6 @@ namespace GameOfLife.ConsoleOut
         {
             ConsoleIo.WriteLine(message);
         }
-        
         public void DisplayGameCell(string message)
         {
             ConsoleIo.Write(message);

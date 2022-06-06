@@ -4,17 +4,6 @@ namespace GameOfLife.Domain
 {
     public static class GameRules
     {
-        // public static World CreateInitialWorld(World emptyWorld, Pattern pattern)
-        // {
-        //     //initialise Rectangle world Test 
-        //     
-        //     emptyWorld.InitialiseWorld();
-        //     //load format pattern
-        //     var loadedWorld =  emptyWorld.LoadPatternIntoWorld(pattern);
-        //     //return formatted World 
-        //     return loadedWorld;
-        // }
-
         public static World UpdateWorldWithNextGen(World world)
         {
             var currentWorld = world;
@@ -24,8 +13,6 @@ namespace GameOfLife.Domain
 
             var newWorld = new World();
             newWorld.InitialiseWorld(height,length);
-            //this should not be here, add it's own check
-            var livingCellCount = 0;
             for (var x = 0; x < currentWorld.Height; x++)
             {
                 for (var y = 0; y < currentWorld.Length; y++)
@@ -35,10 +22,6 @@ namespace GameOfLife.Domain
                     var liveNeighbours = FindLiveNeighbours(x, length, y, height, currentWorld);
 
                     PopulateNextGeneration(currentCell, liveNeighbours, newWorld, x, y);
-                    //---------------------------------------------------------------------------------------------------
-                    //This will check to see if there are any living cells left 
-                    if (currentCell.IsAlive == true)
-                        livingCellCount++;
                     currentWorld.WorldPopulation[x, y] = currentCell;
                 }
             }

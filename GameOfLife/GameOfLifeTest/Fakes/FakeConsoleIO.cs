@@ -3,22 +3,24 @@ using GameOfLife.ConsoleOut;
 
 namespace GameOfLifeTest.Mock
 {
-    public class MockConsoleIO: IConsoleIO
+    public class FakeConsoleIO: IConsoleIO
     {
-        public MockConsoleIO(string readlineOptions)
+        public FakeConsoleIO(string readlineOptions)
         {
             ReadlineOptions = readlineOptions;
         }
 
         private string ReadlineOptions { get; }
+        public string WriteLineOptions { get; set; }
+        public  string WriteOptions { get; set; }
         public void WriteLine(string message)
         {
-            throw new System.NotImplementedException();
+            WriteLineOptions = message;
         }
 
         public void Write(string message)
         {
-            throw new NotImplementedException();
+            WriteOptions = message;
         }
 
         public string ReadLine()

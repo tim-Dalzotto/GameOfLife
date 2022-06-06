@@ -13,17 +13,25 @@ namespace GameOfLifeTest.Tests
 {
     public class GameEngineTest
     {
-        
-        
+        private readonly ConsoleUserInput _input;
+        private readonly ConsoleOutput _output;
+        private readonly KeyPress _keyPress;
+        private readonly ConsoleIO _consoleIo = new ();
+
+        public GameEngineTest()
+        {
+            _input = new ConsoleUserInput(_consoleIo);
+            _output = new ConsoleOutput(_consoleIo);
+            _keyPress = new KeyPress(_consoleIo);
+            
+        }
+
         [Fact]
         public void RunNextGenerationTest_WhenAllCellsAlive_ThenReturnNextGenerationAllCellsAreDead()
         {
-            var input = new ConsoleUserInput(new ConsoleIO());
-            var output = new ConsoleOutput(new ConsoleIO());
-            var keyPress = new KeyPress(new ConsoleIO());
             var pattern = new Pattern(ExamplePatterns.EveryCellDead);
             //Arrange 
-            var gameEngine = new GameEngine(input, output, keyPress, pattern, ExampleWorlds.WorldEveryCellIsAlive());
+            var gameEngine = new GameEngine(_input, _output, _keyPress, pattern, ExampleWorlds.WorldEveryCellIsAlive());
             //Act
             var actual = gameEngine.RunNextGeneration();
             //Assert
@@ -33,13 +41,10 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void RunNextGenerationTest_WhenAllCellsDead_ThenReturnNextGenerationAllCellsAreDead()
         {
-            var input = new ConsoleUserInput(new ConsoleIO());
-            var output = new ConsoleOutput(new ConsoleIO());
-            var keyPress = new KeyPress(new ConsoleIO());
+           
             var pattern = new Pattern(ExamplePatterns.EveryCellDead);
-            var world = new World();
             //Arrange 
-            var gameEngine = new GameEngine(input, output, keyPress, pattern, ExampleWorlds.WorldEveryCellIsDead());
+            var gameEngine = new GameEngine(_input, _output, _keyPress, pattern, ExampleWorlds.WorldEveryCellIsDead());
             //Act
             var actual = gameEngine.RunNextGeneration();
             //Assert
@@ -49,21 +54,18 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void GivenRunSimulation_WhenUserInputIsMocked_ThenShouldCallSaveWorldMethodOnce()
         {
-            var mockInput = new MockChangingUserInput("S","Q");
-            var output = new ConsoleOutput(new ConsoleIO());
+            var fakeInput = new FakeChangingUserInput("S","Q"); //Fake
             
-            var mockKeyPress = new Mock<IKeyPress>();
+            var mockKeyPress = new Mock<IKeyPress>();//stub
             mockKeyPress.Setup(mock => mock.CheckKeyAvailable()).Returns(true);
             mockKeyPress.Setup(mock => mock.CheckReadKey()).Returns(ConsoleKey.P);
 
-            var pattern = new Pattern(ExamplePatterns.EveryCellAlive);
+            var pattern = new Pattern(ExamplePatterns.EveryCellAlive /*fake*/);
             
-            var gameEngine = new Mock<GameEngine>(mockInput, output, mockKeyPress.Object, pattern, ExampleWorlds.WorldEveryCellIsAlive());
-            //gameEngine.CallBase = false;
-            //gameEngine.Setup(mock => mock.RunSimulation(new World(10,10))).CallBase();
-            
+            var gameEngine = new Mock<GameEngine>(fakeInput, _output, mockKeyPress.Object, pattern, ExampleWorlds.WorldEveryCellIsAlive()); //spy
+
             gameEngine.Object.RunSimulation();
-            gameEngine.Verify(mock => mock.WantToSaveWorld(It.IsAny<string[]>()), Times.Exactly(1));
+            gameEngine.Verify(mock => mock.SaveWorld(It.IsAny<string[]>()/*dummy*/), Times.Exactly(1));//spy usage 
         }
     }
 }

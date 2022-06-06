@@ -3,7 +3,7 @@ using GameOfLife.Domain;
 
 namespace GameOfLifeTest
 {
-    public class MockOutputCount : IOutput
+    public class FakeOutputCount : IOutput
     {
         public int Count { get; set; } = 0;
         public void DisplayWorld(World world)
@@ -21,11 +21,11 @@ namespace GameOfLifeTest
             throw new System.NotImplementedException();
         }
 
-        public void DisplayPatternSelectionFromFile()
+        public void DisplayPatternSelectionFromFile(string[] arrayOfPatternsToBeDisplayed)
         {
             throw new System.NotImplementedException();
         }
-
+        
         public void DisplayChoiceForRowsMessage()
         {
             throw new System.NotImplementedException();

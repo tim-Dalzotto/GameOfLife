@@ -1,6 +1,7 @@
 using System.Runtime.InteropServices;
 using GameOfLife.Application;
 using GameOfLife.ConsoleOut;
+using GameOfLife.Constants;
 using GameOfLife.Domain;
 using Xunit;
 
@@ -40,7 +41,7 @@ namespace GameOfLifeTest.Tests
         [InlineData(0, false)]
         public void GivenValidatePatternSelection_WhenGivenUserInput_ThenReturnExpectedResult(int userInput, bool expected)
         {
-            var actual = Validator.ValidateUserSelectedPatternExists(userInput, PatternLoader.GetPatternNamesFromFile());
+            var actual = Validator.ValidateUserSelectedPatternExists(userInput, TestPatternList.ExampleList);
             
             Assert.Equal(expected, actual);
 
@@ -63,7 +64,7 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void GivenCommandLineArgumentPatternName_WhenPatternNameExistInfile_ThenReturnTrue()
         {
-            var actual = Validator.ValidCmdLineArgumentIsValidPatternName(new ConsoleOutput(new ConsoleIO()), "Glider.txt");
+            var actual = Validator.ValidateCmdLineArgument(new ConsoleOutput(new ConsoleIO()), "TestPattern1", TestPatternList.ExampleList);
             
             Assert.True(actual);
         }
@@ -71,7 +72,7 @@ namespace GameOfLifeTest.Tests
         [Fact]
         public void GivenCommandLineArgumentPatternName_WhenPatternNameDoesNotExistInfile_ThenReturnFalse()
         {
-            var actual = Validator.ValidCmdLineArgumentIsValidPatternName(new ConsoleOutput(new ConsoleIO()),"ThisTestWillBeFalse.txt");
+            var actual = Validator.ValidateCmdLineArgument(new ConsoleOutput(new ConsoleIO()),"ThisTestWillBeFalse.txt", TestPatternList.ExampleList);
             
             Assert.False(actual);
         }
@@ -85,7 +86,7 @@ namespace GameOfLifeTest.Tests
         [InlineData("L",false)]
         public void GivenValidCharForSimulationInputOptions_WhenInputIsEitherSorQorC_ThenReturnTrue(string input, bool expectedResult)
         {
-            var actual = Validator.ValidCharForSimulationInputs(input);
+            var actual = Validator.ValidCharFromListOfChars(input, ValidationConstants.AllowedCharsForSimulationMenuOptions);
             
             Assert.Equal(expectedResult, actual);
         }
@@ -102,10 +103,11 @@ namespace GameOfLifeTest.Tests
         [InlineData("wa",false)]
         public void GivenValidCharForCustomWorldBuilder_WhenInputIsEitherWorAorSorDorOorP_ThenReturnTrue(string input, bool expectedResult)
         {
-            var actual = Validator.ValidCharForCustomWorldBuilder(input);
+            var actual = Validator.ValidCharFromListOfChars(input, ValidationConstants.AllowedCharsForPatternBuilderOptions);
             
             Assert.Equal(expectedResult, actual);
         }
+        
         
     }
 }

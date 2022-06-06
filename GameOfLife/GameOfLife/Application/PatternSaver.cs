@@ -3,11 +3,17 @@ using GameOfLife.Constants;
 
 namespace GameOfLife.Application
 {
-    public static class PatternSaver
+    public class PatternSaver
     {
-        public static void SavePatternToFile(string[] pattern, string patternName)
+        private readonly RootPathConstant _rootPathConstant;
+
+        public PatternSaver(RootPathConstant rootPathConstant)
         {
-            File.WriteAllLinesAsync(RootPathConstant.RootPath + "/" + patternName + ".txt", pattern);
+            _rootPathConstant = rootPathConstant;
+        }
+        public void SavePatternToFile(string[] pattern, string patternName)
+        {
+            File.WriteAllLinesAsync(_rootPathConstant.RootPath + "/" + patternName + ".txt", pattern);
         }
     }
 }

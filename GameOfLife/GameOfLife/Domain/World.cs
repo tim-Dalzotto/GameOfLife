@@ -6,27 +6,13 @@ namespace GameOfLife.Domain
 {
     public class World
     {
-        public int Length { get; set; }
+        public int Length { get; private set; }
 
-        public int Height { get; set; }
-        public Cell[,] WorldPopulation { get; set; }
+        public int Height { get; private set; }
+        public Cell[,] WorldPopulation { get; private set; }
 
         public bool CustomWorld { get; set; }
         
-        // public World ( int height, int length)
-        // {
-        //     Height = height;
-        //     Length = length;
-        //     WorldPopulation = new Cell[height,length];
-        //     
-        //     for(var i = 0; i < Height; i++)
-        //     {
-        //         for (var j = 0; j < Length; j++)
-        //         {
-        //             WorldPopulation[i, j] = new Cell { };
-        //         }
-        //     }
-        // }
 
         public void InitialiseWorld(int height, int length)
         {

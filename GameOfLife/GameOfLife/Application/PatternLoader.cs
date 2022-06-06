@@ -2,39 +2,36 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using GameOfLife.Constants;
 
 namespace GameOfLife.Application
 {
-    public static class PatternLoader
+    public class PatternLoader
     {
-        private static readonly string RootPath = GetRootPath("/GameOfLife/GameOfLife/GameOfLife/PatternFileDirectory/");
+        private readonly RootPathConstant _rootPathConstant;
 
-
-        private static string GetRootPath(string pathFromRootToSelectedFile)
+        public PatternLoader(RootPathConstant rootPathConstant)
         {
-            var customRootPath = Directory.GetParent(Environment.CurrentDirectory)?.Parent?.Parent?.FullName;
-            var subRootPath = customRootPath[..37];
-            return $"{subRootPath}{pathFromRootToSelectedFile}";
+            _rootPathConstant = rootPathConstant;
         }
-        
-        public static string[] GetPatternNamesFromFile()
+        public string[] GetPatternNamesFromFile()
         {
-            var fileArray = Directory.GetFiles(RootPath, "*.txt", SearchOption.AllDirectories)
+            var fileArray = Directory.GetFiles(_rootPathConstant.RootPath, "*.txt", SearchOption.AllDirectories)
                 .Select(s => Path.GetFullPath(s)).ToArray();
             return fileArray;
         }
 
-        public static string[] GetPatternFromFile(string fileName)
+        public string[] GetPatternFromFile(string fileName)
         {
             var newStringList = new List<string>();
-            foreach (var line in File.ReadLines(RootPath + fileName))
+            foreach (var line in File.ReadLines(_rootPathConstant.RootPath + fileName))
             {
                 newStringList.Add(line);
             }
             return newStringList.ToArray();
         }
         
-        public static string[] GetPatternFromFileArgument(string absoluteFilePath)
+        public string[] GetPatternFromFileArgument(string absoluteFilePath)
         {
             var newStringList = new List<string>();
             foreach (var line in File.ReadLines(absoluteFilePath))
@@ -44,7 +41,7 @@ namespace GameOfLife.Application
             return newStringList.ToArray();
         }
 
-        public static string[] GetSelectedPatternFromFile(int userInput)
+        public string[] GetSelectedPatternFromFile(int userInput)
         {
             if (userInput > GetPatternNamesFromFile().Length)
                 return new[] {"-"};

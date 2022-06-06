@@ -10,38 +10,44 @@ namespace GameOfLife.ConsoleOut
         public int Height { get; private set; }
         public int Length { get; private set; }
         public int PatternIndex { get; private set; }
+        private readonly IUserInput _input;
+        private readonly IOutput _output;
 
-        public void GetUserPatternSelection(IUserInput input, IOutput output)
+        public Riddler(IUserInput userInput, IOutput output)
+        {
+            _input = userInput;
+            _output = output;
+        }
+
+
+        public void GetUserPatternSelection( string[] ArrayOfPatternNames)
         {
             var validator = false;
             var userSelectionPatternChoice = 0;
             while (!validator)
             {
-                output.DisplayPatternSelectionFromFile();
-                var userInputTemp = input.GetUserInput();
+                _output.DisplayPatternSelectionFromFile(ArrayOfPatternNames);
+                var userInputTemp = _input.GetUserInput();
                 if (Validator.IsNumeric(userInputTemp))
                     userSelectionPatternChoice = int.Parse(userInputTemp);
                 else
                     break;
-                validator = Validator.ValidateUserSelectedPatternExists(userSelectionPatternChoice, PatternLoader.GetPatternNamesFromFile());
+                validator = Validator.ValidateUserSelectedPatternExists(userSelectionPatternChoice, ArrayOfPatternNames);
             }
-
-            
-            
             PatternIndex = userSelectionPatternChoice;          
         }
 
-        public void GetUserWorldHeightSelection(IUserInput input, IOutput output)
+        public void GetUserWorldHeightSelection()
         {
-            output.DisplayChoiceForRowsMessage();
-            var userInput = int.Parse(input.GetUserInput());
+            _output.DisplayChoiceForRowsMessage();
+            var userInput = int.Parse(_input.GetUserInput());
             Height = userInput;
         }
 
-        public void GetUserLengthSelection(IUserInput input, IOutput output)
+        public void GetUserLengthSelection()
         {
-            output.DisplayChoiceForColumnsMessage();
-            var userInput = int.Parse(input.GetUserInput());
+            _output.DisplayChoiceForColumnsMessage();
+            var userInput = int.Parse(_input.GetUserInput());
             Length = userInput;
         }
         
