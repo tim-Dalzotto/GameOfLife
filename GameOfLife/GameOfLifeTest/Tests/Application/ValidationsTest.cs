@@ -55,7 +55,7 @@ namespace GameOfLifeTest.Tests
         [InlineData("2.3", false)]
         public void GivenValidateIsNumeric_WhenGivenStringInputCanBeConvertedToInt_ThenReturnTrue(string userInput, bool expected)
         {
-            var actual = Validator.IsNumeric(userInput);
+            var actual = Validator.ValidateIfIsNumeric(userInput);
             
             Assert.Equal(expected, actual);
 
@@ -86,7 +86,7 @@ namespace GameOfLifeTest.Tests
         [InlineData("L",false)]
         public void GivenValidCharForSimulationInputOptions_WhenInputIsEitherSorQorC_ThenReturnTrue(string input, bool expectedResult)
         {
-            var actual = Validator.ValidCharFromListOfChars(input, ValidationConstants.AllowedCharsForSimulationMenuOptions);
+            var actual = Validator.ValidateCharFromListOfChars(input, ValidationConstants.AllowedCharsForSimulationMenuOptions);
             
             Assert.Equal(expectedResult, actual);
         }
@@ -103,7 +103,7 @@ namespace GameOfLifeTest.Tests
         [InlineData("wa",false)]
         public void GivenValidCharForCustomWorldBuilder_WhenInputIsEitherWorAorSorDorOorP_ThenReturnTrue(string input, bool expectedResult)
         {
-            var actual = Validator.ValidCharFromListOfChars(input, ValidationConstants.AllowedCharsForPatternBuilderOptions);
+            var actual = Validator.ValidateCharFromListOfChars(input, ValidationConstants.AllowedCharsForPatternBuilderOptions);
             
             Assert.Equal(expectedResult, actual);
         }

@@ -1,18 +1,15 @@
-using System;
 using System.IO;
-using System.Linq;
-using GameOfLife.Application;
 using GameOfLife.Domain;
 
 namespace GameOfLife.ConsoleOut
 {
     public class ConsoleOutput : IOutput
     {
-        private readonly IConsoleIO ConsoleIo;
+        private readonly IConsoleIO _consoleIO;
 
         public ConsoleOutput(IConsoleIO consoleIo)
         {
-            ConsoleIo = consoleIo;
+            _consoleIO = consoleIo;
         }
         
         public void DisplayWorld(World world)
@@ -21,7 +18,7 @@ namespace GameOfLife.ConsoleOut
             {
                 for (var j = 0; j < world.WorldPopulation.GetLength(1); j++)
                 {
-                    DisplayGameCell(world.WorldPopulation[i, j].IsAlive == true ? "0" : "-");
+                    DisplayGameCell(world.WorldPopulation[i, j].IsAlive ? "0" : "-");
                     DisplayGameCell(" ");
                 }
                 DisplayGameCell("\n");
@@ -29,20 +26,11 @@ namespace GameOfLife.ConsoleOut
             DisplayMessage("Press 'p' at anytime to pause the simulation");
         }
 
-        public void DisplayPatternSelection()
-        {
-            // DisplayMessage("Please select a pattern to load");
-            // DisplayMessage($"1.{Pattern.PatternEnum.Glider}");
-            // //DisplayMessage($"1.{Enum.GetName(typeof(Pattern.PatternEnum),1)}");
-            // DisplayMessage($"2.{Pattern.PatternEnum.Box}");
-            // DisplayMessage($"3.{Pattern.PatternEnum.Duck}");
-        }
-
-        public void DisplayPatternSelectionFromFile(string[] ArrayOfPatternToBeDisplayed)
+        public void DisplayPatternSelectionFromFile(string[] arrayOfPatternToBeDisplayed)
         {
             DisplayMessage("Please select a pattern to load");
             var count = 1;
-            foreach (var pattern in ArrayOfPatternToBeDisplayed)
+            foreach (var pattern in arrayOfPatternToBeDisplayed)
             {
                 DisplayMessage($"{count.ToString()}: "+Path.GetFileName(pattern)[..^4]);
                 count++;
@@ -84,11 +72,11 @@ namespace GameOfLife.ConsoleOut
         
         public void DisplayMessage(string message)
         {
-            ConsoleIo.WriteLine(message);
+            _consoleIO.WriteLine(message);
         }
         public void DisplayGameCell(string message)
         {
-            ConsoleIo.Write(message);
+            _consoleIO.Write(message);
         }
 
     }

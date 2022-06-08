@@ -6,11 +6,11 @@ using Xunit;
 
 namespace GameOfLifeTest.Tests
 {
-    public class PatternTest
+    public class PatternLoaderTest
     {
         private readonly PatternLoader _patternLoader;
 
-        public PatternTest()
+        public PatternLoaderTest()
         {
             var rootPath = new Mock<RootPathConstant>();
             rootPath.Setup(m => m.GetRootPath(It.IsAny<string>()))
@@ -18,12 +18,7 @@ namespace GameOfLifeTest.Tests
                     "/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest/PatternFileDirectory");
             _patternLoader = new PatternLoader(rootPath.Object);
         }
-        // [Fact]
-        // public void GivenGetRootPath_WhenCalled_ThenReturnCurrentRootPath()
-        // {
-        //     var actual = RootPathConstant.GetRootPath("/GameOfLife/GameOfLife/GameOfLifeTest/PatternFileDirectory");
-        //     Assert.Equal("/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest/PatternFileDirectory", actual);
-        // } 
+        
         [Fact]
         public void GivenGetSelectedPattern_WhenUserInput_ThenReturnCorrectPatter()
         {
@@ -58,12 +53,5 @@ namespace GameOfLifeTest.Tests
             
             Assert.Equal(ExamplePatterns.EveryCellAlive,actual);
         }
-
-        // [Fact]
-        // public void Given()
-        // {
-        //     //var mockPatternLoader = new Mock<PatternLoader>();
-        // }
-        
     }
 }

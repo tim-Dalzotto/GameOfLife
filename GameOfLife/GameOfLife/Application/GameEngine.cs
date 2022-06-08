@@ -1,11 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using GameOfLife.ConsoleOut;
 using GameOfLife.Constants;
 using GameOfLife.Domain;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace GameOfLife.Application
 {
@@ -37,7 +35,6 @@ namespace GameOfLife.Application
         public void RunSimulation()
         {
             var count = 1;
-            var previousWorld = "";
             var keepRunning = true;
             while (keepRunning)
             {
@@ -46,9 +43,9 @@ namespace GameOfLife.Application
                     Console.Clear();
                     _output.DisplayMessage(count.ToString());
                     _output.DisplayWorld(_world);
-                    previousWorld = JsonConvert.SerializeObject(_world);
+                    var previousWorld = JsonConvert.SerializeObject(_world);
                     _world = RunNextGeneration();
-                    Thread.Sleep(1000);
+                    Thread.Sleep(100);
                     count++;
                     if (SimEndCriteria.SimulationRepeated(previousWorld, _world))
                         break;
@@ -58,7 +55,7 @@ namespace GameOfLife.Application
                 {
                     _output.DisplayOptionsForSaveQuitingAndPausing();
                     var stringUserInput = _input.GetUserInput().ToLower();
-                    if (!Validator.ValidCharFromListOfChars(stringUserInput,ValidationConstants.AllowedCharsForSimulationMenuOptions)) continue;
+                    if (!Validator.ValidateCharFromListOfChars(stringUserInput,ValidationConstants.AllowedCharsForSimulationMenuOptions)) continue;
                     userInput = char.Parse(stringUserInput);
                     break;
                 }

@@ -4,17 +4,15 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using GameOfLife.ConsoleOut;
 using GameOfLife.Constants;
-using GameOfLife.Domain;
 
 namespace GameOfLife.Application
 {
     public class CustomPatternBuilder
     {
-        public int Height { get; set; }
-        public int Length { get; set; }
-
+        private int Height { get; set; }
+        private int Length { get; set; }
         public string[,] CustomPattern { get; set; }
-        public string[] ConvertedCustomPattern { get; set; }
+        public string[] ConvertedCustomPattern { get; private set; }
         public int CursorYValue { get; set; }
         public int CursorXValue { get; set; }
 
@@ -57,16 +55,16 @@ namespace GameOfLife.Application
             }
         }
         
-        public void MoveCursor(char UserInput)
+        public void MoveCursor(char userInput)
         {
-            if (UserInput == 'w')
+            if (userInput == 'w')
             {
                 if (CursorYValue == 0)
                     CursorYValue = Height -1;
                 else
                     CursorYValue--;
             }
-            if (UserInput == 's')
+            if (userInput == 's')
             {
                 if (CursorYValue == Height)
                     CursorYValue = 0;
@@ -74,14 +72,14 @@ namespace GameOfLife.Application
                     CursorYValue++;
             }
             
-            if (UserInput == 'a')
+            if (userInput == 'a')
             {
                 if (CursorXValue == 0)
                     CursorXValue = Length -1;
                 else
                     CursorXValue--;
             }
-            if (UserInput == 'd')
+            if (userInput == 'd')
             {
                 if (CursorXValue == Length)
                     CursorXValue = 0;
@@ -96,9 +94,6 @@ namespace GameOfLife.Application
             CustomPattern[CursorYValue,CursorXValue] = setState;
         }
         
-        //MakeThePattern
-
-
         [SuppressMessage("ReSharper", "HeapView.BoxingAllocation")]
         public void MakePattern(IUserInput input, IOutput output)
         {
@@ -108,7 +103,7 @@ namespace GameOfLife.Application
                 DisplayWorldBuilder(output);
                 output.DisplayOptionsForPatternBuilder();
                 var userInput = input.GetUserInput().ToLower();
-                if (!Validator.ValidCharFromListOfChars(userInput, ValidationConstants.AllowedCharsForPatternBuilderOptions))
+                if (!Validator.ValidateCharFromListOfChars(userInput, ValidationConstants.AllowedCharsForPatternBuilderOptions))
                 {
                     output.DisplayMessage("Please enter a valid input");
                     continue;

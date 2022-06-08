@@ -6,7 +6,6 @@ namespace GameOfLife.ConsoleOut
     public interface IOutput
     {
         public void DisplayWorld(World world);
-        public void DisplayPatternSelection();
         public void DisplayGameBoardSizeSelectionMessage(int minRowSize, int minColumnSize);
         public void DisplayPatternSelectionFromFile(string[] arrayOfPatternsToBeDisplayed);
         public void DisplayChoiceForRowsMessage();

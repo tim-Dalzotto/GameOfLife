@@ -22,11 +22,9 @@ namespace GameOfLife.Application
             CurrentPattern = currentPattern;
         }
         
-        
-
         public void UpdatePatternFromGameWorldStringArray(World currentCellArray)
         {
-            List<string> convertedList = new List<string>();
+            var convertedList = new List<string>();
             for(var i = 0; i < currentCellArray.Height; i++)
             {
                 string tempString = null;
@@ -39,54 +37,7 @@ namespace GameOfLife.Application
                 }
                 convertedList.Add(tempString);
             }
-
             CurrentPattern = convertedList.ToArray();
         }
-        
-        #region old stuff
-        private static string[] PatternBox()
-        {
-            var shipPattern = new string[]
-            {
-                "--000-\n", 
-                "-000--\n"
-            };
-            return shipPattern;
-        }
-        
-        private static string[] PatternDuck()
-        {
-            var shipPattern = new string[]
-            {
-                "--------",
-                "-000000-",
-                "0-----0-",
-                "------0-",
-                "0----0--",
-                "--00----"
-            };
-                
-            return shipPattern;
-        }
-
-        private static string[] PatternGlider()
-        {
-            var gliderPattern = new string[]
-            {
-                "-------------------------0----------", 
-                "----------------------0000----0-----", 
-                "-------------0-------0000-----0-----",
-                "------------0-0------0--0---------00", 
-                "-----------0---00----0000---------00",
-                "00---------0---00-----0000----------", 
-                "00---------0---00--------0----------", 
-                "------------0-0---------------------", 
-                "-------------0----------------------"
-            };
-                
-            return gliderPattern;
-        }
-        #endregion
-
     }
 }

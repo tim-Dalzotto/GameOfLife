@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,28 +16,18 @@ namespace GameOfLife.Application
         public string[] GetPatternNamesFromFile()
         {
             var fileArray = Directory.GetFiles(_rootPathConstant.RootPath, "*.txt", SearchOption.AllDirectories)
-                .Select(s => Path.GetFullPath(s)).ToArray();
+                .Select(Path.GetFullPath).ToArray();
             return fileArray;
         }
 
         public string[] GetPatternFromFile(string fileName)
         {
-            var newStringList = new List<string>();
-            foreach (var line in File.ReadLines(_rootPathConstant.RootPath + fileName))
-            {
-                newStringList.Add(line);
-            }
-            return newStringList.ToArray();
+            return File.ReadLines(_rootPathConstant.RootPath + fileName).ToArray();
         }
         
         public string[] GetPatternFromFileArgument(string absoluteFilePath)
         {
-            var newStringList = new List<string>();
-            foreach (var line in File.ReadLines(absoluteFilePath))
-            {
-                newStringList.Add(line);
-            }
-            return newStringList.ToArray();
+            return File.ReadLines(absoluteFilePath).ToArray();
         }
 
         public string[] GetSelectedPatternFromFile(int userInput)

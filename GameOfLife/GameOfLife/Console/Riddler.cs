@@ -1,7 +1,4 @@
-using System;
 using GameOfLife.Application;
-using GameOfLife.Constants;
-using GameOfLife.Domain;
 
 namespace GameOfLife.ConsoleOut
 {
@@ -20,19 +17,19 @@ namespace GameOfLife.ConsoleOut
         }
 
 
-        public void GetUserPatternSelection( string[] ArrayOfPatternNames)
+        public void GetUserPatternSelection(string[] arrayOfPatternNames)
         {
             var validator = false;
             var userSelectionPatternChoice = 0;
             while (!validator)
             {
-                _output.DisplayPatternSelectionFromFile(ArrayOfPatternNames);
+                _output.DisplayPatternSelectionFromFile(arrayOfPatternNames);
                 var userInputTemp = _input.GetUserInput();
-                if (Validator.IsNumeric(userInputTemp))
+                if (Validator.ValidateIfIsNumeric(userInputTemp))
                     userSelectionPatternChoice = int.Parse(userInputTemp);
                 else
-                    break;
-                validator = Validator.ValidateUserSelectedPatternExists(userSelectionPatternChoice, ArrayOfPatternNames);
+                    continue;
+                validator = Validator.ValidateUserSelectedPatternExists(userSelectionPatternChoice, arrayOfPatternNames);
             }
             PatternIndex = userSelectionPatternChoice;          
         }

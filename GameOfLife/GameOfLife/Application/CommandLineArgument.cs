@@ -14,7 +14,6 @@ namespace GameOfLife.Application
         } 
         public string GetPatternFromCmdLineArguments(string patternName)
         {
-            // var fullPath = Path.GetFullPath(patternName);
             if (File.Exists(patternName))
             {
                 return patternName;
@@ -22,7 +21,6 @@ namespace GameOfLife.Application
             
             var absolutePath = _rootPathConstant.RootPath;
             return absolutePath + patternName;
-            //Check if arg is file name or file path
         }
     }
 }

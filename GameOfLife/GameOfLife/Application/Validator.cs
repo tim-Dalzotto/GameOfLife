@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using GameOfLife.ConsoleOut;
@@ -24,7 +22,7 @@ namespace GameOfLife.Application
             return listOfAvailablePatterns.Length + 1 >= userInput && userInput > 0;
         }
 
-        public static bool IsNumeric(string userInput)
+        public static bool ValidateIfIsNumeric(string userInput)
         {
             var isNumeric = int.TryParse(userInput, out _);
             return isNumeric;
@@ -34,7 +32,7 @@ namespace GameOfLife.Application
         {
             int intInput;
             var userInputTemp = input;
-            if (IsNumeric(userInputTemp))
+            if (ValidateIfIsNumeric(userInputTemp))
                 intInput = int.Parse(userInputTemp);
             else
             {
@@ -56,7 +54,7 @@ namespace GameOfLife.Application
         {
             
             var patternExistsInFile = false;
-            if (Directory.Exists(patternName))
+            if (File.Exists(patternName))
             {
                 return true;
             }
@@ -76,9 +74,9 @@ namespace GameOfLife.Application
             return patternExistsInFile;
         }
 
-        public static bool ValidCharFromListOfChars(string userInput, string allowedChars)
+        public static bool ValidateCharFromListOfChars(string userInput, string allowedChars)
         {
-            return userInput.All(c => allowedChars.Contains(c)) && userInput.Length == 1;
+            return userInput.All(allowedChars.Contains) && userInput.Length == 1;
         }
     }
 }
