@@ -16,22 +16,24 @@ namespace GameOfLife
             var keyPress = new KeyPress(consoleIO);
             var world = new World();
             var riddler = new Riddler(input,output);
-            var gameSetup = new GameSetup();
+            var customPatternBuilder = new CustomPatternBuilder();
+            var rootPath = new RootPathConstant();
+            var patternSaver = new PatternSaver(rootPath);
+            var commandLineArgument = new CommandLineArgument(rootPath);
+            var gameSetup = new GameSetup(input,output,riddler,customPatternBuilder, commandLineArgument);
             
-            var pattern = gameSetup.GetPatternSelection(args, output, riddler, world);
+            var pattern = gameSetup.GetPatternSelection(args);
 
-            gameSetup.SetWorldDimensions(riddler, pattern, output);
+            gameSetup.SetWorldDimensions(pattern);
 
-            if (world.CustomWorld)
-                gameSetup.CreateCustomWorldPattern(riddler, pattern,input,output);
+            if (gameSetup.CustomWorld)
+                gameSetup.CreateCustomWorldPattern(pattern);
             
-            world.InitialiseWorld(riddler.Height,riddler.Length);
+            world.InitialiseWorld(gameSetup.WorldHeight,gameSetup.WorldLength);
             world.LoadPatternIntoWorld(pattern);
             
-            var game = new GameEngine(input, output, keyPress, pattern, world);
+            var game = new GameEngine(input, output, keyPress, pattern, world, patternSaver);
             game.RunSimulation();
-            Environment.Exit(0);
-            
         }
     }
 }

@@ -1,0 +1,13 @@
+@startuml
+interface IOutput {
+    + DisplayWorld(world:World) : void
+    + DisplayGameBoardSizeSelectionMessage(minRowSize:int, minColumnSize:int) : void
+    + DisplayPatternSelectionFromFile(arrayOfPatternsToBeDisplayed:string[]) : void
+    + DisplayChoiceForRowsMessage() : void
+    + DisplayChoiceForColumnsMessage() : void
+    + DisplayMessage(message:string) : void
+    + DisplayGameCell(message:string) : void
+    + DisplayOptionsForSaveQuitingAndPausing() : void
+    + DisplayOptionsForPatternBuilder() : void
+}
+@enduml

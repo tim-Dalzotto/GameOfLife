@@ -3,7 +3,7 @@ using GameOfLife.Constants;
 using Moq;
 using Xunit;
 
-namespace GameOfLifeTest.Tests
+namespace GameOfLifeTest.Tests.Application
 {
     public class CommandLineArgumentsTest
     {

@@ -1,0 +1,8 @@
+@startuml
+class GameEngine {
+    + GameEngine(input:IUserInput, output:IOutput, keyPress:IKeyPress, pattern:Pattern, world:World)
+    + RunNextGeneration() : World
+    + RunSimulation() : void
+    + <<virtual>> SaveWorld(currentPattern:string[]) : void
+}
+@enduml

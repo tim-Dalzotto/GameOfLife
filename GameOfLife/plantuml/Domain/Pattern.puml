@@ -1,0 +1,6 @@
+@startuml
+class Pattern {
+    + Pattern(currentPattern:string[])
+    + UpdatePatternFromGameWorldStringArray(currentCellArray:World) : void
+}
+@enduml

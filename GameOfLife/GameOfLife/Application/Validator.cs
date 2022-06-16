@@ -58,7 +58,7 @@ namespace GameOfLife.Application
             {
                 return true;
             }
-            
+
             foreach (var patternInFile in listOfPatternNames)
             {
                 if (patternName == Path.GetFileName(patternInFile))

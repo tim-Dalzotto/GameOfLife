@@ -1,10 +1,10 @@
-using System;
+using FluentAssertions;
 using GameOfLife.Application;
 using GameOfLife.ConsoleOut;
 using GameOfLifeTest.Mock;
 using Xunit;
 
-namespace GameOfLifeTest.Tests
+namespace GameOfLifeTest.Tests.Application
 {
     public class CustomWorldBuilderTest
     {
@@ -12,7 +12,21 @@ namespace GameOfLifeTest.Tests
 
         public CustomWorldBuilderTest()
         {
-            _customPatternBuilder = new CustomPatternBuilder(5,5);
+            _customPatternBuilder = new CustomPatternBuilder();
+            _customPatternBuilder.InitialiseCustomPattern(5,5);
+        }
+        
+        [Fact]
+        public void GivenEmptyWorld_WhenInitialiseWorldCalled_ThenReturnNewWorld()
+        {
+            Assert.NotEmpty(_customPatternBuilder.CustomPattern);
+        }
+        
+        [Fact]
+        public void GivenCreateInitialWorld_WhenPatternAndSizeAreGiven_ThenReturnAWorldToThoseSpecifications()
+        {
+            var actual = _customPatternBuilder.CustomPattern;
+            actual.Should().BeEquivalentTo(ExamplePatterns.ExampleMultidimensionalStringArrayAllCellsDead());
         }
 
         [Theory]

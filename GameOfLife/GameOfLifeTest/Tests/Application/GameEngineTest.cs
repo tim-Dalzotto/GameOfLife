@@ -1,15 +1,13 @@
 using System;
-using System.Runtime.CompilerServices;
 using FluentAssertions;
 using GameOfLife.Application;
 using GameOfLife.ConsoleOut;
-using GameOfLife.Domain;
+using GameOfLife.Constants;
 using GameOfLifeTest.Mock;
 using Moq;
-using Newtonsoft.Json;
 using Xunit;
 
-namespace GameOfLifeTest.Tests
+namespace GameOfLifeTest.Tests.Application
 {
     public class GameEngineTest
     {
@@ -31,7 +29,7 @@ namespace GameOfLifeTest.Tests
         {
             var pattern = new Pattern(ExamplePatterns.EveryCellDead);
             //Arrange 
-            var gameEngine = new GameEngine(_input, _output, _keyPress, pattern, ExampleWorlds.WorldEveryCellIsAlive());
+            var gameEngine = new GameEngine(_input, _output, _keyPress, pattern, ExampleWorlds.WorldEveryCellIsAlive(), It.IsAny<PatternSaver>());
             //Act
             var actual = gameEngine.RunNextGeneration();
             //Assert
@@ -44,7 +42,7 @@ namespace GameOfLifeTest.Tests
            
             var pattern = new Pattern(ExamplePatterns.EveryCellDead);
             //Arrange 
-            var gameEngine = new GameEngine(_input, _output, _keyPress, pattern, ExampleWorlds.WorldEveryCellIsDead());
+            var gameEngine = new GameEngine(_input, _output, _keyPress, pattern, ExampleWorlds.WorldEveryCellIsDead(),It.IsAny<PatternSaver>());
             //Act
             var actual = gameEngine.RunNextGeneration();
             //Assert
@@ -62,7 +60,7 @@ namespace GameOfLifeTest.Tests
 
             var pattern = new Pattern(ExamplePatterns.EveryCellAlive /*fake*/);
             
-            var gameEngine = new Mock<GameEngine>(fakeInput, _output, mockKeyPress.Object, pattern, ExampleWorlds.WorldEveryCellIsAlive()); //spy
+            var gameEngine = new Mock<GameEngine>(fakeInput, _output, mockKeyPress.Object, pattern, ExampleWorlds.WorldEveryCellIsAlive(), It.IsAny<PatternSaver>()); //spy
 
             gameEngine.Object.RunSimulation();
             gameEngine.Verify(mock => mock.SaveWorld(It.IsAny<string[]>()/*dummy*/), Times.Exactly(1));//spy usage 

@@ -2,7 +2,7 @@ using FluentAssertions;
 using GameOfLife.Application;
 using Xunit;
 
-namespace GameOfLifeTest.Tests
+namespace GameOfLifeTest.Tests.DomainTests
 {
     public class PatternTests
     {

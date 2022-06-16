@@ -1,0 +1,7 @@
+@startuml
+class ConsoleUserInput {
+    + ConsoleUserInput(consoleIo:IConsoleIO)
+    + GetUserInput() : string
+}
+IUserInput <|-- ConsoleUserInput
+@enduml

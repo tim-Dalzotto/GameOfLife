@@ -1,11 +1,8 @@
-using GameOfLife.Application;
 using GameOfLife.ConsoleOut;
-using GameOfLife.Domain;
 using GameOfLifeTest.Mock;
-using Moq;
 using Xunit;
 
-namespace GameOfLifeTest.Tests
+namespace GameOfLifeTest.Tests.Application
 {
     public class RiddlerTest
     {

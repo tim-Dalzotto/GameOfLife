@@ -1,0 +1,11 @@
+@startuml
+class Riddler {
+    + Height : int <<get>>
+    + Length : int <<get>>
+    + PatternIndex : int <<get>>
+    + Riddler(userInput:IUserInput, output:IOutput)
+    + GetUserPatternSelection(arrayOfPatternNames:string[]) : void
+    + GetUserWorldHeightSelection() : void
+    + GetUserLengthSelection() : void
+}
+@enduml

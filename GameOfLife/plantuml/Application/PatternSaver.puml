@@ -1,0 +1,6 @@
+@startuml
+class PatternSaver {
+    + PatternSaver(rootPathConstant:RootPathConstant)
+    + SavePatternToFile(pattern:string[], patternName:string) : void
+}
+@enduml

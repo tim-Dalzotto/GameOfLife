@@ -1,9 +1,8 @@
-using System.Collections.Generic;
 using GameOfLife.Application;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace GameOfLifeTest.Tests
+namespace GameOfLifeTest.Tests.Application
 {
     public class SimEndCriteriaTest
     {

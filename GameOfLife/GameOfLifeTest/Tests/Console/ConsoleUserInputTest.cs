@@ -2,7 +2,7 @@ using GameOfLife.ConsoleOut;
 using Moq;
 using Xunit;
 
-namespace GameOfLifeTest.Tests
+namespace GameOfLifeTest.Tests.Console
 {
     public class ConsoleUserInputTest
     {

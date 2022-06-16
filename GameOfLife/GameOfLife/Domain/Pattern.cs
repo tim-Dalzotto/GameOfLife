@@ -8,10 +8,7 @@ using GameOfLife.Domain;
 
 namespace GameOfLife.Application
 {
-    /**
-     * should represent a single pattern
-     * 
-     */
+    
     public class Pattern
     {
 

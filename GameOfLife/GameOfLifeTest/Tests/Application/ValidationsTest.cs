@@ -1,11 +1,9 @@
-using System.Runtime.InteropServices;
 using GameOfLife.Application;
 using GameOfLife.ConsoleOut;
 using GameOfLife.Constants;
-using GameOfLife.Domain;
 using Xunit;
 
-namespace GameOfLifeTest.Tests
+namespace GameOfLifeTest.Tests.Application
 {
     public class ValidationsTest
     {

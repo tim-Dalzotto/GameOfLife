@@ -89,5 +89,40 @@ namespace GameOfLifeTest
 
             return only00Alive;
         }
+        public static string[,] ExampleMultidimensionalStringArrayAllCellsDead()
+        {
+            var only00Alive= new string[5, 5];
+            only00Alive[0, 0] = "-";
+            only00Alive[0, 1] = "-";
+            only00Alive[0, 2] = "-";
+            only00Alive[0, 3] = "-";
+            only00Alive[0, 4] = "-";
+
+            only00Alive[1, 0] = "-";
+            only00Alive[1, 1] = "-";
+            only00Alive[1, 2] = "-";
+            only00Alive[1, 3] = "-";
+            only00Alive[1, 4] = "-";
+
+            only00Alive[2, 0] = "-";
+            only00Alive[2, 1] = "-";
+            only00Alive[2, 2] = "-";
+            only00Alive[2, 3] = "-";
+            only00Alive[2, 4] = "-";
+
+            only00Alive[3, 0] = "-";
+            only00Alive[3, 1] = "-";
+            only00Alive[3, 2] = "-";
+            only00Alive[3, 3] = "-";
+            only00Alive[3, 4] = "-";
+
+            only00Alive[4, 0] = "-";
+            only00Alive[4, 1] = "-";
+            only00Alive[4, 2] = "-";
+            only00Alive[4, 3] = "-";
+            only00Alive[4, 4] = "-";
+
+            return only00Alive;
+        }
 }
 }

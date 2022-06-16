@@ -13,15 +13,17 @@ namespace GameOfLife.Application
         private readonly IUserInput _input;
         private readonly IKeyPress _keyPress;
         private readonly Pattern _pattern;
+        private readonly PatternSaver _patternSaver;
         private World _world;
 
-        public GameEngine(IUserInput input, IOutput output, IKeyPress keyPress, Pattern pattern, World world)
+        public GameEngine(IUserInput input, IOutput output, IKeyPress keyPress, Pattern pattern, World world, PatternSaver patternSaver)
         {
             _output = output;
             _input = input;
             _keyPress = keyPress;
             _pattern = pattern;
             _world = world;
+            _patternSaver = patternSaver;
         }
         public World RunNextGeneration()
         {
@@ -77,11 +79,9 @@ namespace GameOfLife.Application
 
         public virtual void SaveWorld(string[] currentPattern)
         {
-            var rootPath = new RootPathConstant();
-            var patternSaver = new PatternSaver(rootPath);
             _output.DisplayMessage("Please Enter file name");
             var fileName = _input.GetUserInput();
-            patternSaver.SavePatternToFile(currentPattern, fileName);
+            _patternSaver.SavePatternToFile(currentPattern, fileName);
         }
         
     }

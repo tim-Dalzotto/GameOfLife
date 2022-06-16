@@ -1,12 +1,10 @@
-using System;
 using System.IO;
 using GameOfLife.ConsoleOut;
-using GameOfLife.Domain;
 using GameOfLifeTest.Mock;
 using Moq;
 using Xunit;
 
-namespace GameOfLifeTest.Tests
+namespace GameOfLifeTest.Tests.Console
 {
     public class ConsoleOutTest
     {
@@ -24,7 +22,7 @@ namespace GameOfLifeTest.Tests
         public void Test_stringOutput()
         {
             var stringWriter = new StringWriter();
-            Console.SetOut(stringWriter);
+            System.Console.SetOut(stringWriter);
             var consoleOutput = new ConsoleOutput(new ConsoleIO());
             
             consoleOutput.DisplayGameCell("Test");

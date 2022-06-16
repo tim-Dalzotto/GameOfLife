@@ -1,0 +1,10 @@
+@startuml
+class ValidationConstants <<static>> {
+    + <<const>> AllowedCharsForSimulationMenuOptions : string = "qsc"
+    + <<const>> AllowedCharsForPatternBuilderOptions : string = "wasdopq"
+    + <<const>> ErrorNotValidNumberForSelectedPattern : string = "Error: Not A Valid Number, Please Enter A Valid Number"
+    + <<const>> ErrorNotAnInt : string = "Error: Not A Number, Please Enter A Valid Number"
+    + <<const>> ErrorNotAValidPatternSelection : string = "Error: Not A Valid Pattern, Please Enter A Valid Number"
+    + <<const>> FileDoesNotExist : string = "Error: The File You Entered Does Not Exist"
+}
+@enduml

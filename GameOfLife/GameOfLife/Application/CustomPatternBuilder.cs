@@ -16,7 +16,12 @@ namespace GameOfLife.Application
         public int CursorYValue { get; set; }
         public int CursorXValue { get; set; }
 
-        public CustomPatternBuilder(int height, int length)
+        public CustomPatternBuilder()
+        {
+            
+        }
+
+        public void InitialiseCustomPattern(int height, int length)
         {
             Height = height;
             Length = length;
@@ -31,8 +36,6 @@ namespace GameOfLife.Application
                 }
             }
         }
-        
-       
         public void DisplayWorldBuilder(IOutput output)
         {
             Console.Clear();

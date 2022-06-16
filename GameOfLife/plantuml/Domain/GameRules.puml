@@ -1,0 +1,5 @@
+@startuml
+class GameRules <<static>> {
+    + {static} UpdateWorldWithNextGen(world:World) : World
+}
+@enduml

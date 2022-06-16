@@ -1,0 +1,15 @@
+@startuml
+class ConsoleOutput {
+    + ConsoleOutput(consoleIo:IConsoleIO)
+    + DisplayWorld(world:World) : void
+    + DisplayPatternSelectionFromFile(arrayOfPatternToBeDisplayed:string[]) : void
+    + DisplayGameBoardSizeSelectionMessage(minRowSize:int, minColumnSize:int) : void
+    + DisplayChoiceForRowsMessage() : void
+    + DisplayChoiceForColumnsMessage() : void
+    + DisplayOptionsForSaveQuitingAndPausing() : void
+    + DisplayOptionsForPatternBuilder() : void
+    + DisplayMessage(message:string) : void
+    + DisplayGameCell(message:string) : void
+}
+IOutput <|-- ConsoleOutput
+@enduml

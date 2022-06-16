@@ -1,11 +1,9 @@
-using System.Reflection;
 using FluentAssertions;
 using GameOfLife.Application;
 using GameOfLife.Domain;
-using Newtonsoft.Json;
 using Xunit;
 
-namespace GameOfLifeTest.Tests
+namespace GameOfLifeTest.Tests.DomainTests
 {
     public class WorldTest
     {

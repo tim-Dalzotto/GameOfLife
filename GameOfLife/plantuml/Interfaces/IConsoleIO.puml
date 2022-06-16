@@ -1,0 +1,9 @@
+@startuml
+interface IConsoleIO {
+    WriteLine(message:string) : void
+    Write(message:string) : void
+    ReadLine() : string
+    ReadKey(b:bool) : ConsoleKey
+    KeyAvailable() : bool
+}
+@enduml
