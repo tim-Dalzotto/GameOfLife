@@ -17,10 +17,10 @@ namespace GameOfLife
             var world = new World();
             var riddler = new Riddler(input,output);
             var customPatternBuilder = new CustomPatternBuilder();
-            var rootPath = new RootPathConstant();
+            var rootPath = new RootPathConstant("/GameOfLife/GameOfLife/GameOfLife/PatternFileDirectory/");
             var patternSaver = new PatternSaver(rootPath);
             var commandLineArgument = new CommandLineArgument(rootPath);
-            var gameSetup = new GameSetup(input,output,riddler,customPatternBuilder, commandLineArgument);
+            var gameSetup = new GameSetup(input,output,riddler,customPatternBuilder, commandLineArgument, rootPath);
             
             var pattern = gameSetup.GetPatternSelection(args);
 

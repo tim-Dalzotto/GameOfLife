@@ -12,11 +12,8 @@ namespace GameOfLifeTest.Tests.Application
 
         public PatternLoaderTest()
         {
-            var rootPath = new Mock<RootPathConstant>();
-            rootPath.Setup(m => m.GetRootPath(It.IsAny<string>()))
-                .Returns(
-                    "/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest/PatternFileDirectory");
-            _patternLoader = new PatternLoader(rootPath.Object);
+            var rootPathConstant = new RootPathConstant("/GameOfLife/GameOfLife/GameOfLifeTest/PatternFileDirectory");
+            _patternLoader = new PatternLoader(rootPathConstant);
         }
         
         [Fact]

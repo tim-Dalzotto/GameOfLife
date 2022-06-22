@@ -7,9 +7,9 @@ namespace GameOfLife.Constants
     {
         public string RootPath { get;}
 
-        public RootPathConstant()
+        public RootPathConstant(string filePathFromRepo)
         {
-            RootPath= GetRootPath("/GameOfLife/GameOfLife/GameOfLife/PatternFileDirectory/");
+            RootPath= GetRootPath(filePathFromRepo);
         }
         
 

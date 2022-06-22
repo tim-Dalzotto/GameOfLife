@@ -11,27 +11,28 @@ namespace GameOfLife.Application
         private readonly Riddler _riddler;
         private readonly CustomPatternBuilder _customPatternBuilder;
         private readonly CommandLineArgument _commandLineArgument;
+        private readonly RootPathConstant _rootPathConstant;
         public bool CustomWorld { get; private set; }
         public int WorldLength { get; private set; }
         public int WorldHeight { get; private set; }
 
-        public GameSetup(IUserInput userInput, IOutput output, Riddler riddler, CustomPatternBuilder customPatternBuilder, CommandLineArgument commandLineArgument)
+        public GameSetup(IUserInput userInput, IOutput output, Riddler riddler, CustomPatternBuilder customPatternBuilder, CommandLineArgument commandLineArgument, RootPathConstant rootPathConstant)
         {
             _input = userInput;
             _output = output;
             _riddler = riddler;
             _customPatternBuilder = customPatternBuilder;
             _commandLineArgument = commandLineArgument;
+            _rootPathConstant = rootPathConstant;
         }
         public Pattern GetPatternSelection(string[] args)
         {
-            var rootPath = new RootPathConstant();
-            var patternLoader = new PatternLoader(rootPath);
-            var commandLineArgument = new CommandLineArgument(rootPath);
+            var patternLoader = new PatternLoader(_rootPathConstant);
+            //var commandLineArgument = new CommandLineArgument(rootPath);
             
             if (args.Length > 0 && Validator.ValidateCmdLineArgument(_output, args[0], patternLoader.GetPatternNamesFromFile()))
             {
-                var absolutePath = commandLineArgument.GetPatternFromCmdLineArguments(args[0]);
+                var absolutePath = _commandLineArgument.GetPatternFromCmdLineArguments(args[0]);
                 return new Pattern(patternLoader.GetPatternFromFileArgument(absolutePath));
             }
             

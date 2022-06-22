@@ -1,4 +1,9 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=99f213ed_002D064d_002D4868_002D9526_002D6d34608095cc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GivenACurrentWorld_When_Then" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=99f213ed_002D064d_002D4868_002D9526_002D6d34608095cc/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GivenACurrentWorld_When_Then" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Project Location="/Users/Timothy.Dalzotto/RiderProjects/GameOfLife/GameOfLife/GameOfLifeTest" Presentation="&amp;lt;GameOfLifeTest&amp;gt;" /&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b1320645_002Dfb8c_002D4912_002D83b3_002Dcba9f80155b5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GivenCommandLineArgument_WhenPatternNameExistsInDefaultFile_ThenReturnPattern" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::FD826E04-56AF-4A34-B637-D681FA4326B6::net5.0::GameOfLifeTest.Tests.Application.CommandLineArgumentsTest.GivenCommandLineArgument_WhenPatternNameExistsInDefaultFile_ThenReturnPattern&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
