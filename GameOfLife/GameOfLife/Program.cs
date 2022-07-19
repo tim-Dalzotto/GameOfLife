@@ -1,7 +1,7 @@
 ﻿using System;
 using GameOfLife.Application;
+using GameOfLife.Console;
 using GameOfLife.Domain;
-using GameOfLife.ConsoleOut;
 using GameOfLife.Constants;
 
 namespace GameOfLife

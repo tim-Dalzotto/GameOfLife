@@ -1,5 +1,5 @@
 using GameOfLife.Application;
-using GameOfLife.ConsoleOut;
+using GameOfLife.Console;
 using GameOfLife.Constants;
 using Xunit;
 

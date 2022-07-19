@@ -1,4 +1,4 @@
-using GameOfLife.ConsoleOut;
+using GameOfLife.Interfaces;
 
 namespace GameOfLifeTest
 {

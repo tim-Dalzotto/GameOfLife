@@ -15,7 +15,7 @@ namespace GameOfLife.Application
         }
         public string[] GetPatternNamesFromFile()
         {
-            var fileArray = Directory.GetFiles(_rootPathConstant.RootPath, "*.txt", SearchOption.AllDirectories)
+            var fileArray = Directory.GetFiles(_rootPathConstant.RootPath, "*.txt")
                 .Select(Path.GetFullPath).ToArray();
             return fileArray;
         }

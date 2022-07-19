@@ -1,8 +1,8 @@
 using System;
 using System.Threading;
-using GameOfLife.ConsoleOut;
 using GameOfLife.Constants;
 using GameOfLife.Domain;
+using GameOfLife.Interfaces;
 using Newtonsoft.Json;
 
 namespace GameOfLife.Application
@@ -42,7 +42,7 @@ namespace GameOfLife.Application
             {
                 while (!(_keyPress.CheckKeyAvailable() && _keyPress.CheckReadKey() == ConsoleKey.P))
                 {
-                    Console.Clear();
+                    _output.ClearGameBoard();
                     _output.DisplayMessage(count.ToString());
                     _output.DisplayWorld(_world);
                     var previousWorld = JsonConvert.SerializeObject(_world);

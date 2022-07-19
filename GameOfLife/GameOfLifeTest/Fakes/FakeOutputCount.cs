@@ -1,5 +1,5 @@
-using GameOfLife.ConsoleOut;
 using GameOfLife.Domain;
+using GameOfLife.Interfaces;
 
 namespace GameOfLifeTest
 {
@@ -47,6 +47,16 @@ namespace GameOfLifeTest
         }
 
         public void DisplayOptionsForSaveQuitingAndPausing()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void DisplayCustomWorldBuilder(int height, int length, int cursorYValue, int cursorXValue, string[,] customPattern)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void ClearGameBoard()
         {
             throw new System.NotImplementedException();
         }

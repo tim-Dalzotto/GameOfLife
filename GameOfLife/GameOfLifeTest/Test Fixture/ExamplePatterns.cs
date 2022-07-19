@@ -1,3 +1,5 @@
+using GameOfLife.Application;
+
 namespace GameOfLifeTest
 {
     public static class ExamplePatterns
@@ -23,6 +25,15 @@ namespace GameOfLifeTest
         public static string[] PatternTopRowAlive = new string[5]
         {
             "00000",
+            "-----",
+            "-----",
+            "-----",
+            "-----"
+        };
+        
+        public static string[] PatternOnly00CellAlive = new string[5]
+        {
+            "0----",
             "-----",
             "-----",
             "-----",

@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using GameOfLife.ConsoleOut;
 using GameOfLife.Constants;
+using GameOfLife.Interfaces;
 
 namespace GameOfLife.Application
 {
@@ -15,11 +15,7 @@ namespace GameOfLife.Application
         public string[] ConvertedCustomPattern { get; private set; }
         public int CursorYValue { get; set; }
         public int CursorXValue { get; set; }
-
-        public CustomPatternBuilder()
-        {
-            
-        }
+        
 
         public void InitialiseCustomPattern(int height, int length)
         {
@@ -38,24 +34,7 @@ namespace GameOfLife.Application
         }
         public void DisplayWorldBuilder(IOutput output)
         {
-            Console.Clear();
-            for(var i = 0; i < Height; i++)
-            {
-                for (var j = 0; j < Length; j++)
-                {
-                    if (CursorYValue == i && CursorXValue == j)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Write(CustomPattern[i, j]);
-                        Console.ResetColor();
-                        Console.Write(" ");
-
-                    }
-                    else
-                        output.DisplayGameCell(CustomPattern[i, j] +" ");
-                }
-                output.DisplayGameCell("\n");
-            }
+            output.DisplayCustomWorldBuilder(Height,Length,CursorYValue,CursorXValue,CustomPattern);
         }
         
         public void MoveCursor(char userInput)
@@ -69,7 +48,7 @@ namespace GameOfLife.Application
             }
             if (userInput == 's')
             {
-                if (CursorYValue == Height)
+                if (CursorYValue == Height - 1)
                     CursorYValue = 0;
                 else
                     CursorYValue++;
@@ -84,7 +63,7 @@ namespace GameOfLife.Application
             }
             if (userInput == 'd')
             {
-                if (CursorXValue == Length)
+                if (CursorXValue == Length -1)
                     CursorXValue = 0;
                 else
                     CursorXValue++;

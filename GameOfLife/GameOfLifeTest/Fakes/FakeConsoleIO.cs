@@ -1,5 +1,5 @@
 using System;
-using GameOfLife.ConsoleOut;
+using GameOfLife.Interfaces;
 
 namespace GameOfLifeTest.Mock
 {

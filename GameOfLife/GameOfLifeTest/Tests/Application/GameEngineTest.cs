@@ -1,8 +1,10 @@
 using System;
 using FluentAssertions;
 using GameOfLife.Application;
-using GameOfLife.ConsoleOut;
+using GameOfLife.Console;
 using GameOfLife.Constants;
+using GameOfLife.Domain;
+using GameOfLife.Interfaces;
 using GameOfLifeTest.Mock;
 using Moq;
 using Xunit;
@@ -50,7 +52,7 @@ namespace GameOfLifeTest.Tests.Application
         }
 
         [Fact]
-        public void GivenRunSimulation_WhenUserInputIsMocked_ThenShouldCallSaveWorldMethodOnce()
+        public void GivenUserInputIsSThenQ_WhenGameEngineIsRun_ThenShouldCallSaveWorldMethodOnce()
         {
             var fakeInput = new FakeChangingUserInput("S","Q"); //Fake
             

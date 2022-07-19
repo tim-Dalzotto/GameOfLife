@@ -1,19 +1,23 @@
 using System.IO;
 using System.Linq;
-using GameOfLife.ConsoleOut;
 using GameOfLife.Constants;
+using GameOfLife.Interfaces;
 
 namespace GameOfLife.Application
 {
     public static class Validator
     {
-        public static bool ValidateUserInputRows(int minHeight, int userInput)
+        public static bool ValidateUserInputRows(int minHeight, int? userInput)
         {
+            if (userInput == null)
+                return false;
             return userInput >= minHeight;
         }
 
-        public static bool ValidateUserInputBiggerThanMinRequirements(int minLength, int userInput)
+        public static bool ValidateUserInputBiggerThanMinRequirements(int minLength, int? userInput)
         {
+            if (userInput == null)
+                return false;
             return userInput >= minLength;
         }
 

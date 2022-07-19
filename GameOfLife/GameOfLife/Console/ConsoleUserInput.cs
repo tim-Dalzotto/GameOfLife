@@ -1,7 +1,6 @@
-using System;
-using GameOfLife.Application;
+using GameOfLife.Interfaces;
 
-namespace GameOfLife.ConsoleOut
+namespace GameOfLife.Console
 {
     public class ConsoleUserInput : IUserInput
     {

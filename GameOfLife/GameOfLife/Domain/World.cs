@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using GameOfLife.Application;
-using GameOfLife.ConsoleOut;
 
 namespace GameOfLife.Domain
 {

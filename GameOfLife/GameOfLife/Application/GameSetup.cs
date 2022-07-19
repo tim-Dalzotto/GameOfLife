@@ -1,6 +1,7 @@
-using GameOfLife.ConsoleOut;
+using GameOfLife.Console;
 using GameOfLife.Constants;
 using GameOfLife.Domain;
+using GameOfLife.Interfaces;
 
 namespace GameOfLife.Application
 {
@@ -13,8 +14,8 @@ namespace GameOfLife.Application
         private readonly CommandLineArgument _commandLineArgument;
         private readonly RootPathConstant _rootPathConstant;
         public bool CustomWorld { get; private set; }
-        public int WorldLength { get; private set; }
-        public int WorldHeight { get; private set; }
+        public virtual int WorldLength { get; private set; }
+        public virtual int WorldHeight { get; private set; }
 
         public GameSetup(IUserInput userInput, IOutput output, Riddler riddler, CustomPatternBuilder customPatternBuilder, CommandLineArgument commandLineArgument, RootPathConstant rootPathConstant)
         {
@@ -28,8 +29,7 @@ namespace GameOfLife.Application
         public Pattern GetPatternSelection(string[] args)
         {
             var patternLoader = new PatternLoader(_rootPathConstant);
-            //var commandLineArgument = new CommandLineArgument(rootPath);
-            
+
             if (args.Length > 0 && Validator.ValidateCmdLineArgument(_output, args[0], patternLoader.GetPatternNamesFromFile()))
             {
                 var absolutePath = _commandLineArgument.GetPatternFromCmdLineArguments(args[0]);

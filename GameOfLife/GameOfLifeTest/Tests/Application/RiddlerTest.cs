@@ -1,4 +1,4 @@
-using GameOfLife.ConsoleOut;
+using GameOfLife.Console;
 using GameOfLifeTest.Mock;
 using Xunit;
 

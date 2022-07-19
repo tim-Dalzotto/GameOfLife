@@ -155,11 +155,10 @@ namespace GameOfLifeTest
             createWorld.WorldPopulation[4, 2] = new Cell {IsAlive = false};
             createWorld.WorldPopulation[4, 3] = new Cell {IsAlive = true};
             createWorld.WorldPopulation[4, 4] = new Cell {IsAlive = false};
-            
             return createWorld;
         }
         
-        public static World SquareWorlWithd0Iteration()
+        public static World SquareWorldWith0Iteration()
         {
             var createWorld = new World();
             createWorld.InitialiseWorld(5,5);
@@ -230,6 +229,26 @@ namespace GameOfLifeTest
             createWorld.WorldPopulation[4, 2] = new Cell {IsAlive = true};
             createWorld.WorldPopulation[4, 3] = new Cell {IsAlive = false};
             createWorld.WorldPopulation[4, 4] = new Cell {IsAlive = false};
+            
+            return createWorld;
+        }
+        
+        public static World WorldWhereCellMiddleHas7LiveNeighbours()
+        {
+            var createWorld = new World();
+            createWorld.InitialiseWorld(3,3);
+            
+            createWorld.WorldPopulation[0, 0] = new Cell {IsAlive = true};
+            createWorld.WorldPopulation[0, 1] = new Cell {IsAlive = true};
+            createWorld.WorldPopulation[0, 2] = new Cell {IsAlive = true};
+            
+            createWorld.WorldPopulation[1, 0] = new Cell {IsAlive = true};
+            createWorld.WorldPopulation[1, 1] = new Cell {IsAlive = true};
+            createWorld.WorldPopulation[1, 2] = new Cell {IsAlive = true};
+            
+            createWorld.WorldPopulation[2, 0] = new Cell {IsAlive = true};
+            createWorld.WorldPopulation[2, 1] = new Cell {IsAlive = true};
+            createWorld.WorldPopulation[2, 2] = new Cell {IsAlive = false};
             
             return createWorld;
         }

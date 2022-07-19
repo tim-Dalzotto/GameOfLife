@@ -1,6 +1,7 @@
 using GameOfLife.Application;
+using GameOfLife.Interfaces;
 
-namespace GameOfLife.ConsoleOut
+namespace GameOfLife.Console
 {
     public class Riddler
     {
@@ -37,6 +38,7 @@ namespace GameOfLife.ConsoleOut
         public void GetUserWorldHeightSelection()
         {
             _output.DisplayChoiceForRowsMessage();
+            
             var userInput = int.Parse(_input.GetUserInput());
             Height = userInput;
         }

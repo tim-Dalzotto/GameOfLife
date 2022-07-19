@@ -1,4 +1,5 @@
 using GameOfLife.Application;
+using GameOfLife.Domain;
 using Xunit;
 
 namespace GameOfLifeTest.Tests.Application

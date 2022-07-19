@@ -1,7 +1,9 @@
+using System;
 using System.IO;
 using GameOfLife.Domain;
+using GameOfLife.Interfaces;
 
-namespace GameOfLife.ConsoleOut
+namespace GameOfLife.Console
 {
     public class ConsoleOutput : IOutput
     {
@@ -14,11 +16,12 @@ namespace GameOfLife.ConsoleOut
         
         public void DisplayWorld(World world)
         {
+            System.Console.Clear();
             for (var i = 0; i < world.WorldPopulation.GetLength(0); i++)
             {
                 for (var j = 0; j < world.WorldPopulation.GetLength(1); j++)
                 {
-                    DisplayGameCell(world.WorldPopulation[i, j].IsAlive ? "0" : "-");
+                    DisplayGameCell(world.WorldPopulation[i, j].IsAlive ? "X" : " ");
                     DisplayGameCell(" ");
                 }
                 DisplayGameCell("\n");
@@ -69,6 +72,34 @@ namespace GameOfLife.ConsoleOut
                            "press P to Populate the cell or O to depopulate the cell \n " +
                            "Or press Q to quit world builder");
         }
+
+        public void DisplayCustomWorldBuilder(int height, int length, int cursorYValue, int cursorXValue, string[,] customPattern)
+        {
+            System.Console.Clear();
+            for(var i = 0; i < height; i++)
+            {
+                for (var j = 0; j < length; j++)
+                {
+                    if (cursorYValue == i && cursorXValue == j)
+                    {
+                        System.Console.ForegroundColor = ConsoleColor.Red;
+                        System.Console.Write(customPattern[i, j]);
+                        System.Console.ResetColor();
+                        System.Console.Write(" ");
+
+                    }
+                    else
+                        DisplayGameCell(customPattern[i, j] +" ");
+                }
+                DisplayGameCell("\n");
+            }
+        }
+
+        public void ClearGameBoard()
+        {
+            System.Console.Clear();
+        }
+        
         
         public void DisplayMessage(string message)
         {

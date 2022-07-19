@@ -1,6 +1,6 @@
 using System;
 
-namespace GameOfLife.ConsoleOut
+namespace GameOfLife.Interfaces
 {
     public interface IKeyPress
     {

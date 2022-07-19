@@ -1,4 +1,5 @@
-using GameOfLife.ConsoleOut;
+using GameOfLife.Console;
+using GameOfLife.Interfaces;
 using Moq;
 using Xunit;
 

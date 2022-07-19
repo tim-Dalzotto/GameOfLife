@@ -1,5 +1,6 @@
 using System.IO;
-using GameOfLife.ConsoleOut;
+using GameOfLife.Console;
+using GameOfLife.Interfaces;
 using GameOfLifeTest.Mock;
 using Moq;
 using Xunit;

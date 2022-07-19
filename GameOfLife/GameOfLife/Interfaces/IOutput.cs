@@ -1,7 +1,6 @@
-using System;
 using GameOfLife.Domain;
 
-namespace GameOfLife.ConsoleOut
+namespace GameOfLife.Interfaces
 {
     public interface IOutput
     {
@@ -13,6 +12,10 @@ namespace GameOfLife.ConsoleOut
         public void DisplayMessage(string message);
         public void DisplayGameCell(string message);
         public void DisplayOptionsForSaveQuitingAndPausing();
+        void DisplayCustomWorldBuilder(int height, int length, int cursorYValue, int cursorXValue,
+            string[,] customPattern);
+
+        void ClearGameBoard();
         public void DisplayOptionsForPatternBuilder();
     }
 }

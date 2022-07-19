@@ -27,8 +27,8 @@ namespace GameOfLife.Domain
             }
             return newWorld;
         }
-        
-        private static int FindLiveNeighbours(int x, int height, int y, int length, World currentWorld)
+
+        public static int FindLiveNeighbours(int x, int height, int y, int length, World currentWorld)
         {
             var liveNeighbours = 0;
 
@@ -49,7 +49,8 @@ namespace GameOfLife.Domain
             return liveNeighbours;
         }
 
-        private static void PopulateWorldWithNextGeneration(Cell currentCell, int liveNeighbours, World newWorld, int x, int y)
+        private static void PopulateWorldWithNextGeneration(Cell currentCell, int liveNeighbours, World newWorld,
+            int x, int y)
         {
             if (currentCell.IsAlive && liveNeighbours is 2 or 3)
                 newWorld.WorldPopulation[x, y].IsAlive = true;
