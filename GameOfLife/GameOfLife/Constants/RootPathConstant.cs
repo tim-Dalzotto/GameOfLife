@@ -16,8 +16,10 @@ namespace GameOfLife.Constants
         public virtual string GetRootPath(string pathFromRootToSelectedFile)
         {
             var customRootPath = Directory.GetParent(Environment.CurrentDirectory)?.Parent?.Parent?.FullName;
+            var test = customRootPath.Split(new string[] {"/GameOfLife/GameOfLife/GameOfLife"},
+                StringSplitOptions.None);
             var subRootPath = customRootPath[..37];
-            return $"{subRootPath}{pathFromRootToSelectedFile}";
+            return $"{test[0]}{pathFromRootToSelectedFile}";
         }
     }
 }
