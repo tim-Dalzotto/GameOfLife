@@ -1,0 +1,12 @@
+@startuml
+class CustomPatternBuilder {
+    + CursorYValue : int <<get>> <<set>>
+    + CursorXValue : int <<get>> <<set>>
+    + CustomPatternBuilder(height:int, length:int)
+    + DisplayWorldBuilder(output:IOutput) : void
+    + MoveCursor(userInput:char) : void
+    + SetAliveOrDead(input:string) : void
+    + MakePattern(input:IUserInput, output:IOutput) : void
+    + ConvertMultiDimensionalArrayToStringArray(multidimensionalArray:string[,]) : void
+}
+@enduml

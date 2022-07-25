@@ -1,0 +1,5 @@
+@startuml
+class SimEndCriteria <<static>> {
+    + {static} SimulationRepeated(pastWorlds:string, currentWorld:World) : bool
+}
+@enduml

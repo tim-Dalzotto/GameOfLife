@@ -1,0 +1,5 @@
+@startuml
+interface IUserInput {
+    + GetUserInput() : string
+}
+@enduml

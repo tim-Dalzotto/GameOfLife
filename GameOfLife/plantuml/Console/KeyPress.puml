@@ -1,0 +1,8 @@
+@startuml
+class KeyPress {
+    + KeyPress(consoleIo:IConsoleIO)
+    + CheckKeyAvailable() : bool
+    + CheckReadKey() : ConsoleKey
+}
+IKeyPress <|-- KeyPress
+@enduml

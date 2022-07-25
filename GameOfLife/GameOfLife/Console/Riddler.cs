@@ -1,45 +1,53 @@
-using System;
 using GameOfLife.Application;
-using GameOfLife.Constants;
-using GameOfLife.Domain;
+using GameOfLife.Interfaces;
 
-namespace GameOfLife.ConsoleOut
+namespace GameOfLife.Console
 {
-    public static class Riddler
+    public class Riddler
     {
-        
-        public static string[] GetUserPatternSelection(IUserInput input, IOutput output)
+        public int Height { get; private set; }
+        public int Length { get; private set; }
+        public int PatternIndex { get; private set; }
+        private readonly IUserInput _input;
+        private readonly IOutput _output;
+
+        public Riddler(IUserInput userInput, IOutput output)
+        {
+            _input = userInput;
+            _output = output;
+        }
+
+
+        public void GetUserPatternSelection(string[] arrayOfPatternNames)
         {
             var validator = false;
-            var userSelectionPatternChoice = NumberConst.EmptyChoice;
-            while (validator == false)
+            var userSelectionPatternChoice = 0;
+            while (!validator)
             {
-                output.DisplayPatternSelection();
-                var userInputTemp = input.GetUserInput();
-                if (Validator.IsNumeric(userInputTemp))
+                _output.DisplayPatternSelectionFromFile(arrayOfPatternNames);
+                var userInputTemp = _input.GetUserInput();
+                if (Validator.ValidateIfIsNumeric(userInputTemp))
                     userSelectionPatternChoice = int.Parse(userInputTemp);
                 else
-                    break;
-                validator = Validator.ValidatePatternSelection(userSelectionPatternChoice);
+                    continue;
+                validator = Validator.ValidateUserSelectedPatternExists(userSelectionPatternChoice, arrayOfPatternNames);
             }
-            
-            return Pattern.GetSelectedPattern(userSelectionPatternChoice);
-                        
+            PatternIndex = userSelectionPatternChoice;          
         }
 
-        public static string GetUserWorldHeightSelection(IUserInput input, IOutput output)
+        public void GetUserWorldHeightSelection()
         {
+            _output.DisplayChoiceForRowsMessage();
             
-            output.DisplayChoiceForRowsMessage();
-            var userInput = input.GetUserInput();
-            return userInput;
+            var userInput = int.Parse(_input.GetUserInput());
+            Height = userInput;
         }
 
-        public static string GetUserLengthSelection(IUserInput input, IOutput output)
+        public void GetUserLengthSelection()
         {
-            output.DisplayChoiceForColumnsMessage();
-            var userWorldSizeSelection = input.GetUserInput();
-            return userWorldSizeSelection;
+            _output.DisplayChoiceForColumnsMessage();
+            var userInput = int.Parse(_input.GetUserInput());
+            Length = userInput;
         }
         
     }

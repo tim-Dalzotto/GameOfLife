@@ -1,10 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
-using GameOfLife.ConsoleOut;
+using GameOfLife.Constants;
 using GameOfLife.Domain;
+using GameOfLife.Interfaces;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace GameOfLife.Application
 {
@@ -12,39 +11,78 @@ namespace GameOfLife.Application
     {
         private readonly IOutput _output;
         private readonly IUserInput _input;
+        private readonly IKeyPress _keyPress;
+        private readonly Pattern _pattern;
+        private readonly PatternSaver _patternSaver;
+        private World _world;
 
-        public GameEngine(IUserInput input, IOutput output)
+        public GameEngine(IUserInput input, IOutput output, IKeyPress keyPress, Pattern pattern, World world, PatternSaver patternSaver)
         {
             _output = output;
             _input = input;
+            _keyPress = keyPress;
+            _pattern = pattern;
+            _world = world;
+            _patternSaver = patternSaver;
         }
-        public World RunNextGeneration(World world)
+        public World RunNextGeneration()
         {
-            var currentGeneration = world; 
+            var currentGeneration = _world; 
 
             var nextGeneration = GameRules.UpdateWorldWithNextGen(currentGeneration);
             
             return nextGeneration;
         }
-        
-        public void PlayGame(string[] pattern, int height, int length)
-        {
-            var gameWorld = GameRules.CreateInitialWorld(pattern,height,length);
-            RunSimulation(gameWorld);
-            
-        }
 
-        private void RunSimulation(World gameWorld)
+        public void RunSimulation()
         {
-            var count = 0;
-            while ( count < 100 )
+            var count = 1;
+            var keepRunning = true;
+            while (keepRunning)
             {
-                _output.DisplayWorld(gameWorld);
-                gameWorld = RunNextGeneration(gameWorld);
-                Thread.Sleep(100);
+                while (!(_keyPress.CheckKeyAvailable() && _keyPress.CheckReadKey() == ConsoleKey.P))
+                {
+                    _output.ClearGameBoard();
+                    _output.DisplayMessage(count.ToString());
+                    _output.DisplayWorld(_world);
+                    var previousWorld = JsonConvert.SerializeObject(_world);
+                    _world = RunNextGeneration();
+                    Thread.Sleep(100);
+                    count++;
+                    if (SimEndCriteria.SimulationRepeated(previousWorld, _world))
+                        break;
+                }
+                char userInput;
+                while (true)
+                {
+                    _output.DisplayOptionsForSaveQuitingAndPausing();
+                    var stringUserInput = _input.GetUserInput().ToLower();
+                    if (!Validator.ValidateCharFromListOfChars(stringUserInput,ValidationConstants.AllowedCharsForSimulationMenuOptions)) continue;
+                    userInput = char.Parse(stringUserInput);
+                    break;
+                }
                 
-                count++;
+                switch (userInput)
+                {
+                    case 's':
+                        _pattern.UpdatePatternFromGameWorldStringArray(_world);
+                        SaveWorld(_pattern.CurrentPattern);
+                        break;
+                    case 'q':
+                        keepRunning = false;
+                        break;
+                    case 'c':
+                        continue;
+                }
             }   
         }
+
+        public virtual void SaveWorld(string[] currentPattern)
+        {
+            _output.DisplayMessage("Please Enter file name");
+            var fileName = _input.GetUserInput();
+            _patternSaver.SavePatternToFile(currentPattern, fileName);
+        }
+        
     }
 }

@@ -1,0 +1,8 @@
+@startuml
+class GameSetup {
+    + GameSetup(userInput:IUserInput, output:IOutput, world:World, riddler:Riddler)
+    + GetPatternSelection(args:string[]) : Pattern
+    + SetWorldDimensions(pattern:Pattern) : void
+    + CreateCustomWorldPattern(pattern:Pattern) : void
+}
+@enduml

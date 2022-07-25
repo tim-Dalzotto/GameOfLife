@@ -1,0 +1,11 @@
+@startuml
+class Validator <<static>> {
+    + {static} ValidateUserInputRows(minHeight:int, userInput:int) : bool
+    + {static} ValidateUserInputBiggerThanMinRequirements(minLength:int, userInput:int) : bool
+    + {static} ValidateUserSelectedPatternExists(userInput:int, listOfAvailablePatterns:string[]) : bool
+    + {static} ValidateIfIsNumeric(userInput:string) : bool
+    + {static} ValidateWorldSize(output:IOutput, input:string, minWorldCapacity:int) : bool
+    + {static} ValidateCmdLineArgument(output:IOutput, patternName:string, listOfPatternNames:string[]) : bool
+    + {static} ValidateCharFromListOfChars(userInput:string, allowedChars:string) : bool
+}
+@enduml

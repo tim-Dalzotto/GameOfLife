@@ -1,0 +1,5 @@
+@startuml
+class Cell {
+    + IsAlive : bool <<get>> <<set>>
+}
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class PatternLoader {
+    + PatternLoader(rootPathConstant:RootPathConstant)
+    + GetPatternNamesFromFile() : string[]
+    + GetPatternFromFile(fileName:string) : string[]
+    + GetPatternFromFileArgument(absoluteFilePath:string) : string[]
+    + GetSelectedPatternFromFile(userInput:int) : string[]
+}
+@enduml

@@ -1,54 +1,86 @@
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using GameOfLife.Application;
-using GameOfLife.ConsoleOut;
+using System.IO;
+using System.Linq;
 using GameOfLife.Constants;
+using GameOfLife.Interfaces;
 
-namespace GameOfLife.Domain
+namespace GameOfLife.Application
 {
     public static class Validator
     {
-        public static bool ValidateUserInputRows(int minHeight, int userInput)
+        public static bool ValidateUserInputRows(int minHeight, int? userInput)
         {
+            if (userInput == null)
+                return false;
             return userInput >= minHeight;
         }
 
-        public static bool ValidateUserInputBiggerThanMinRequirements(int minLength, int userInput)
+        public static bool ValidateUserInputBiggerThanMinRequirements(int minLength, int? userInput)
         {
+            if (userInput == null)
+                return false;
             return userInput >= minLength;
         }
 
-        public static bool ValidatePatternSelection(int userInput)
+        public static bool ValidateUserSelectedPatternExists(int userInput, string[] listOfAvailablePatterns)
         {
-            return Enum.IsDefined(typeof(Pattern.PatternEnum), userInput);
+            return listOfAvailablePatterns.Length + 1 >= userInput && userInput > 0;
         }
 
-        public static bool IsNumeric(string userInput)
+        public static bool ValidateIfIsNumeric(string userInput)
         {
             var isNumeric = int.TryParse(userInput, out _);
             return isNumeric;
         }
 
-        public static bool WorldSizeValidator(IOutput output, string input, int minWorldCapacity)
+        public static bool ValidateWorldSize(IOutput output, string input, int minWorldCapacity)
         {
             int intInput;
             var userInputTemp = input;
-            if (IsNumeric(userInputTemp))
+            if (ValidateIfIsNumeric(userInputTemp))
                 intInput = int.Parse(userInputTemp);
             else
             {
-                output.DisplayMessage(ErrorMessageConstants.ErrorNotAnInt);
+                output.DisplayMessage(ValidationConstants.ErrorNotAnInt);
                 return false;
             }
             
             var validator = ValidateUserInputBiggerThanMinRequirements(minWorldCapacity, intInput);
 
             if (validator == false)
-                output.DisplayMessage(ErrorMessageConstants.ErrorNotAValidPatternSelection);
+                output.DisplayMessage(ValidationConstants.ErrorNotAValidPatternSelection);
             else
                 return true;
             return false;
+        }
+
+
+        public static bool ValidateCmdLineArgument(IOutput output, string patternName, string[] listOfPatternNames)
+        {
+            
+            var patternExistsInFile = false;
+            if (File.Exists(patternName))
+            {
+                return true;
+            }
+
+            foreach (var patternInFile in listOfPatternNames)
+            {
+                if (patternName == Path.GetFileName(patternInFile))
+                    patternExistsInFile = true;
+            }
+
+            if (patternExistsInFile == false)
+            {
+                output.DisplayMessage(patternName);
+                output.DisplayMessage(ValidationConstants.FileDoesNotExist);
+            }
+                
+            return patternExistsInFile;
+        }
+
+        public static bool ValidateCharFromListOfChars(string userInput, string allowedChars)
+        {
+            return userInput.All(allowedChars.Contains) && userInput.Length == 1;
         }
     }
 }

@@ -1,0 +1,6 @@
+@startuml
+class CommandLineArgument {
+    + CommandLineArgument(rootPathConstant:RootPathConstant)
+    + GetPatternFromCmdLineArguments(patternName:string) : string
+}
+@enduml

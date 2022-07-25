@@ -1,0 +1,28 @@
+@startuml
+!include ./Program.puml
+!include ./Constants/ValidationConstants.puml
+!include ./Constants/RootPathConstant.puml
+!include ./Application/PatternSaver.puml
+!include ./Application/GameEngine.puml
+!include ./Application/Validator.puml
+!include ./Application/GameSetup.puml
+!include ./Application/SimEndCriteria.puml
+!include ./Application/PatternLoader.puml
+!include ./Application/CustomPatternBuilder.puml
+!include ./Application/CommandLineArgument.puml
+!include ./Domain/Cell.puml
+!include ./Domain/Pattern.puml
+!include ./Domain/World.puml
+!include ./Domain/GameRules.puml
+!include ./Interfaces/IConsoleIO.puml
+!include ./Interfaces/IKeyPress.puml
+!include ./Interfaces/IUserInput.puml
+!include ./Interfaces/IOutput.puml
+!include ./Console/ConsoleOutput.puml
+!include ./Console/KeyPress.puml
+!include ./Console/ConsoleIO.puml
+!include ./Console/Riddler.puml
+!include ./Console/ConsoleUserInput.puml
+!include ./obj/Debug/net5.0/GameOfLife.AssemblyInfo.puml
+!include ./obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.puml
+@enduml

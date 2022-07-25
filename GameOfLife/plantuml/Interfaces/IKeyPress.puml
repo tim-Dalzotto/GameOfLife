@@ -1,0 +1,6 @@
+@startuml
+interface IKeyPress {
+    CheckKeyAvailable() : bool
+    CheckReadKey() : ConsoleKey
+}
+@enduml

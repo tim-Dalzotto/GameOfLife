@@ -1,49 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Threading;
 using GameOfLife.Application;
+using GameOfLife.Console;
 using GameOfLife.Domain;
-using GameOfLife.ConsoleOut;
+using GameOfLife.Constants;
 
 namespace GameOfLife
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            var input = new ConsoleUserInput(new ConsoleIO());
-            var output = new ConsoleOutput(new ConsoleIO());
-            var game = new GameEngine(input, output);
-
-            var patternInput = Riddler.GetUserPatternSelection(input, output);
+            var consoleIO = new ConsoleIO();
+            var input = new ConsoleUserInput(consoleIO);
+            var output = new ConsoleOutput(consoleIO);
+            var keyPress = new KeyPress(consoleIO);
+            var world = new World();
+            var riddler = new Riddler(input,output);
+            var customPatternBuilder = new CustomPatternBuilder();
+            var rootPath = new RootPathConstant("/GameOfLife/GameOfLife/GameOfLife/PatternFileDirectory/");
+            var patternSaver = new PatternSaver(rootPath);
+            var commandLineArgument = new CommandLineArgument(rootPath);
+            var gameSetup = new GameSetup(input,output,riddler,customPatternBuilder, commandLineArgument, rootPath);
             
-            var worldMinRowRequiredBasedOnSelectedPattern = patternInput.Length;
-            var worldMinColumnsRequiredBasedOnSelectedPattern = patternInput[0].Length;
-            output.DisplayGameBoardSizeSelectionMessage( worldMinRowRequiredBasedOnSelectedPattern,worldMinColumnsRequiredBasedOnSelectedPattern);
+            var pattern = gameSetup.GetPatternSelection(args);
 
+            gameSetup.SetWorldDimensions(pattern);
 
-            var validInput = false;
-            string heightInput = null;
-            while (!validInput)
-            { 
-                heightInput = Riddler.GetUserWorldHeightSelection(input, output);
-                validInput = Validator.WorldSizeValidator(output, heightInput, worldMinRowRequiredBasedOnSelectedPattern);
-            }
-            //var heightInput = Riddler.GetUserWorldSizeSelection(input, output, worldMinColumnsRequiredBasedOnSelectedPattern);
+            if (gameSetup.CustomWorld)
+                gameSetup.CreateCustomWorldPattern(pattern);
             
-            string lengthInput = null;
-            validInput = false;
-            while (!validInput)
-            { 
-                lengthInput = Riddler.GetUserLengthSelection(input, output);
-                validInput = Validator.WorldSizeValidator(output, lengthInput, worldMinColumnsRequiredBasedOnSelectedPattern);
-            }
-
+            world.InitialiseWorld(gameSetup.WorldHeight,gameSetup.WorldLength);
+            world.LoadPatternIntoWorld(pattern);
             
-            game.PlayGame(patternInput,int.Parse(heightInput),int.Parse(lengthInput));
-            
+            var game = new GameEngine(input, output, keyPress, pattern, world, patternSaver);
+            game.RunSimulation();
         }
     }
 }

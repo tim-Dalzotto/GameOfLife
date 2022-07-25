@@ -1,0 +1,9 @@
+@startuml
+class World {
+    + Length : int <<get>>
+    + Height : int <<get>>
+    + CustomWorld : bool <<get>> <<set>>
+    + InitialiseWorld(height:int, length:int) : void
+    + LoadPatternIntoWorld(pattern:Pattern) : World
+}
+@enduml

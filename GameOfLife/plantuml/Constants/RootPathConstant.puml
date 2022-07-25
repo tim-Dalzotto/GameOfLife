@@ -1,0 +1,7 @@
+@startuml
+class RootPathConstant {
+    + RootPath : string <<get>>
+    + RootPathConstant()
+    + <<virtual>> GetRootPath(pathFromRootToSelectedFile:string) : string
+}
+@enduml

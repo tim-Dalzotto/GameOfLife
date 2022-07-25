@@ -1,18 +1,9 @@
+using GameOfLife.Application;
+
 namespace GameOfLife.Domain
 {
     public static class GameRules
     {
-        public static World CreateInitialWorld(string[] formattedPattern, int height, int length)
-        {
-            //initialise Rectangle world Test 
-            
-            var emptyWorld = new World(height,length);
-            //load format pattern
-            var loadedWorld =  emptyWorld.LoadPatternIntoWorld(formattedPattern);
-            //return formatted World 
-            return loadedWorld;
-        }
-
         public static World UpdateWorldWithNextGen(World world)
         {
             var currentWorld = world;
@@ -20,9 +11,8 @@ namespace GameOfLife.Domain
             var length = currentWorld.Length;
 
 
-            var newWorld = new World(currentWorld.Height, currentWorld.Length);
-            //this should not be here, add it's own check
-            var livingCellCount = 0;
+            var newWorld = new World();
+            newWorld.InitialiseWorld(height,length);
             for (var x = 0; x < currentWorld.Height; x++)
             {
                 for (var y = 0; y < currentWorld.Length; y++)
@@ -31,18 +21,14 @@ namespace GameOfLife.Domain
                     
                     var liveNeighbours = FindLiveNeighbours(x, length, y, height, currentWorld);
 
-                    PopulateNextGeneration(currentCell, liveNeighbours, newWorld, x, y);
-                    //---------------------------------------------------------------------------------------------------
-                    //This will check to see if there are any living cells left 
-                    if (currentCell.IsAlive == true)
-                        livingCellCount++;
+                    PopulateWorldWithNextGeneration(currentCell, liveNeighbours, newWorld, x, y);
                     currentWorld.WorldPopulation[x, y] = currentCell;
                 }
             }
             return newWorld;
         }
-        
-        private static int FindLiveNeighbours(int x, int height, int y, int length, World currentWorld)
+
+        public static int FindLiveNeighbours(int x, int height, int y, int length, World currentWorld)
         {
             var liveNeighbours = 0;
 
@@ -63,7 +49,8 @@ namespace GameOfLife.Domain
             return liveNeighbours;
         }
 
-        private static void PopulateNextGeneration(Cell currentCell, int liveNeighbours, World newWorld, int x, int y)
+        private static void PopulateWorldWithNextGeneration(Cell currentCell, int liveNeighbours, World newWorld,
+            int x, int y)
         {
             if (currentCell.IsAlive && liveNeighbours is 2 or 3)
                 newWorld.WorldPopulation[x, y].IsAlive = true;
@@ -77,22 +64,5 @@ namespace GameOfLife.Domain
             else if (!currentCell.IsAlive && liveNeighbours == 3)
                 newWorld.WorldPopulation[x, y].IsAlive = true;
         }
-        
-        // public static World InitialiseWorld(World world, int size)
-        // {
-        //     var createWorld = world;
-        //     createWorld.Size = size;
-        //     createWorld.WorldPopulation = new Cell[world.Size,world.Size];
-        //
-        //     for(var i = 0; i < world.Size; i++)
-        //     {
-        //         for (var j = 0; j < world.Size; j++)
-        //         {
-        //             createWorld.WorldPopulation[i, j] = new Cell { };
-        //         }
-        //     }
-        //     return world;
-        // }
-        //
     }
 }
